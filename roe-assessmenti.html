@@ -1,0 +1,2003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROE Assessment - Results-Oriented Environment</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: #2c3e50;
+            margin: 0;
+            padding: 0;
+        }
+        
+        #main-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 90px; /* Space for header */
+            padding-bottom: 40px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+            padding: 40px;
+            transition: all 0.3s ease;
+        }
+
+        h1 {
+            text-align: center;
+            color: #34495e;
+            margin-bottom: 30px;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        h2 {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: 400;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #5a6c7d;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e1e8ed;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        .form-group select {
+            cursor: pointer;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form-group input.error,
+        .form-group select.error,
+        .form-group textarea.error {
+            border-color: #e74c3c;
+            background-color: #fdf2f2;
+        }
+
+        .form-group input.error:focus,
+        .form-group select.error:focus,
+        .form-group textarea.error:focus {
+            border-color: #c0392b;
+            box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+        }
+
+        .button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .button:hover {
+            background: #2980b9;
+            transform: translateY(-1px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .button:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .question-container {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .question-text {
+            font-size: 20px;
+            line-height: 1.6;
+            color: #2c3e50;
+            margin-bottom: 40px;
+            font-weight: 500;
+        }
+
+        .answer-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .answer-button {
+            flex: 1;
+            min-width: 200px;
+            background: #ecf0f1;
+            border: 2px solid #bdc3c7;
+            padding: 20px 30px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #34495e;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .answer-button:hover {
+            background: #e8eaec;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .answer-button.selected {
+            color: white;
+            animation: shine 0.5s ease;
+        }
+
+        .answer-button[data-answer="true"].selected {
+            background: #27ae60;
+            border-color: #27ae60;
+            animation: shine-green 0.5s ease;
+        }
+
+        .answer-button[data-answer="false"].selected {
+            background: #e74c3c;
+            border-color: #e74c3c;
+            animation: shine-red 0.5s ease;
+        }
+
+        @keyframes shine-green {
+            0% {
+                box-shadow: 0 0 5px rgba(39, 174, 96, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(39, 174, 96, 0.8), 0 0 30px rgba(39, 174, 96, 0.6);
+            }
+            100% {
+                box-shadow: 0 0 5px rgba(39, 174, 96, 0.5);
+            }
+        }
+
+        @keyframes shine-red {
+            0% {
+                box-shadow: 0 0 5px rgba(231, 76, 60, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(231, 76, 60, 0.8), 0 0 30px rgba(231, 76, 60, 0.6);
+            }
+            100% {
+                box-shadow: 0 0 5px rgba(231, 76, 60, 0.5);
+            }
+        }
+
+        .group-selection {
+            margin-bottom: 30px;
+        }
+
+        .group-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .group-item {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .group-item:hover {
+            background: #e8f4f8;
+            border-color: #3498db;
+        }
+
+        .group-item.selected {
+            background: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .group-item h4 {
+            margin: 0 0 8px 0;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .group-item p {
+            margin: 0;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .group-item .check-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .group-item.selected .check-icon {
+            opacity: 1;
+        }
+
+        .group-counter {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #7f8c8d;
+            font-weight: 500;
+        }
+
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            gap: 15px;
+        }
+
+        .nav-button {
+            background: #95a5a6;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+            max-width: 150px;
+        }
+
+        .nav-button:hover:not(:disabled) {
+            background: #7f8c8d;
+            transform: translateY(-1px);
+        }
+
+        .nav-button:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .nav-button.primary {
+            background: #3498db;
+        }
+
+        .nav-button.primary:hover:not(:disabled) {
+            background: #2980b9;
+        }
+
+        .progress-container {
+            margin-bottom: 30px;
+        }
+
+        .progress-bar {
+            background: #ecf0f1;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: #3498db;
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            text-align: center;
+            margin-top: 10px;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .icon {
+            margin-right: 8px;
+        }
+
+        .summary {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .summary h2 {
+            color: #27ae60;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .summary p {
+            font-size: 18px;
+            color: #5a6c7d;
+            margin-bottom: 30px;
+        }
+
+        .answer-icon {
+            font-size: 24px;
+            margin-right: 12px;
+            vertical-align: middle;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            .answer-buttons {
+                flex-direction: column;
+            }
+
+            .answer-button {
+                min-width: 100%;
+            }
+            
+            /* Mobile footer adjustments */
+            footer {
+                padding: 7px 0 !important; /* 40% less than 12px */
+            }
+            
+            #milogofooter {
+                width: 60px !important; /* 40% less than 100px */
+                height: 60px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div id="pageheadertag_div" class="nt-site-header-6 ui-widget-header ui-corner-top" data-role="header" style="position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: #ffffff; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+        <table class="headingtable3" border="0" cellpadding="0" cellspacing="0" height="70" width="100%">
+            <tbody>
+                <tr>
+                    <td rowspan="1" align="left" bgcolor="#ffffff" valign="top" width="50%">
+                        <img src="https://apitests.reddinassessments.com/images/logo.svg" width="210" align="middle" border="0" style="margin-left: 20px;">
+                    </td>
+                    <td style="height: 70px;" align="right" bgcolor="#ffffff" width="50%">
+                        <!-- Header help button removed -->
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div id="main-wrapper">
+        <div class="container">
+        <!-- Test Validation Screen -->
+        <div id="testValidationScreen" class="fade-in">
+            <h1><i class="fas fa-shield-check icon"></i>Test Validation</h1>
+            <h2>Checking availability...</h2>
+            <div style="text-align: center; padding: 40px 0;">
+                <div id="validationSpinner" style="font-size: 48px; color: #3498db; margin-bottom: 20px;">
+                    <i class="fas fa-spinner fa-spin"></i>
+                </div>
+                <div id="validationMessage" style="color: #7f8c8d; font-size: 16px;">
+                    Verifying test link...
+                </div>
+            </div>
+            <div id="validationResult" class="hidden">
+                <div id="validationSuccess" class="hidden" style="text-align: center;">
+                    <div style="color: #27ae60; font-size: 64px; margin-bottom: 20px;">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3 style="color: #2c3e50; margin-bottom: 20px;">Test Available</h3>
+                    <p id="testStatusMessage" style="color: #5a6c7d; line-height: 1.6; margin-bottom: 30px;"></p>
+                    <button id="startTestButton" class="button">
+                        <i class="fas fa-play icon"></i>Start Test
+                    </button>
+                    <button id="helpButton" class="button" style="background: #ecf0f1; color: black; margin-top: 10px;">
+                        <i class="fas fa-question-circle icon" style="color: black;"></i>View Instructions
+                    </button>
+                </div>
+                <div id="validationError" class="hidden" style="text-align: center;">
+                    <div style="color: #e74c3c; font-size: 64px; margin-bottom: 20px;">
+                        <i class="fas fa-times-circle"></i>
+                    </div>
+                    <h3 style="color: #2c3e50; margin-bottom: 20px;">Test Not Available</h3>
+                    <p style="color: #5a6c7d; line-height: 1.6; margin-bottom: 30px;">
+                        The test link is not valid or has expired. Please verify:
+                        <br><br>
+                        • That the link is complete<br>
+                        • That it has not expired<br>
+                        • Your internet connection
+                    </p>
+                    <button onclick="window.location.reload()" class="button" style="background: #95a5a6;">
+                        <i class="fas fa-redo icon"></i>Try Again
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- User Info Screen -->
+        <div id="userInfoScreen" class="hidden">
+            <h1><i class="fas fa-clipboard-check icon"></i>Survey (ROE)</h1>
+            <h2>Results-Oriented Environment Survey (ROE)</h2>
+            <form id="userInfoForm">
+                <div class="form-group" data-field="firstName">
+                    <label for="firstName"><i class="fas fa-user icon"></i>First Name</label>
+                    <input type="text" id="firstName" name="firstName" placeholder="Enter your first name">
+                </div>
+                <div class="form-group" data-field="lastName">
+                    <label for="lastName"><i class="fas fa-user icon"></i>Last Name</label>
+                    <input type="text" id="lastName" name="lastName" placeholder="Enter your last name">
+                </div>
+                <div class="form-group" data-field="company">
+                    <label for="company"><i class="fas fa-building icon"></i>Company</label>
+                    <input type="text" id="company" name="company" placeholder="Your company name">
+                </div>
+                <div class="form-group" data-field="position">
+                    <label for="position"><i class="fas fa-briefcase icon"></i>Position</label>
+                    <input type="text" id="position" name="position" placeholder="Your position or title">
+                </div>
+                <div class="form-group" data-field="department">
+                    <label for="department"><i class="fas fa-sitemap icon"></i>Department</label>
+                    <input type="text" id="department" name="department" placeholder="Department or area">
+                </div>
+                <div class="form-group" data-field="age">
+                    <label for="age"><i class="fas fa-calendar-alt icon"></i>Age</label>
+                    <input type="number" id="age" name="age" placeholder="Age" min="18" max="100">
+                </div>
+                <div class="form-group" data-field="yearsInCompany">
+                    <label for="yearsInCompany"><i class="fas fa-clock icon"></i>Years at Company</label>
+                    <input type="number" id="yearsInCompany" name="yearsInCompany" placeholder="Years working at the company" min="0" max="50">
+                </div>
+                <div class="form-group" data-field="gender">
+                    <label for="gender"><i class="fas fa-venus-mars icon"></i>Gender</label>
+                    <select id="gender" name="gender">
+                        <option value="">Select your gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                        <option value="prefer-not-to-say">Prefer not to say</option>
+                    </select>
+                </div>
+                <div class="form-group" data-field="note1">
+                    <label for="note1"><i class="fas fa-sticky-note icon"></i>Note 1</label>
+                    <textarea id="note1" name="note1" placeholder="Additional note" rows="3"></textarea>
+                </div>
+                <div class="form-group" data-field="note2">
+                    <label for="note2"><i class="fas fa-sticky-note icon"></i>Note 2</label>
+                    <textarea id="note2" name="note2" placeholder="Additional note" rows="3"></textarea>
+                </div>
+                <div class="form-group" data-field="city">
+                    <label for="city"><i class="fas fa-city icon"></i>City</label>
+                    <input type="text" id="city" name="city" placeholder="City where you work">
+                </div>
+                <div class="form-group" data-field="country">
+                    <label for="country"><i class="fas fa-globe icon"></i>Country</label>
+                    <input type="text" id="country" name="country" placeholder="Country where you work">
+                </div>
+                <div class="form-group" data-field="email">
+                    <label for="email"><i class="fas fa-envelope icon"></i>Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="email@example.com">
+                </div>
+                <div class="form-group" data-field="phone">
+                    <label for="phone"><i class="fas fa-mobile-alt icon"></i>SMS Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+1234567890">
+                </div>
+                <button type="submit" class="button">
+                    <i class="fas fa-play icon"></i>Begin Assessment
+                </button>
+                <button type="button" id="debugButton" class="button" style="background: #e74c3c; margin-top: 10px; display: none;">
+                    <i class="fas fa-bug icon"></i>Debug: Auto-Complete Test
+                </button>
+            </form>
+        </div>
+
+        <!-- Question Screen -->
+        <div id="questionScreen" class="hidden">
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-text" id="progressText">Phrase 1 of 80</div>
+            </div>
+            <div class="question-container">
+                <p class="question-text" id="questionText"></p>
+                <div class="answer-buttons">
+                    <button class="answer-button" data-answer="false">
+                        <i class="fas fa-times-circle answer-icon"></i>Disagree
+                    </button>
+                    <button class="answer-button" data-answer="true">
+                        <i class="fas fa-check-circle answer-icon"></i>Agree
+                    </button>
+                </div>
+                
+                <div class="navigation-buttons">
+                    <button id="prevButton" class="nav-button">
+                        <i class="fas fa-arrow-left icon"></i>Previous
+                    </button>
+                    <button id="nextButton" class="nav-button primary" disabled>
+                        <i class="fas fa-arrow-right icon"></i>Next
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary Screen -->
+        <div id="summaryScreen" class="hidden">
+            <div class="summary">
+                <h2><i class="fas fa-trophy icon"></i>Assessment Completed!</h2>
+                <p>You have successfully answered all questions.</p>
+                <button id="submitButton" class="button">
+                    <i class="fas fa-paper-plane icon"></i>Submit Results
+                </button>
+            </div>
+        </div>
+        
+        <!-- Help Modal -->
+        <div id="helpModal" class="hidden" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 9999; align-items: center; justify-content: center;">
+            <div style="background: white; border-radius: 16px; max-width: 800px; width: 90%; max-height: 80vh; overflow-y: auto; padding: 40px; position: relative;">
+                <button id="closeHelpButton" style="position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 24px; cursor: pointer; color: #7f8c8d;">
+                    <i class="fas fa-times"></i>
+                </button>
+                
+                <h2 style="color: #2c3e50; margin-bottom: 25px; text-align: center;">
+                    <i class="fas fa-info-circle icon"></i>Instructions for the ROE Survey
+                </h2>
+                
+                <div style="color: #5a6c7d; line-height: 1.6; text-align: justify;">
+                    <h3 style="color: #34495e; margin-bottom: 15px;">Results-Oriented Environment Survey (ROE)</h3>
+                    
+                    <p style="margin-bottom: 20px;">
+                        Thank you for participating in our Results-Oriented Environment Survey. This survey has been designed to gather valuable information about work practices within the organization, and how these practices help team members navigate the structure to achieve business objectives.
+                    </p>
+                    
+                    <p style="margin-bottom: 20px;">
+                        The results will generate a detailed report on various indicators that reflect the organization's capacity to generate effective results. This report will be a crucial tool to facilitate decision-making and optimize the alignment of talent with structure, ensuring the creation of added value.
+                    </p>
+                    
+                    <h4 style="color: #34495e; margin-bottom: 15px;">Please consider the following when responding to the survey:</h4>
+                    
+                    <ul style="margin-bottom: 20px; padding-left: 20px;">
+                        <li style="margin-bottom: 10px;">Respond based on the current situation of the organization as a whole.</li>
+                        <li style="margin-bottom: 10px;">Each of the 80 statements must be answered. Select <strong>"Agree"</strong> if the statement reflects your perception of the current situation, or <strong>"Disagree"</strong> if it does not.</li>
+                        <li style="margin-bottom: 10px;">Be honest in your responses. There are no right or wrong answers.</li>
+                        <li style="margin-bottom: 10px;">Your responses are confidential and will be used only for organizational analysis purposes.</li>
+                    </ul>
+                    
+                    <div style="background: #ecf0f1; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                        <p style="margin: 0; font-style: italic; text-align: center;">
+                            <i class="fas fa-clock icon"></i>Estimated time: 10-15 minutes
+                        </p>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 30px;">
+                    <button id="closeHelpModalButton" class="button" style="background: #3498db;">
+                        <i class="fas fa-check icon"></i>Understood
+                    </button>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer style="padding: 12px 0; background: #2c3e50; width: 100%; margin-top: auto;">
+        <div style="padding: 0 20px;">
+            <div style="display: flex; align-items: center; justify-content: flex-start; width: 100%;">
+                <figure class="image" style="margin: 0;">
+                    <img id="milogofooter" style="aspect-ratio: 100/100; width: 100px; height: 100px;" src="https://apitests.reddinassessments.com/images/Icono-Reddin-Assessments-white-1.png">
+                </figure>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ROE Assessment Data (cleaned - removed tipotest and texto2 fields)
+        const roeData = [
+    {"texto": "Productivity standards are highly stressed in this organization.", "grupo": 1, "orden": 161},
+    {"texto": "Managers in this organization have clear objectives.", "grupo": 1, "orden": 162},
+    {"texto": "This organization is always trying to do things better.", "grupo": 1, "orden": 163},
+    {"texto": "This organization uses retraining, demotions, early retirements, and transfer, as appropriate, to deal with employees who are no longer useful or productive.", "grupo": 1, "orden": 164},
+    {"texto": "Rewards such as salary increases and promotions are given on the basis of merit.", "grupo": 1,  "orden": 165},
+    {"texto": "My boss often discusses my productivity with me.", "grupo": 1, "orden": 166},
+    {"texto": "Productivity is the most important issue considered in this organization.", "grupo": 1, "orden":  167},
+    {"texto": "Efficiency is highly valued here.", "grupo": 1, "orden": 168},
+    {"texto": "Doing things better than last time is what we try and accomplish here.", "grupo": 1, "orden": 169},
+    {"texto": "Very little time is wasted here.", "grupo": 1, "orden": 170},
+    {"texto": "Managers are competent in their jobs.", "grupo": 2, "orden": 171},
+    {"texto": "Our managers are a good example to our associates.", "grupo": 2, "orden": 172},
+    {"texto": "Managers here usually do a good job in motivating their employees.", "grupo": 2, "orden": 173},
+    {"texto": "Our managers are usually very effective.", "grupo": 2, "orden": 174},
+    {"texto": "Managers are trusted here.", "grupo": 2, "orden": 175},
+    {"texto": "In this organization there is a willing acceptation of management's decisions.", "grupo": 2,  "orden": 176},
+    {"texto": "The recent decisions of management have clearly benefited the organization.", "grupo": 2, "orden":  177},
+    {"texto": "Management is highly respected here.", "grupo": 2, "orden": 178},
+    {"texto": "People are given enough authority to do their jobs here.", "grupo": 2, "orden": 179},
+    {"texto": "Our managers know what they are doing.", "grupo": 2, "orden": 180},
+    {"texto": "This organization seems to have the right number of managers.", "grupo": 3, "orden": 181},
+    {"texto": "There is no serious overlap of job functions in this organization.", "grupo": 3, "orden": 182},
+    {"texto": "There is the right number of levels of management in this organization.", "grupo": 3, "orden": 183},
+    {"texto": "There is no confusion between staff and line here.", "grupo": 3, "orden": 184},
+    {"texto": "Organizational changes are made regularly when needed.", "grupo": 3, "orden": 185},
+    {"texto": "Managers know their jobs here.", "grupo": 3, "orden": 186},
+    {"texto": "Every manager has authority to make decisions for their teams.", "grupo": 3, "orden": 187},
+    {"texto": "No one part of this organization has too much power.", "grupo": 3, "orden": 188},
+    {"texto": "Almost everyone understands how our organization operates.", "grupo": 3, "orden": 189},
+    {"texto": "I know the organizational strategy.", "grupo": 3, "orden": 190},
+    {"texto": "People usually prepare well before a meeting.", "grupo": 4, "orden": 191},
+    {"texto": "Meetings are held when needed.", "grupo": 4, "orden": 192},
+    {"texto": "Managers often have informal discussions with their employees.", "grupo": 4, "orden": 193},
+    {"texto": "Discussion at meetings is very free and open.", "grupo": 4, "orden": 194},
+    {"texto": "I can always talk freely with my boss.", "grupo": 4, "orden": 195},
+    {"texto": "I know what is happening around here.", "grupo": 4, "orden": 196},
+    {"texto": "I see my boss as often as I need to.", "grupo": 4, "orden": 197},
+    {"texto": "I always have advance information of any changes that are planned.", "grupo": 4, "orden": 198},
+    {"texto": "People are friendly around here.", "grupo": 4, "orden": 199},
+    {"texto": "We use the spoken word rather than written memo to get things done here.", "grupo": 4, "orden":  200},
+    {"texto": "There is keen but useful rivalry between managers here.", "grupo": 5, "orden": 201},
+    {"texto": "Disagreements are eventually settled amicably here.", "grupo": 5, "orden": 202},
+    {"texto": "Employees may disagree with their manager without being penalized.", "grupo": 5, "orden": 203},
+    {"texto": "This organization encourages disagreement about the best way to do things.", "grupo": 5, "orden":  204},
+    {"texto": "People who express disagreement openly here are regarded as being interested in improving things.",  "grupo": 5, "orden": 205},
+    {"texto": "Conflict is accepted in this organization and is used productively.", "grupo": 5, "orden": 206},
+    {"texto": "People do not submissive accept things here.", "grupo": 5, "orden": 207},
+    {"texto": "Disagreement usually leads to improvement here.", "grupo": 5, "orden": 208},
+    {"texto": "People do not try to win arguments here, instead they work for the best solution.", "grupo": 5,  "orden": 209},
+    {"texto": "No one suffers for putting up a strong argument here.", "grupo": 5, "orden": 210},
+    {"texto": "This organization makes it easy for its people to improve themselves.", "grupo": 6, "orden": 211},
+    {"texto": "Our recruitment policy is a good one.", "grupo": 6, "orden": 212},
+    {"texto": "We match the person to the job.", "grupo": 6, "orden": 213},
+    {"texto": "This organization uses employee' maximum potential.", "grupo": 6, "orden": 214},
+    {"texto": "This organization has a good training scheme.", "grupo": 6, "orden": 215},
+    {"texto": "Our talent is well used here.", "grupo": 6, "orden": 216},
+    {"texto": "Management sees their human resources as of prime importance.", "grupo": 6, "orden": 217},
+    {"texto": "This organization is fair to the individual.", "grupo": 6, "orden": 218},
+    {"texto": "There is a great opportunity for advancement in this organization.", "grupo": 6, "orden": 219},
+    {"texto": "Absenteeism or slackness is no problem here.", "grupo": 6, "orden": 220},
+    {"texto": "My job is important in this organization.", "grupo": 7, "orden": 221},
+    {"texto": "Employees feel they have a part in the organization.", "grupo": 7, "orden": 222},
+    {"texto": "Suggestions are often solicited from employees here.", "grupo": 7, "orden": 223},
+    {"texto": "There is a lot of team spirit here.", "grupo": 7, "orden": 224},
+    {"texto": "A conscientious attempt is made to consider everyone's views before a decision is made.", "grupo":  7, "orden": 225},
+    {"texto": "Employees are often asked to serve in committees with their boss.", "grupo": 7, "orden": 226},
+    {"texto": "My ideas for changes have been welcomed.", "grupo": 7, "orden": 227},
+    {"texto": "I have had several of my ideas for changes accepted.", "grupo": 7, "orden": 228},
+    {"texto": "Many decisions are postponed if everyone concerned does not agree.", "grupo": 7, "orden": 229},
+    {"texto": "I know that my boss is interested in my ideas.", "grupo": 7, "orden": 230},
+    {"texto": "There are a lot of new ideas coming forward in this organization.", "grupo": 8, "orden": 231},
+    {"texto": "Creative thinking and innovation are encouraged here.", "grupo": 8, "orden": 232},
+    {"texto": "We always look at alternatives here.", "grupo": 8, "orden": 233},
+    {"texto": "This organization is always receptive to new ideas.", "grupo": 8, "orden": 234},
+    {"texto": "The creative person fits into this organization very easily.", "grupo": 8, "orden": 235},
+    {"texto": "A lot of ideas come from the employees here.", "grupo": 8, "orden": 236},
+    {"texto": "Bosses often ask direct reports for new ideas.", "grupo": 8, "orden": 237},
+    {"texto": "We are always willing to try something new.", "grupo": 8, "orden": 238},
+    {"texto": "My own ideas for change are given a good hearing.", "grupo": 8, "orden": 239},
+    {"texto": "I can be creative in this organization.", "grupo": 8, "orden": 240},
+    {"texto": "My boss and I regularly agree on my outputs.", "grupo": 9, "orden": 241},
+    {"texto": "My boss and I have agreed how my effectiveness should be measured.", "grupo": 9, "orden": 242},
+    {"texto": "My boss has a strong interest in how effective I am.", "grupo": 9, "orden": 243},
+    {"texto": "My boss discusses my less effective performance with me.", "grupo": 9, "orden": 244},
+    {"texto": "My boss usually tells me how effective I am.", "grupo": 9, "orden": 245},
+    {"texto": "My outputs link with those of my boss.", "grupo": 9, "orden": 246},
+    {"texto": "I can influence on the outputs of my boss.", "grupo": 9, "orden": 247},
+    {"texto": "I help my boss to be more effective.", "grupo": 9, "orden": 248},
+    {"texto": "My boss and I discuss any blockages between us.", "grupo": 9, "orden": 249},
+    {"texto": "My superior helps me to become more effective.", "grupo": 9, "orden": 250},
+    {"texto": "I have reached agreement with my direct reports on how their effectiveness will be measured.", "grupo": 10, "orden": 251},
+    {"texto": "I have worked out directly with my direct reports what both they and I are responsible for.",  "grupo": 10, "orden": 252},
+    {"texto": "I provide feedback to my direct reports when they aren't performing effectively.", "grupo": 10, "orden": 253},
+    {"texto": "I discuss my direct report' outputs with them rather than give them duties to carry out.", "grupo":  10, "orden": 254},
+    {"texto": "My direct reports' participate fully with me in setting the outputs for their positions.", "grupo":  10, "orden": 255},
+    {"texto": "I discuss regularly with my direct reports how effective they are.", "grupo": 10, "orden": 256},
+    {"texto": "I meet regularly with my direct reports to agree on their outputs.", "grupo": 10, "orden": 257},
+    {"texto": "My outputs link with those of my direct reports.", "grupo": 10, "orden": 258},
+    {"texto": "I help to make my direct reports more effective.", "grupo": 10, "orden": 259},
+    {"texto": "My direct reports and I discuss blockages between us and remove them.", "grupo": 10, "orden": 260},
+    {"texto": "My outputs link with the outputs of those I work with at my level.", "grupo": 11, "orden": 261},
+    {"texto": "There is effective inter-unit co-operation here.", "grupo": 11, "orden": 262},
+    {"texto": "As much as they can, my co-workers help me to become more effective.", "grupo": 11, "orden": 263},
+    {"texto": "As much as I can, I regularly help my co-workers to become more effective.", "grupo": 11, "orden":  264},
+    {"texto": "Most meetings I attend here are productive.", "grupo": 11, "orden": 265},
+    {"texto": "I am encouraged to interact directly with my co-workers without going through my boss or their bosses.", "grupo": 11, "orden": 266},
+    {"texto": "Useful informal meetings are often held here.", "grupo": 11, "orden": 267},
+    {"texto": "My responsibility and authority fit well with those of my co-workers.", "grupo": 11, "orden": 268},
+    {"texto": "I allow others to bypass my authority and responsibility as long as effectiveness is maintained.", "grupo": 11, "orden": 269},
+    {"texto": "My co-workers and I discuss blockages between us and remove them.", "grupo": 11, "orden": 270},
+    {"texto": "My authority is clearly defined.", "grupo": 12, "orden": 271},
+    {"texto": "I have sufficient authority to achieve what is expected of me.", "grupo": 12, "orden": 272},
+    {"texto": "I have a job description which is helpful to me in setting outputs.", "grupo": 12, "orden": 273},
+    {"texto": "I have a job description which is reasonably up-to-date and accurate.", "grupo": 12, "orden": 274},
+    {"texto": "I can usually change my authority and responsibility if I make a good case.", "grupo": 12, "orden":  275},
+    {"texto": "My responsibility and authority fit well with those of my boss.", "grupo": 12, "orden": 276},
+    {"texto": "My responsibility and authority fit will with those of my direct reports.", "grupo": 12, "orden":  277},
+    {"texto": "My responsibility and authority fit well with those of my co-workers.", "grupo": 12, "orden": 278},
+    {"texto": "My direct reports are responsible to me.", "grupo": 12, "orden": 279},
+    {"texto": "I am responsible to my boss.", "grupo": 12, "orden": 280},
+    {"texto": "I have most of the people I need in order to perform effectively.", "grupo": 13, "orden": 281},
+    {"texto": "I have most of the equipment I need in order to perform effectively.", "grupo": 13, "orden": 282},
+    {"texto": "I have had most of the training I need in order to perform effectively.", "grupo": 13, "orden":  283},
+    {"texto": "I have most of the space I need in order to perform effectively.", "grupo": 13, "orden": 284},
+    {"texto": "I have most of the budget I need in order to perform effectively.", "grupo": 13, "orden": 285},
+    {"texto": "I have most of the assistance from my boss I need in order to perform effectively.", "grupo": 13,  "orden": 286},
+    {"texto": "I have most of the assistance I need from my direct reports in order to perform effectively.",  "grupo": 13, "orden": 287},
+    {"texto": "I have most of the assistance from my co-workers I need in order to perform effectively.", "grupo":  13, "orden": 288},
+    {"texto": "I have most of the specialist advice I need in order to perform effectively.", "grupo": 13, "orden":   289},
+    {"texto": "I have most of the information I need in order to perform effectively.", "grupo": 13, "orden": 290},
+    {"texto": "I welcome output orientation.", "grupo": 14, "orden": 291},
+    {"texto": "I think output orientation is welcomed by my boss.", "grupo": 14, "orden": 292},
+    {"texto": "I think output orientation would be welcomed by those below me.", "grupo": 14, "orden": 293},
+    {"texto": "I think output orientation is welcomed by top management.", "grupo": 14, "orden": 294},
+    {"texto": "I think output orientation would have many benefits here.", "grupo": 14, "orden": 295},
+    {"texto": "I think output orientation would lead to some effective changes.", "grupo": 14, "orden": 296},
+    {"texto": "Change is easy introduced here.", "grupo": 14, "orden": 297},
+    {"texto": "Change is often introduced here.", "grupo": 14, "orden": 298},
+    {"texto": "This organization is highly flexible.", "grupo": 14, "orden": 299},
+    {"texto": "Change can be introduced quickly and effectively here.", "grupo": 14, "orden": 300},
+    {"texto": "More emphasis on output orientation would improve my effectiveness.", "grupo": 15, "orden": 301},
+    {"texto": "More emphasis on output orientation would improve my team performance.", "grupo": 15, "orden": 302},
+    {"texto": "More emphasis on output orientation would improve my boss' effectiveness.", "grupo": 15, "orden": 303},
+    {"texto": "More emphasis on output orientation would improve my co-workers' effectiveness.", "grupo": 15, "orden": 304},
+    {"texto": "More emphasis on output orientation would improve the organizational' effectiveness.", "grupo": 15, "orden": 305},
+    {"texto": "More emphasis on output orientation would reduce conflict here.", "grupo": 15, "orden": 306},
+    {"texto": "More emphasis on output orientation would improve job satisfaction here.", "grupo": 15, "orden":  307},
+    {"texto": "More emphasis on output orientation would enable me to work more effectively with my boss.", "grupo": 15, "orden": 308},
+    {"texto": "More emphasis on output orientation would enable me to work more effectively with my direct reports.", "grupo": 15, "orden": 309},
+    {"texto": "More empphasis on output orientation would enable me to work more effectively with my co-workers.",  "grupo": 15, "orden": 310},
+    {"texto": "Most of the job-related information I receive comes in good time.", "grupo": 16, "orden": 311},
+    {"texto": "Most of the job-related information I receive is accurate enough.", "grupo": 16, "orden": 312},
+    {"texto": "I can get most of the job-related information I need fairly easily.", "grupo": 16, "orden": 313},
+    {"texto": "Most of the job-related information I receive is useful to me.", "grupo": 16, "orden": 314},
+    {"texto": "I receive all the job-related information I need to perform effectively.", "grupo": 16, "orden":  315},
+    {"texto": "I can use most of the job-related information I receive.", "grupo": 16, "orden": 316},
+    {"texto": "Much of the job-related information I am required to produce seems to be of value.", "grupo": 16,  "orden": 317},
+    {"texto": "Most of the job-related information I get seems to reflect reality.", "grupo": 16, "orden": 318},
+    {"texto": "I receive the information I need in order to judge my effectiveness.", "grupo": 16, "orden": 319},
+    {"texto": "I receive the information I need in order to judge my direct reports' effectiveness.", "grupo": 16,  "orden": 320}
+  ];
+
+        // Application State
+        const app = {
+            currentQuestion: 0,
+            userInfo: {},
+            answers: [],
+            selectedGroups: [],
+            questions: [],
+            guid: null,
+            testId: null,
+            isResuming: false,
+            requiredFields: [], // Fields to show based on API response
+            autoAdvanceTimer: null // Timer for auto-advance functionality
+        };
+
+        // Local Storage Management
+        const LocalStorage = {
+            getKey(testId) {
+                return `roe_test_${testId}`;
+            },
+            
+            save(testId, data) {
+                try {
+                    const key = this.getKey(testId);
+                    localStorage.setItem(key, JSON.stringify({
+                        ...data,
+                        lastSaved: new Date().toISOString()
+                    }));
+                    console.log('Test progress saved to localStorage:', key);
+                } catch (error) {
+                    console.error('Error saving to localStorage:', error);
+                }
+            },
+            
+            load(testId) {
+                try {
+                    const key = this.getKey(testId);
+                    const data = localStorage.getItem(key);
+                    if (data) {
+                        const parsed = JSON.parse(data);
+                        console.log('Test progress loaded from localStorage:', key);
+                        return parsed;
+                    }
+                } catch (error) {
+                    console.error('Error loading from localStorage:', error);
+                }
+                return null;
+            },
+            
+            clear(testId) {
+                try {
+                    const key = this.getKey(testId);
+                    localStorage.removeItem(key);
+                    console.log('Test progress cleared from localStorage:', key);
+                } catch (error) {
+                    console.error('Error clearing localStorage:', error);
+                }
+            },
+            
+            getProgress(testId) {
+                const data = this.load(testId);
+                if (data && data.answers) {
+                    const answeredCount = data.answers.filter(answer => answer !== null).length;
+                    const totalQuestions = data.questions ? data.questions.length : 0;
+                    return {
+                        answered: answeredCount,
+                        total: totalQuestions,
+                        percentage: totalQuestions > 0 ? Math.round((answeredCount / totalQuestions) * 100) : 0,
+                        isPartial: answeredCount > 0 && answeredCount < totalQuestions,
+                        isComplete: answeredCount === totalQuestions && totalQuestions > 0
+                    };
+                }
+                return { answered: 0, total: 0, percentage: 0, isPartial: false, isComplete: false };
+            }
+        };
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get test ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            app.testId = urlParams.get('id');
+            app.guid = urlParams.get('guid') || app.testId || 'test-guid-' + Date.now();
+            
+            // Setup event listeners
+            document.getElementById('userInfoForm').addEventListener('submit', handleUserInfoSubmit);
+            document.getElementById('debugButton').addEventListener('click', debugFillAnswers);
+            document.getElementById('startTestButton').addEventListener('click', handleStartTest);
+            document.getElementById('helpButton').addEventListener('click', showHelpModal);
+            document.getElementById('closeHelpButton').addEventListener('click', hideHelpModal);
+            document.getElementById('closeHelpModalButton').addEventListener('click', hideHelpModal);
+            
+            // Setup answer button listeners
+            document.querySelectorAll('.answer-button').forEach(button => {
+                button.addEventListener('click', handleAnswer);
+            });
+            
+            // Setup navigation button listeners
+            document.getElementById('prevButton').addEventListener('click', previousQuestion);
+            document.getElementById('nextButton').addEventListener('click', nextQuestion);
+            document.getElementById('submitButton').addEventListener('click', submitResults);
+            
+            // Start with test validation
+            showScreen('testValidationScreen');
+            validateTest();
+        });
+        
+        // Validate test availability and check for existing progress
+        async function validateTest() {
+            console.log('\n🔍 ========== TEST VALIDATION ==========');
+            
+            if (!app.testId) {
+                console.log('❌ No test ID found in URL');
+                showValidationError();
+                return;
+            }
+            
+            console.log('Test ID:', app.testId);
+            
+            try {
+                // Check for existing progress in localStorage
+                const existingProgress = LocalStorage.getProgress(app.testId);
+                console.log('Existing progress:', existingProgress);
+                
+                // Validate with API
+                const apiUrl = `https://apitests.reddinassessments.com/wsGetinvitRoe?id=${app.testId}`;
+                console.log('Validating with API:', apiUrl);
+                
+                const response = await fetch(apiUrl, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status} - ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                console.log('API validation response:', data);
+                
+                if (data.wsGetinvitROE_response) {
+                    const response = data.wsGetinvitROE_response;
+                    
+                    // Check resultComplete status first, before checking for groups
+                    if (response.resultComplete === "2") {
+                        // Test found but already completed
+                        console.log('✅ Test record found, but test has already been completed (resultComplete = 2)');
+                        console.log('Test ID:', app.testId);
+                        console.log('Status: Test is there but it has already been completed');
+                        showTestAlreadyCompletedError();
+                        return;
+                    } else if (response.resultComplete !== "1") {
+                        // Any other value than 1 is invalid
+                        console.log('❌ Invalid resultComplete value:', response.resultComplete);
+                        throw new Error('Invalid test status');
+                    }
+                    
+                    // resultComplete = 1, now check for groups
+                    if (!response.groups) {
+                        throw new Error('Missing groups data in valid response');
+                    }
+                    
+                    // resultComplete = 1, continue with normal flow
+                    const groupsString = response.groups;
+                    app.selectedGroups = groupsString
+                        .split(',')
+                        .map(g => parseInt(g.trim()))
+                        .filter(g => !isNaN(g))
+                        .sort((a, b) => a - b);
+                    
+                    // Parse required fields from individual flags
+                    app.requiredFields = [];
+                    
+                    // Map API flags to field names
+                    const fieldMapping = {
+                        'roe:pedirnombre': 'firstName',
+                        'roe:pedirapellido': 'lastName', 
+                        'roe:pedirempresa': 'company',
+                        'roe:pedirpuesto': 'position',
+                        'roe:pedirdepartamento': 'department',
+                        'roe:pediredad': 'age',
+                        'roe:pediraempresa': 'yearsInCompany',
+                        'roe:pedirgenero': 'gender',
+                        'roe:pedirnota1': 'note1',
+                        'roe:pedirnota2': 'note2',
+                        'roe:pedirciudad': 'city',
+                        'roe:pedirpais': 'country',
+                        'roe:pediremail': 'email',
+                        'roe:pedirsmsphone': 'phone'
+                    };
+                    
+                    // Check each flag and add to required fields if "1"
+                    Object.keys(fieldMapping).forEach(apiFlag => {
+                        const flagValue = String(response[apiFlag] || '').trim();
+                        if (flagValue === "1") {
+                            app.requiredFields.push(fieldMapping[apiFlag]);
+                        }
+                    });
+                    
+                    // Configure form fields visibility
+                    configureFormFields();
+                    
+                    showValidationSuccess(existingProgress);
+                } else {
+                    throw new Error('Invalid API response format');
+                }
+                
+            } catch (error) {
+                console.error('❌ Test validation failed:', error);
+                showValidationError();
+            }
+        }
+        
+        // Show validation success with appropriate button
+        function showValidationSuccess(progress) {
+            document.getElementById('validationSpinner').style.display = 'none';
+            document.getElementById('validationMessage').style.display = 'none';
+            document.getElementById('validationResult').classList.remove('hidden');
+            document.getElementById('validationSuccess').classList.remove('hidden');
+            
+            const startButton = document.getElementById('startTestButton');
+            const statusMessage = document.getElementById('testStatusMessage');
+            
+            if (progress.isComplete) {
+                statusMessage.textContent = 'This test has already been completed. You can review it again.';
+                startButton.innerHTML = '<i class="fas fa-eye icon"></i>Review Completed Test';
+                app.isResuming = true;
+            } else if (progress.isPartial) {
+                statusMessage.textContent = `You have a partially completed test (${progress.answered}/${progress.total} statements answered - ${progress.percentage}%). You can continue where you left off.`;
+                startButton.innerHTML = '<i class="fas fa-play-circle icon"></i>Continue Test';
+                app.isResuming = true;
+            } else {
+                statusMessage.textContent = 'The test is available and ready to begin.';
+                startButton.innerHTML = '<i class="fas fa-play icon"></i>Begin Test';
+                app.isResuming = false;
+            }
+        }
+        
+        // Show validation error
+        function showValidationError() {
+            document.getElementById('validationSpinner').style.display = 'none';
+            document.getElementById('validationMessage').style.display = 'none';
+            document.getElementById('validationResult').classList.remove('hidden');
+            document.getElementById('validationError').classList.remove('hidden');
+        }
+        
+        // Show test already completed error
+        function showTestAlreadyCompletedError() {
+            document.getElementById('validationSpinner').style.display = 'none';
+            document.getElementById('validationMessage').style.display = 'none';
+            document.getElementById('validationResult').classList.remove('hidden');
+            
+            // Hide the success div and show a custom error
+            document.getElementById('validationSuccess').classList.add('hidden');
+            document.getElementById('validationError').classList.remove('hidden');
+            
+            // Update the error message for already completed test
+            const errorDiv = document.getElementById('validationError');
+            errorDiv.innerHTML = `
+                <div style="color: #27ae60; font-size: 64px; margin-bottom: 20px;">
+                    <i class="fas fa-check-double"></i>
+                </div>
+                <h3 style="color: #2c3e50; margin-bottom: 20px;">Test Found - Already Completed</h3>
+                <p style="color: #5a6c7d; line-height: 1.6; margin-bottom: 30px;">
+                    The test is available in the system, but has already been completed previously.
+                </p>
+                <a href="https://www.reddinassessments.com" class="button" style="background: #3498db; text-decoration: none; display: inline-block;">
+                    <i class="fas fa-globe icon"></i>Visit Reddin Assessments
+                </a>
+            `;
+        }
+        
+        // Handle start/continue test button
+        function handleStartTest() {
+            if (app.isResuming) {
+                loadExistingProgress();
+            } else {
+                showScreen('userInfoScreen');
+            }
+        }
+        
+        // Show help modal
+        function showHelpModal() {
+            const modal = document.getElementById('helpModal');
+            modal.classList.remove('hidden');
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+        
+        // Hide help modal
+        function hideHelpModal() {
+            const modal = document.getElementById('helpModal');
+            modal.classList.add('hidden');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+        
+        // Configure form fields visibility based on API response
+        function configureFormFields() {
+            // All available fields
+            const allFields = [
+                'firstName', 'lastName', 'company', 'position', 'department', 
+                'age', 'yearsInCompany', 'gender', 'note1', 'note2', 
+                'city', 'country', 'email', 'phone'
+            ];
+            
+            console.log('Configuring form fields...');
+            
+            // Hide all fields first
+            allFields.forEach(fieldName => {
+                const fieldGroup = document.querySelector(`[data-field="${fieldName}"]`);
+                if (fieldGroup) {
+                    fieldGroup.style.display = 'none';
+                }
+            });
+            
+            // Show only required fields
+            app.requiredFields.forEach(fieldName => {
+                const fieldGroup = document.querySelector(`[data-field="${fieldName}"]`);
+                if (fieldGroup) {
+                    fieldGroup.style.display = 'block';
+                    console.log(`Showing field: ${fieldName}`);
+                } else {
+                    console.warn(`Field not found: ${fieldName}`);
+                }
+            });
+            
+            console.log(`Configured ${app.requiredFields.length} visible fields`);
+        }
+        
+        // Load existing progress from localStorage
+        function loadExistingProgress() {
+            const savedData = LocalStorage.load(app.testId);
+            
+            if (savedData) {
+                console.log('Loading existing progress...');
+                
+                // Restore application state
+                app.userInfo = savedData.userInfo || {};
+                app.selectedGroups = savedData.selectedGroups || [];
+                app.questions = savedData.questions || [];
+                app.answers = savedData.answers || [];
+                app.currentQuestion = savedData.currentQuestion || 0;
+                
+                // Find the next unanswered question
+                const nextUnanswered = app.answers.findIndex(answer => answer === null);
+                if (nextUnanswered !== -1) {
+                    app.currentQuestion = nextUnanswered;
+                } else if (app.answers.every(answer => answer !== null)) {
+                    // All questions answered, go to summary
+                    showScreen('summaryScreen');
+                    return;
+                }
+                
+                console.log('Restored state:', {
+                    userInfo: app.userInfo,
+                    selectedGroups: app.selectedGroups,
+                    questionsCount: app.questions.length,
+                    answeredCount: app.answers.filter(a => a !== null).length,
+                    currentQuestion: app.currentQuestion
+                });
+                
+                // Go directly to questions
+                showScreen('questionScreen');
+                displayQuestion();
+            } else {
+                console.log('No existing progress found, starting fresh');
+                showScreen('userInfoScreen');
+            }
+        }
+        
+        // Save progress to localStorage
+        function saveProgress() {
+            if (app.testId) {
+                const dataToSave = {
+                    userInfo: app.userInfo,
+                    selectedGroups: app.selectedGroups,
+                    questions: app.questions,
+                    answers: app.answers,
+                    currentQuestion: app.currentQuestion,
+                    guid: app.guid
+                };
+                
+                LocalStorage.save(app.testId, dataToSave);
+            }
+        }
+
+        // Debug function to auto-complete the test
+        async function debugFillAnswers() {
+            console.log('\n🐛 ========== DEBUG AUTO-COMPLETE TEST ==========');
+            
+            try {
+                // First, check if required fields are configured
+                if (!app.requiredFields || app.requiredFields.length === 0) {
+                    console.log('⚠️ Required fields not configured. Need to validate test first.');
+                    alert('Por favor, recargue la página para validar el test antes de usar el modo debug.');
+                    return;
+                }
+                
+                // AUTO-FILL TEST DATA FOR DEBUG
+                console.log('Auto-filling required fields with test data:', app.requiredFields);
+                
+                const debugData = {
+                    firstName: 'Debug',
+                    lastName: 'User',
+                    company: 'Test Company',
+                    position: 'Test Position',
+                    department: 'IT Department',
+                    age: '30',
+                    yearsInCompany: '5',
+                    gender: 'masculino',
+                    note1: 'Debug test note 1',
+                    note2: 'Debug test note 2',
+                    city: 'Test City',
+                    country: 'Test Country',
+                    email: 'debug@test.com',
+                    phone: '+1234567890'
+                };
+                
+                // Fill only the required fields in the form
+                app.requiredFields.forEach(fieldName => {
+                    const field = document.getElementById(fieldName);
+                    if (field && debugData[fieldName]) {
+                        field.value = debugData[fieldName];
+                        console.log(`Filled ${fieldName}: ${debugData[fieldName]}`);
+                    }
+                });
+                
+                // NOW validate the auto-filled fields
+                console.log('Validating auto-filled debug data...');
+                const validationErrors = validateRequiredFields();
+                if (validationErrors.length > 0) {
+                    console.log('❌ Debug validation failed after auto-fill:', validationErrors);
+                    showValidationErrors(['Debug mode: Algunos campos requeridos no se pudieron completar automáticamente.', ...validationErrors]);
+                    return;
+                }
+                
+                console.log('✅ Debug data auto-filled and validated successfully.');
+                
+                // Collect user info (same as regular form submission)
+                app.userInfo = {
+                    firstName: document.getElementById('firstName').value || '',
+                    lastName: document.getElementById('lastName').value || '',
+                    company: document.getElementById('company').value || '',
+                    position: document.getElementById('position').value || '',
+                    department: document.getElementById('department').value || '',
+                    age: document.getElementById('age').value || '',
+                    yearsInCompany: document.getElementById('yearsInCompany').value || '',
+                    gender: document.getElementById('gender').value || '',
+                    note1: document.getElementById('note1').value || '',
+                    note2: document.getElementById('note2').value || '',
+                    city: document.getElementById('city').value || '',
+                    country: document.getElementById('country').value || '',
+                    email: document.getElementById('email').value || '',
+                    phone: document.getElementById('phone').value || '',
+                    timestamp: new Date().toISOString()
+                };
+                
+                console.log('✅ Debug user info collected:', app.userInfo);
+                
+                // Prepare questions
+                prepareQuestions();
+                
+                // Fill all answers randomly
+                app.questions.forEach((question, index) => {
+                    const randomAnswer = Math.random() > 0.5;
+                    app.answers[index] = {
+                        numero: question.numero,
+                        orden: question.orden,
+                        grupo: question.grupo,
+                        answer: randomAnswer,
+                        timestamp: new Date().toISOString()
+                    };
+                });
+                
+                // Set current question to last question (all completed)
+                app.currentQuestion = app.questions.length - 1;
+                
+                // Save debug session to localStorage
+                console.log('💾 Saving debug session to localStorage...');
+                saveProgress();
+                
+                // Create the final answers string for debugging
+                const orderedAnswers = new Array(160).fill(0);
+                app.answers.filter(answer => answer !== null).forEach(answer => {
+                    if (answer.orden >= 1 && answer.orden <= 160) {
+                        orderedAnswers[answer.orden - 1] = answer.answer ? 1 : 0;
+                    }
+                });
+                const debugAnswersString = orderedAnswers.join('');
+                
+                console.log('\n=== DEBUG ROE ASSESSMENT RESULTS ===');
+                console.log('Debug: All answers filled randomly');
+                console.log('Selected groups:', app.selectedGroups);
+                console.log('Total questions:', app.questions.length);
+                console.log('160-Character Answer String:');
+                console.log(debugAnswersString);
+                console.log('Answer String Length:', debugAnswersString.length);
+                console.log('- 0s:', (debugAnswersString.match(/0/g) || []).length);
+                console.log('- 1s:', (debugAnswersString.match(/1/g) || []).length);
+                console.log('💾 Debug session saved to localStorage');
+                console.log('=====================================\n');
+                
+                // Go directly to summary
+                showScreen('summaryScreen');
+                
+            } catch (error) {
+                console.error('❌ Debug mode error:', error);
+                alert(`Error en modo debug: ${error.message}`);
+            }
+        }
+
+        // Handle user info form submission
+        function handleUserInfoSubmit(e) {
+            e.preventDefault();
+            
+            // Validate required fields
+            const validationErrors = validateRequiredFields();
+            if (validationErrors.length > 0) {
+                showValidationErrors(validationErrors);
+                return;
+            }
+            
+            // Collect user info from all fields
+            app.userInfo = {
+                firstName: document.getElementById('firstName').value || '',
+                lastName: document.getElementById('lastName').value || '',
+                company: document.getElementById('company').value || '',
+                position: document.getElementById('position').value || '',
+                department: document.getElementById('department').value || '',
+                age: document.getElementById('age').value || '',
+                yearsInCompany: document.getElementById('yearsInCompany').value || '',
+                gender: document.getElementById('gender').value || '',
+                note1: document.getElementById('note1').value || '',
+                note2: document.getElementById('note2').value || '',
+                city: document.getElementById('city').value || '',
+                country: document.getElementById('country').value || '',
+                email: document.getElementById('email').value || '',
+                phone: document.getElementById('phone').value || '',
+                timestamp: new Date().toISOString()
+            };
+
+            console.log('User info collected:', app.userInfo);
+
+            // Get groups from API and start assessment
+            getGroupsFromAPI();
+        }
+        
+        // Validate required fields
+        function validateRequiredFields() {
+            const errors = [];
+            
+            // Field labels for error messages
+            const fieldLabels = {
+                firstName: 'First Name',
+                lastName: 'Last Name',
+                company: 'Company',
+                position: 'Position',
+                department: 'Department',
+                age: 'Age',
+                yearsInCompany: 'Years at Company',
+                gender: 'Gender',
+                note1: 'Note 1',
+                note2: 'Note 2',
+                city: 'City',
+                country: 'Country',
+                email: 'Email Address',
+                phone: 'SMS Phone Number'
+            };
+            
+            // Check each required field
+            app.requiredFields.forEach(fieldName => {
+                const field = document.getElementById(fieldName);
+                const label = fieldLabels[fieldName] || fieldName;
+                
+                if (!field) {
+                    errors.push(`Field "${label}" not found`);
+                    return;
+                }
+                
+                const value = field.value.trim();
+                
+                // Basic required validation
+                if (!value) {
+                    errors.push(`${label} is required`);
+                    field.classList.add('error');
+                    return;
+                } else {
+                    field.classList.remove('error');
+                }
+                
+                // Specific validations
+                switch (fieldName) {
+                    case 'email':
+                        if (!isValidEmail(value)) {
+                            errors.push(`${label} must have a valid format`);
+                            field.classList.add('error');
+                        }
+                        break;
+                        
+                    case 'age':
+                        const age = parseInt(value);
+                        if (isNaN(age) || age < 18 || age > 100) {
+                            errors.push(`${label} must be between 18 and 100 years`);
+                            field.classList.add('error');
+                        }
+                        break;
+                        
+                    case 'yearsInCompany':
+                        const years = parseInt(value);
+                        if (isNaN(years) || years < 0 || years > 50) {
+                            errors.push(`${label} must be between 0 and 50 years`);
+                            field.classList.add('error');
+                        }
+                        break;
+                        
+                    case 'phone':
+                        if (!isValidPhone(value)) {
+                            errors.push(`${label} must have a valid format`);
+                            field.classList.add('error');
+                        }
+                        break;
+                }
+            });
+            
+            return errors;
+        }
+        
+        // Email validation
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+        
+        // Phone validation (basic)
+        function isValidPhone(phone) {
+            const phoneRegex = /^[\+]?[\d\s\-\(\)]{8,15}$/;
+            return phoneRegex.test(phone);
+        }
+        
+        // Show validation errors
+        function showValidationErrors(errors) {
+            // Remove any existing error message
+            const existingError = document.querySelector('.validation-error-message');
+            if (existingError) {
+                existingError.remove();
+            }
+            
+            // Create error message element
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'validation-error-message';
+            errorDiv.style.cssText = `
+                background: #ffeaa7;
+                border: 2px solid #fdcb6e;
+                border-radius: 8px;
+                padding: 15px;
+                margin-bottom: 20px;
+                color: #2d3436;
+            `;
+            
+            errorDiv.innerHTML = `
+                <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                    <i class="fas fa-exclamation-triangle" style="color: #e17055; margin-right: 10px; font-size: 18px;"></i>
+                    <strong>Please correct the following errors:</strong>
+                </div>
+                <ul style="margin: 0; padding-left: 20px;">
+                    ${errors.map(error => `<li>${error}</li>`).join('')}
+                </ul>
+            `;
+            
+            // Insert error message at the top of the form
+            const form = document.getElementById('userInfoForm');
+            form.insertBefore(errorDiv, form.firstChild);
+            
+            // Scroll to top of form
+            form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            
+            console.log('Validation errors:', errors);
+        }
+
+        // Fisher-Yates shuffle algorithm for proper randomization
+        function shuffleArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        // Get groups from API
+        async function getGroupsFromAPI() {
+            try {
+                // Get ID from URL parameters
+                const urlParams = new URLSearchParams(window.location.search);
+                const invitationId = urlParams.get('id');
+                
+                console.log('\n=== STARTING ROE ASSESSMENT API CALL ===');
+                console.log('URL Parameters:', window.location.search);
+                console.log('Invitation ID from URL:', invitationId);
+                
+                if (!invitationId) {
+                    throw new Error('No invitation ID found in URL parameters');
+                }
+                
+                const apiUrl = `https://apitests.reddinassessments.com/wsGetInvitRoe?id=${invitationId}`;
+                console.log('Calling API URL:', apiUrl);
+                
+                // Call the web service
+                const response = await fetch(apiUrl, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                console.log('Response status:', response.status);
+                console.log('Response headers:', Object.fromEntries(response.headers.entries()));
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status} - ${response.statusText}`);
+                }
+                
+                const responseText = await response.text();
+                console.log('Raw response text:', responseText);
+                
+                let data;
+                try {
+                    data = JSON.parse(responseText);
+                    console.log('Parsed JSON data:', data);
+                } catch (parseError) {
+                    console.error('JSON parse error:', parseError);
+                    throw new Error('Invalid JSON response from server');
+                }
+                
+                // Parse the comma-delimited groups string
+                if (data.wsGetinvitROE_response && data.wsGetinvitROE_response.groups) {
+                    const groupsString = data.wsGetinvitROE_response.groups;
+                    const resultComplete = data.wsGetinvitROE_response.resultComplete;
+                    
+                    console.log('Groups string from API:', groupsString);
+                    console.log('Result complete flag:', resultComplete);
+                    
+                    app.selectedGroups = groupsString
+                        .split(',')
+                        .map(g => parseInt(g.trim()))
+                        .filter(g => !isNaN(g))
+                        .sort((a, b) => a - b);
+                    
+                    console.log('Parsed selected groups:', app.selectedGroups);
+                    console.log('Number of groups selected:', app.selectedGroups.length);
+                    console.log('==========================================\n');
+                    
+                    if (app.selectedGroups.length === 0) {
+                        throw new Error('No valid groups found in API response');
+                    }
+                    
+                    prepareQuestions();
+                    showScreen('questionScreen');
+                    displayQuestion();
+                    
+                } else {
+                    console.error('Invalid API response structure:');
+                    console.error('Expected: wsGetinvitROE_response.groups');
+                    console.error('Received:', data);
+                    throw new Error('Invalid API response format - missing groups data');
+                }
+                
+            } catch (error) {
+                console.error('\n=== API CALL FAILED ===');
+                console.error('Error details:', error);
+                console.error('Error message:', error.message);
+                console.error('=======================\n');
+                
+                // Show modal dialog instead of alert
+                showErrorModal(`Could not obtain test configuration.
+                
+Error details: ${error.message}
+
+Please verify:
+- That the link is valid
+- That the web service is functioning
+- Your internet connection
+
+The test cannot continue without this information.`);
+            }
+        }
+        
+        // Show error modal
+        function showErrorModal(message) {
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 9999;
+                font-family: inherit;
+            `;
+            
+            const modalContent = document.createElement('div');
+            modalContent.style.cssText = `
+                background: white;
+                padding: 40px;
+                border-radius: 16px;
+                max-width: 500px;
+                width: 90%;
+                text-align: center;
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            `;
+            
+            modalContent.innerHTML = `
+                <div style="color: #e74c3c; font-size: 48px; margin-bottom: 20px;">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <h3 style="color: #2c3e50; margin-bottom: 20px; font-size: 24px;">Configuration Error</h3>
+                <p style="color: #5a6c7d; line-height: 1.6; margin-bottom: 30px; white-space: pre-line;">${message}</p>
+                <button onclick="window.location.reload()" style="
+                    background: #e74c3c;
+                    color: white;
+                    border: none;
+                    padding: 14px 28px;
+                    border-radius: 8px;
+                    font-size: 16px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                ">
+                    <i class="fas fa-redo icon"></i>Reload Page
+                </button>
+            `;
+            
+            modal.appendChild(modalContent);
+            document.body.appendChild(modal);
+        }
+
+        // Prepare questions from selected groups
+        function prepareQuestions() {
+            // Check if we already have questions from localStorage (don't re-randomize)
+            const savedData = LocalStorage.load(app.testId);
+            if (savedData && savedData.questions && savedData.questions.length > 0) {
+                console.log('Using existing randomization from localStorage');
+                app.questions = savedData.questions;
+                app.answers = savedData.answers || new Array(app.questions.length).fill(null);
+                
+                console.log(`Loaded ${app.questions.length} questions from localStorage`);
+                console.log('Existing question order (first 10):');
+                app.questions.slice(0, 10).forEach((q, index) => {
+                    console.log(`  ${index + 1}. Numero ${q.numero} (Group ${q.grupo}, Orden ${q.orden})`);
+                });
+                return;
+            }
+            
+            // No existing randomization, create new one
+            console.log('Creating new randomization...');
+            
+            // Get all questions from selected groups
+            const selectedQuestions = roeData.filter(item => app.selectedGroups.includes(item.grupo));
+            
+            // COMPLETE RANDOMIZATION: Shuffle all questions together using Fisher-Yates
+            app.questions = shuffleArray(selectedQuestions);
+            
+            console.log('Questions prepared with complete randomization:');
+            console.log(`Total questions: ${app.questions.length}`);
+            console.log('Question presentation order (first 10):');
+            app.questions.slice(0, 10).forEach((q, index) => {
+                console.log(`  ${index + 1}. Numero ${q.numero} (Group ${q.grupo}, Orden ${q.orden})`);
+            });
+            
+            // Initialize answers array with null values
+            app.answers = new Array(app.questions.length).fill(null);
+            
+            // Save the initial randomization to localStorage
+            saveProgress();
+        }
+
+        // Display current question
+        function displayQuestion() {
+            const question = app.questions[app.currentQuestion];
+            
+            // Update question text
+            document.getElementById('questionText').textContent = question.texto;
+            
+            // Update progress
+            const progress = ((app.currentQuestion + 1) / app.questions.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressText').textContent = `Phrase ${app.currentQuestion + 1} of ${app.questions.length}`;
+            
+            // Reset button states
+            document.querySelectorAll('.answer-button').forEach(button => {
+                button.classList.remove('selected');
+                button.disabled = false;
+            });
+            
+            // Show previous answer if exists
+            const currentAnswer = app.answers[app.currentQuestion];
+            if (currentAnswer !== null) {
+                const answerValue = currentAnswer.answer;
+                const targetButton = document.querySelector(`[data-answer="${answerValue}"]`);
+                if (targetButton) {
+                    targetButton.classList.add('selected');
+                }
+            }
+            
+            // Update navigation buttons
+            updateNavigationButtons();
+        }
+        
+        // Update navigation button states
+        function updateNavigationButtons() {
+            const prevButton = document.getElementById('prevButton');
+            const nextButton = document.getElementById('nextButton');
+            
+            // Previous button: disabled if first question
+            prevButton.disabled = app.currentQuestion === 0;
+            
+            // Next button: enabled only if current question is answered
+            const currentAnswer = app.answers[app.currentQuestion];
+            nextButton.disabled = currentAnswer === null;
+            
+            // If last question and answered, change next button to finish
+            if (app.currentQuestion === app.questions.length - 1 && currentAnswer !== null) {
+                nextButton.innerHTML = '<i class="fas fa-flag-checkered icon"></i>Finish';
+            } else {
+                nextButton.innerHTML = '<i class="fas fa-arrow-right icon"></i>Next';
+            }
+        }
+
+        // Handle answer selection
+        function handleAnswer(e) {
+            const button = e.currentTarget;
+            const answer = button.dataset.answer === 'true';
+            const question = app.questions[app.currentQuestion];
+            
+            // Remove previous selection
+            document.querySelectorAll('.answer-button').forEach(btn => {
+                btn.classList.remove('selected');
+                btn.disabled = true; // Disable buttons during auto-forward
+            });
+            
+            // Highlight selected answer
+            button.classList.add('selected');
+            
+            // Store answer
+            app.answers[app.currentQuestion] = {
+                numero: question.numero,
+                orden: question.orden,
+                grupo: question.grupo,
+                answer: answer,
+                timestamp: new Date().toISOString()
+            };
+            
+            // Save progress to localStorage
+            saveProgress();
+            
+            // Update navigation buttons
+            updateNavigationButtons();
+            
+            // Clear any existing auto-advance timer
+            if (app.autoAdvanceTimer) {
+                clearTimeout(app.autoAdvanceTimer);
+            }
+            
+            // Auto-forward after 1 second
+            app.autoAdvanceTimer = setTimeout(() => {
+                if (app.currentQuestion < app.questions.length - 1) {
+                    app.currentQuestion++;
+                    saveProgress(); // Save current question position
+                    displayQuestion();
+                } else {
+                    // All questions answered, go to summary
+                    showScreen('summaryScreen');
+                }
+                app.autoAdvanceTimer = null; // Clear timer reference
+            }, 1000);
+        }
+
+        // Navigation functions
+        function previousQuestion() {
+            // Clear auto-advance timer when manually navigating
+            if (app.autoAdvanceTimer) {
+                clearTimeout(app.autoAdvanceTimer);
+                app.autoAdvanceTimer = null;
+            }
+            
+            if (app.currentQuestion > 0) {
+                app.currentQuestion--;
+                saveProgress(); // Save current question position
+                displayQuestion();
+            }
+        }
+
+        function nextQuestion() {
+            // Clear auto-advance timer when manually navigating
+            if (app.autoAdvanceTimer) {
+                clearTimeout(app.autoAdvanceTimer);
+                app.autoAdvanceTimer = null;
+            }
+            
+            const currentAnswer = app.answers[app.currentQuestion];
+            if (currentAnswer === null) return; // Can't proceed without answer
+            
+            if (app.currentQuestion < app.questions.length - 1) {
+                app.currentQuestion++;
+                saveProgress(); // Save current question position
+                displayQuestion();
+            } else {
+                // All questions answered, go to summary
+                showScreen('summaryScreen');
+            }
+        }
+
+        // Submit results to web service
+        async function submitResults() {
+            const submitButton = document.getElementById('submitButton');
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin icon"></i>Submitting...';
+            
+            // Create the final answers string ordered by 'orden' field (1-160)
+            const orderedAnswers = new Array(160).fill(0);
+            
+            // Map answers to their correct orden positions
+            app.answers.filter(answer => answer !== null).forEach(answer => {
+                if (answer.orden >= 1 && answer.orden <= 160) {
+                    orderedAnswers[answer.orden - 1] = answer.answer ? 1 : 0;
+                }
+            });
+            
+            const answersString = orderedAnswers.join('');
+            
+            // Prepare data for wsSaveInvitRoe service
+            const testData = {
+                guid: app.guid,
+                userInfo: app.userInfo,
+                answers160: answersString, // 160-character string of 0s and 1s in orden order                
+                totalQuestions: app.questions.length,
+                completedAt: new Date().toISOString(),
+                testId: app.testId
+            };
+            
+            const submitPayload = {
+                id: app.testId,
+                testdata: testData
+            };
+            
+            // Console logging for debugging
+            console.log('\n=== ROE ASSESSMENT RESULTS ===');
+            console.log('Test ID:', app.testId);
+            console.log('GUID:', app.guid);
+            console.log('Selected Groups:', app.selectedGroups);
+            console.log('Total Questions Answered:', app.questions.length);
+            console.log('160-Character Answer String:');
+            console.log(answersString);
+            console.log('Answer String Length:', answersString.length);
+            console.log('\nDetailed breakdown:');
+            console.log('- 0s (No/Not Answered):', (answersString.match(/0/g) || []).length);
+            console.log('- 1s (Yes/Agree):', (answersString.match(/1/g) || []).length);
+            console.log('\nAnswered questions by orden:');
+            app.answers.filter(answer => answer !== null).forEach(answer => {
+                console.log(`Orden ${answer.orden}: ${answer.answer ? '1' : '0'} (Question: ${answer.numero})`);
+            });
+            console.log('\nSubmit Payload:', submitPayload);
+            console.log('===========================\n');
+            
+            try {
+                // Send to wsSaveInvitRoe web service
+                const response = await fetch('https://apitests.reddinassessments.com/wsSaveInvitRoe', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(submitPayload)
+                });
+                
+                if (response.ok) {
+                    const responseData = await response.json();
+                    console.log('Server response:', responseData);
+                    
+                    // Check if resultComplete is 1 (success)
+                    if (responseData.wsSaveInvitROE_response && responseData.wsSaveInvitROE_response.resultComplete === "1") {
+                        submitButton.innerHTML = '<i class="fas fa-check icon"></i>Successfully Submitted!';
+                        submitButton.style.background = '#27ae60';
+                        
+                        // Clear localStorage after successful submission
+                        if (app.testId) {
+                            LocalStorage.clear(app.testId);
+                            console.log('Test completed and localStorage cleared');
+                        }
+                        
+                        // Add website button after successful submission
+                        setTimeout(() => {
+                            const summaryDiv = document.querySelector('.summary');
+                            const websiteButton = document.createElement('a');
+                            websiteButton.href = 'https://www.reddinassessments.com';
+                            websiteButton.className = 'button';
+                            websiteButton.style.cssText = 'background: #3498db; text-decoration: none; display: inline-block; margin-top: 15px;';
+                            websiteButton.innerHTML = '<i class="fas fa-globe icon"></i>Visit Reddin Assessments';
+                            summaryDiv.appendChild(websiteButton);
+                        }, 2000);
+                    } else {
+                        // Server returned -1 or 0, indicating failure
+                        console.error('Server returned error:', responseData);
+                        submitButton.innerHTML = '<i class="fas fa-exclamation-triangle icon"></i>Error Saving';
+                        submitButton.style.background = '#e74c3c';
+                        submitButton.disabled = false;
+                        
+                        // Show specific error message
+                        const errorMsg = responseData.wsSaveInvitROE_response?.resultComplete === "-1" 
+                            ? 'Error saving to database' 
+                            : 'Unexpected server response';
+                        
+                        setTimeout(() => {
+                            submitButton.innerHTML = `<i class="fas fa-exclamation-triangle icon"></i>${errorMsg}`;
+                        }, 1000);
+                    }
+                } else {
+                    throw new Error('Error submitting');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                submitButton.innerHTML = '<i class="fas fa-exclamation-triangle icon"></i>Submission Error';
+                submitButton.style.background = '#e74c3c';
+                submitButton.disabled = false;
+                
+                // Log results to console as fallback
+                console.log('Assessment Results:', results);
+                
+                // Show success anyway for demo
+                setTimeout(() => {
+                    submitButton.innerHTML = '<i class="fas fa-check icon"></i>Saved Locally!';
+                    submitButton.style.background = '#f39c12';
+                }, 2000);
+            }
+        }
+
+        // Group definitions
+        const groupDefinitions = {
+            1: { name: "Productivity Standards", desc: "Focus on efficiency and performance" },
+            2: { name: "Management Competence", desc: "Leadership effectiveness" },
+            3: { name: "Organizational Structure", desc: "Hierarchy and authority clarity" },
+            4: { name: "Communication", desc: "Information flow and meetings" },
+            5: { name: "Conflict Management", desc: "Productive disagreement handling" },
+            6: { name: "Human Resources", desc: "Talent development and fairness" },
+            7: { name: "Participation", desc: "Employee involvement in decisions" },
+            8: { name: "Innovation", desc: "Creativity and new ideas" },
+            9: { name: "Boss-Subordinate Alignment", desc: "Goal setting with supervisors" },
+            10: { name: "Managing Direct Reports", desc: "Leadership of team members" },
+            11: { name: "Peer Collaboration", desc: "Working with colleagues" },
+            12: { name: "Authority & Responsibility", desc: "Role clarity" },
+            13: { name: "Resources", desc: "Access to necessary tools and support" },
+            14: { name: "Change Readiness", desc: "Adaptability and flexibility" },
+            15: { name: "Results Orientation Benefits", desc: "Impact of focus on outcomes" },
+            16: { name: "Information Quality", desc: "Accuracy and timeliness of data" }
+        };
+
+        // Show/hide screens
+        function showScreen(screenId) {
+            // Hide all screens
+            document.querySelectorAll('#testValidationScreen, #userInfoScreen, #groupSelectionScreen, #questionScreen, #summaryScreen').forEach(screen => {
+                screen.classList.add('hidden');
+            });
+            
+            // Show selected screen with fade-in
+            const screen = document.getElementById(screenId);
+            screen.classList.remove('hidden');
+            screen.classList.add('fade-in');
+        }
+    </script>
+</body>
+</html>

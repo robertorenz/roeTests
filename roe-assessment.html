@@ -1,0 +1,2003 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluación ROE - Ambiente Orientado a Resultados</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: #2c3e50;
+            margin: 0;
+            padding: 0;
+        }
+        
+        #main-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 90px; /* Space for header */
+            padding-bottom: 40px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+            padding: 40px;
+            transition: all 0.3s ease;
+        }
+
+        h1 {
+            text-align: center;
+            color: #34495e;
+            margin-bottom: 30px;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        h2 {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: 400;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #5a6c7d;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e1e8ed;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        .form-group select {
+            cursor: pointer;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form-group input.error,
+        .form-group select.error,
+        .form-group textarea.error {
+            border-color: #e74c3c;
+            background-color: #fdf2f2;
+        }
+
+        .form-group input.error:focus,
+        .form-group select.error:focus,
+        .form-group textarea.error:focus {
+            border-color: #c0392b;
+            box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+        }
+
+        .button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .button:hover {
+            background: #2980b9;
+            transform: translateY(-1px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .button:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .question-container {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .question-text {
+            font-size: 20px;
+            line-height: 1.6;
+            color: #2c3e50;
+            margin-bottom: 40px;
+            font-weight: 500;
+        }
+
+        .answer-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .answer-button {
+            flex: 1;
+            min-width: 200px;
+            background: #ecf0f1;
+            border: 2px solid #bdc3c7;
+            padding: 20px 30px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #34495e;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .answer-button:hover {
+            background: #e8eaec;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .answer-button.selected {
+            color: white;
+            animation: shine 0.5s ease;
+        }
+
+        .answer-button[data-answer="true"].selected {
+            background: #27ae60;
+            border-color: #27ae60;
+            animation: shine-green 0.5s ease;
+        }
+
+        .answer-button[data-answer="false"].selected {
+            background: #e74c3c;
+            border-color: #e74c3c;
+            animation: shine-red 0.5s ease;
+        }
+
+        @keyframes shine-green {
+            0% {
+                box-shadow: 0 0 5px rgba(39, 174, 96, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(39, 174, 96, 0.8), 0 0 30px rgba(39, 174, 96, 0.6);
+            }
+            100% {
+                box-shadow: 0 0 5px rgba(39, 174, 96, 0.5);
+            }
+        }
+
+        @keyframes shine-red {
+            0% {
+                box-shadow: 0 0 5px rgba(231, 76, 60, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(231, 76, 60, 0.8), 0 0 30px rgba(231, 76, 60, 0.6);
+            }
+            100% {
+                box-shadow: 0 0 5px rgba(231, 76, 60, 0.5);
+            }
+        }
+
+        .group-selection {
+            margin-bottom: 30px;
+        }
+
+        .group-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .group-item {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .group-item:hover {
+            background: #e8f4f8;
+            border-color: #3498db;
+        }
+
+        .group-item.selected {
+            background: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .group-item h4 {
+            margin: 0 0 8px 0;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .group-item p {
+            margin: 0;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .group-item .check-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .group-item.selected .check-icon {
+            opacity: 1;
+        }
+
+        .group-counter {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #7f8c8d;
+            font-weight: 500;
+        }
+
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            gap: 15px;
+        }
+
+        .nav-button {
+            background: #95a5a6;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+            max-width: 150px;
+        }
+
+        .nav-button:hover:not(:disabled) {
+            background: #7f8c8d;
+            transform: translateY(-1px);
+        }
+
+        .nav-button:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .nav-button.primary {
+            background: #3498db;
+        }
+
+        .nav-button.primary:hover:not(:disabled) {
+            background: #2980b9;
+        }
+
+        .progress-container {
+            margin-bottom: 30px;
+        }
+
+        .progress-bar {
+            background: #ecf0f1;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: #3498db;
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            text-align: center;
+            margin-top: 10px;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .icon {
+            margin-right: 8px;
+        }
+
+        .summary {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .summary h2 {
+            color: #27ae60;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .summary p {
+            font-size: 18px;
+            color: #5a6c7d;
+            margin-bottom: 30px;
+        }
+
+        .answer-icon {
+            font-size: 24px;
+            margin-right: 12px;
+            vertical-align: middle;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            .answer-buttons {
+                flex-direction: column;
+            }
+
+            .answer-button {
+                min-width: 100%;
+            }
+            
+            /* Mobile footer adjustments */
+            footer {
+                padding: 7px 0 !important; /* 40% less than 12px */
+            }
+            
+            #milogofooter {
+                width: 60px !important; /* 40% less than 100px */
+                height: 60px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div id="pageheadertag_div" class="nt-site-header-6 ui-widget-header ui-corner-top" data-role="header" style="position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: #ffffff; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+        <table class="headingtable3" border="0" cellpadding="0" cellspacing="0" height="70" width="100%">
+            <tbody>
+                <tr>
+                    <td rowspan="1" align="left" bgcolor="#ffffff" valign="top" width="50%">
+                        <img src="https://apitests.reddinassessments.com/images/logo.svg" width="210" align="middle" border="0" style="margin-left: 20px;">
+                    </td>
+                    <td style="height: 70px;" align="right" bgcolor="#ffffff" width="50%">
+                        <!-- Header help button removed -->
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div id="main-wrapper">
+        <div class="container">
+        <!-- Test Validation Screen -->
+        <div id="testValidationScreen" class="fade-in">
+            <h1><i class="fas fa-shield-check icon"></i>Validación del Test</h1>
+            <h2>Verificando disponibilidad...</h2>
+            <div style="text-align: center; padding: 40px 0;">
+                <div id="validationSpinner" style="font-size: 48px; color: #3498db; margin-bottom: 20px;">
+                    <i class="fas fa-spinner fa-spin"></i>
+                </div>
+                <div id="validationMessage" style="color: #7f8c8d; font-size: 16px;">
+                    Verificando el enlace del test...
+                </div>
+            </div>
+            <div id="validationResult" class="hidden">
+                <div id="validationSuccess" class="hidden" style="text-align: center;">
+                    <div style="color: #27ae60; font-size: 64px; margin-bottom: 20px;">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3 style="color: #2c3e50; margin-bottom: 20px;">Test Disponible</h3>
+                    <p id="testStatusMessage" style="color: #5a6c7d; line-height: 1.6; margin-bottom: 30px;"></p>
+                    <button id="startTestButton" class="button">
+                        <i class="fas fa-play icon"></i>Iniciar Test
+                    </button>
+                    <button id="helpButton" class="button" style="background: #ecf0f1; color: black; margin-top: 10px;">
+                        <i class="fas fa-question-circle icon" style="color: black;"></i>Ver Instrucciones
+                    </button>
+                </div>
+                <div id="validationError" class="hidden" style="text-align: center;">
+                    <div style="color: #e74c3c; font-size: 64px; margin-bottom: 20px;">
+                        <i class="fas fa-times-circle"></i>
+                    </div>
+                    <h3 style="color: #2c3e50; margin-bottom: 20px;">Test No Disponible</h3>
+                    <p style="color: #5a6c7d; line-height: 1.6; margin-bottom: 30px;">
+                        El enlace del test no es válido o ha expirado. Por favor, verifique:
+                        <br><br>
+                        • Que el enlace esté completo<br>
+                        • Que no haya expirado<br>
+                        • Su conexión a internet
+                    </p>
+                    <button onclick="window.location.reload()" class="button" style="background: #95a5a6;">
+                        <i class="fas fa-redo icon"></i>Intentar Nuevamente
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- User Info Screen -->
+        <div id="userInfoScreen" class="hidden">
+            <h1><i class="fas fa-clipboard-check icon"></i>Encuesta (EOE)</h1>
+            <h2>Encuesta de Orientación a la Efectividad (EOE)</h2>
+            <form id="userInfoForm">
+                <div class="form-group" data-field="firstName">
+                    <label for="firstName"><i class="fas fa-user icon"></i>Nombre de la Persona</label>
+                    <input type="text" id="firstName" name="firstName" placeholder="Ingrese su nombre">
+                </div>
+                <div class="form-group" data-field="lastName">
+                    <label for="lastName"><i class="fas fa-user icon"></i>Apellido de la Persona</label>
+                    <input type="text" id="lastName" name="lastName" placeholder="Ingrese su apellido">
+                </div>
+                <div class="form-group" data-field="company">
+                    <label for="company"><i class="fas fa-building icon"></i>Empresa</label>
+                    <input type="text" id="company" name="company" placeholder="Nombre de su empresa">
+                </div>
+                <div class="form-group" data-field="position">
+                    <label for="position"><i class="fas fa-briefcase icon"></i>Puesto</label>
+                    <input type="text" id="position" name="position" placeholder="Su puesto o cargo">
+                </div>
+                <div class="form-group" data-field="department">
+                    <label for="department"><i class="fas fa-sitemap icon"></i>Departamento</label>
+                    <input type="text" id="department" name="department" placeholder="Departamento o área">
+                </div>
+                <div class="form-group" data-field="age">
+                    <label for="age"><i class="fas fa-calendar-alt icon"></i>Edad</label>
+                    <input type="number" id="age" name="age" placeholder="Edad" min="18" max="100">
+                </div>
+                <div class="form-group" data-field="yearsInCompany">
+                    <label for="yearsInCompany"><i class="fas fa-clock icon"></i>Años en la Empresa</label>
+                    <input type="number" id="yearsInCompany" name="yearsInCompany" placeholder="Años trabajando en la empresa" min="0" max="50">
+                </div>
+                <div class="form-group" data-field="gender">
+                    <label for="gender"><i class="fas fa-venus-mars icon"></i>Género</label>
+                    <select id="gender" name="gender">
+                        <option value="">Seleccione su género</option>
+                        <option value="masculino">Masculino</option>
+                        <option value="femenino">Femenino</option>
+                        <option value="otro">Otro</option>
+                        <option value="prefiero-no-decir">Prefiero no decir</option>
+                    </select>
+                </div>
+                <div class="form-group" data-field="note1">
+                    <label for="note1"><i class="fas fa-sticky-note icon"></i>Nota 1</label>
+                    <textarea id="note1" name="note1" placeholder="Nota adicional" rows="3"></textarea>
+                </div>
+                <div class="form-group" data-field="note2">
+                    <label for="note2"><i class="fas fa-sticky-note icon"></i>Nota 2</label>
+                    <textarea id="note2" name="note2" placeholder="Nota adicional" rows="3"></textarea>
+                </div>
+                <div class="form-group" data-field="city">
+                    <label for="city"><i class="fas fa-city icon"></i>Ciudad</label>
+                    <input type="text" id="city" name="city" placeholder="Ciudad donde trabaja">
+                </div>
+                <div class="form-group" data-field="country">
+                    <label for="country"><i class="fas fa-globe icon"></i>País</label>
+                    <input type="text" id="country" name="country" placeholder="País donde trabaja">
+                </div>
+                <div class="form-group" data-field="email">
+                    <label for="email"><i class="fas fa-envelope icon"></i>Email de la Persona</label>
+                    <input type="email" id="email" name="email" placeholder="correo@ejemplo.com">
+                </div>
+                <div class="form-group" data-field="phone">
+                    <label for="phone"><i class="fas fa-mobile-alt icon"></i>Teléfono para SMS de la Persona</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+1234567890">
+                </div>
+                <button type="submit" class="button">
+                    <i class="fas fa-play icon"></i>Comenzar Evaluación
+                </button>
+                <button type="button" id="debugButton" class="button" style="background: #e74c3c; margin-top: 10px; display: none;">
+                    <i class="fas fa-bug icon"></i>Debug: Auto-Complete Test
+                </button>
+            </form>
+        </div>
+
+        <!-- Question Screen -->
+        <div id="questionScreen" class="hidden">
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-text" id="progressText">Pregunta 1 de 80</div>
+            </div>
+            <div class="question-container">
+                <p class="question-text" id="questionText"></p>
+                <div class="answer-buttons">
+                    <button class="answer-button" data-answer="false">
+                        <i class="fas fa-times-circle answer-icon"></i>No estoy de Acuerdo
+                    </button>
+                    <button class="answer-button" data-answer="true">
+                        <i class="fas fa-check-circle answer-icon"></i>De Acuerdo
+                    </button>
+                </div>
+                
+                <div class="navigation-buttons">
+                    <button id="prevButton" class="nav-button">
+                        <i class="fas fa-arrow-left icon"></i>Anterior
+                    </button>
+                    <button id="nextButton" class="nav-button primary" disabled>
+                        <i class="fas fa-arrow-right icon"></i>Siguiente
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary Screen -->
+        <div id="summaryScreen" class="hidden">
+            <div class="summary">
+                <h2><i class="fas fa-trophy icon"></i>¡Evaluación Completada!</h2>
+                <p>Has respondido todas las preguntas exitosamente.</p>
+                <button id="submitButton" class="button">
+                    <i class="fas fa-paper-plane icon"></i>Enviar Resultados
+                </button>
+            </div>
+        </div>
+        
+        <!-- Help Modal -->
+        <div id="helpModal" class="hidden" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 9999; align-items: center; justify-content: center;">
+            <div style="background: white; border-radius: 16px; max-width: 800px; width: 90%; max-height: 80vh; overflow-y: auto; padding: 40px; position: relative;">
+                <button id="closeHelpButton" style="position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 24px; cursor: pointer; color: #7f8c8d;">
+                    <i class="fas fa-times"></i>
+                </button>
+                
+                <h2 style="color: #2c3e50; margin-bottom: 25px; text-align: center;">
+                    <i class="fas fa-info-circle icon"></i>Instrucciones para la Encuesta EOE
+                </h2>
+                
+                <div style="color: #5a6c7d; line-height: 1.6; text-align: justify;">
+                    <h3 style="color: #34495e; margin-bottom: 15px;">Encuesta de Orientación a la Efectividad (EOE)</h3>
+                    
+                    <p style="margin-bottom: 20px;">
+                        Gracias por participar en nuestra Encuesta de Orientación a la Efectividad. Esta encuesta ha sido diseñada para obtener información valiosa sobre las prácticas de trabajo dentro de la organización, y cómo estas prácticas ayudan a los miembros del equipo a moverse dentro de la estructura para alcanzar los objetivos del negocio.
+                    </p>
+                    
+                    <p style="margin-bottom: 20px;">
+                        Los resultados generarán un reporte detallado sobre diversos indicadores que reflejan la capacidad de la organización para generar resultados efectivos. Este reporte será una herramienta crucial para facilitar la toma de decisiones y optimizar la conjugación del talento con la estructura, asegurando la creación de valor agregado.
+                    </p>
+                    
+                    <h4 style="color: #34495e; margin-bottom: 15px;">Por favor, considere lo siguiente al responder la encuesta:</h4>
+                    
+                    <ul style="margin-bottom: 20px; padding-left: 20px;">
+                        <li style="margin-bottom: 10px;">Responda basándose en la situación actual de la organización como un todo.</li>
+                        <li style="margin-bottom: 10px;">Cada una de las 80 afirmaciones debe ser respondida. Seleccione <strong>"De acuerdo"</strong> si la afirmación refleja su percepción de la situación actual, o <strong>"No estoy de Acuerdo"</strong> si no la refleja.</li>
+                        <li style="margin-bottom: 10px;">Sea honesto en sus respuestas. No hay respuestas correctas o incorrectas.</li>
+                        <li style="margin-bottom: 10px;">Sus respuestas son confidenciales y serán utilizadas únicamente con fines de análisis organizacional.</li>
+                    </ul>
+                    
+                    <div style="background: #ecf0f1; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                        <p style="margin: 0; font-style: italic; text-align: center;">
+                            <i class="fas fa-clock icon"></i>Tiempo estimado: 10-15 minutos
+                        </p>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 30px;">
+                    <button id="closeHelpModalButton" class="button" style="background: #3498db;">
+                        <i class="fas fa-check icon"></i>Entendido
+                    </button>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer style="padding: 12px 0; background: #2c3e50; width: 100%; margin-top: auto;">
+        <div style="padding: 0 20px;">
+            <div style="display: flex; align-items: center; justify-content: flex-start; width: 100%;">
+                <figure class="image" style="margin: 0;">
+                    <img id="milogofooter" style="aspect-ratio: 100/100; width: 100px; height: 100px;" src="https://apitests.reddinassessments.com/images/Icono-Reddin-Assessments-white-1.png">
+                </figure>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ROE Assessment Data (cleaned - removed tipotest and texto2 fields)
+  const roeData = [
+    {"texto": "En esta organización los estándares de productividad se exigen fuertemente.", "grupo": 1, "orden":  1},
+    {"texto": "La mayoría de los gerentes de esta organización tienen objetivos claros.", "grupo": 1, "orden": 2},
+    {"texto": "Esta organización está continuamente buscando hacer mejor las cosas.", "grupo": 1, "orden": 3},
+    {"texto": "La organización resuelve el asunto de colaboradores improductivos, a través de reentrenamiento, remociones, jubilación anticipada y transferencias.", "grupo": 1, "orden": 4},
+    {"texto": "Recompensas tales como aumentos de salario y promociones, se otorgan con base en el mérito individual.", "grupo": 1, "orden": 5},
+    {"texto": "Mi jefe discute y revisa a menudo mi productividad conmigo.", "grupo": 1, "orden": 6},
+    {"texto": "Aquí la productividad es el asunto más importante.", "grupo": 1, "orden": 7},
+    {"texto": "La eficiencia es altamente valorada en esta organización.", "grupo": 1, "orden": 8},
+    {"texto": "En esta organización intentamos lograr que las cosas se hagan mejor que la última vez.", "grupo": 1, "orden": 9},
+    {"texto": "Aquí se desperdicia poco tiempo.", "grupo": 1, "orden": 10},
+    {"texto": "La gerencia es competente en su trabajo.", "grupo": 2, "orden": 11},
+    {"texto": "Nuestros gerentes experimentados son un buen ejemplo para los gerentes novatos.", "grupo": 2, "orden": 12},
+    {"texto": "Los gerentes de esta organización normalmente hacen un buen trabajo de motivación con sus colaboradores.", "grupo": 2, "orden": 13},
+    {"texto": "Nuestros gerentes son normalmente muy efectivos.", "grupo": 2, "orden": 14},
+    {"texto": "Aquí los gerentes tienen credibilidad.", "grupo": 2, "orden": 15},
+    {"texto": "En esta organización hay una aceptación entusiasta de las decisiones que vienen de la gerencia.", "grupo": 2, "orden": 16},
+    {"texto": "Las decisiones recientes de la gerencia han beneficiado claramente a la organización.", "grupo": 2, "orden": 17},
+    {"texto": "Aquí se respeta altamente a la gerencia.", "grupo": 2, "orden": 18},
+    {"texto": "La gente recibe suficiente autoridad para ejecutar con agilidad.", "grupo": 2, "orden": 19},
+    {"texto": "Nuestros gerentes saben lo que hacen.", "grupo": 2, "orden": 20},
+    {"texto": "Esta organización parece tener el número correcto de gerentes.", "grupo": 3, "orden": 21},
+    {"texto": "No hay una duplicidad seria de funciones en esta organización.", "grupo": 3, "orden": 22},
+    {"texto": "Existe un número adecuado de niveles gerenciales en esta organización.", "grupo": 3, "orden": 23},
+    {"texto": "Aquí no hay confusión entre línea y staff.", "grupo": 3, "orden": 24},
+    {"texto": "Regularmente los cambios en la estructura de la organización se hacen cuando se necesita.", "grupo":   3, "orden": 25},
+    {"texto": "Aquí los gerentes conocen su trabajo.", "grupo": 3, "orden": 26},
+    {"texto": "Cada gerente tiene autoridad suficiente para tomar decisiones en su equipo.", "grupo": 3, "orden":  27},
+    {"texto": "Ningún área de la organización tiene demasiado poder.", "grupo": 3, "orden": 28},
+    {"texto": "Casi todo mundo entiende cómo funciona nuestra organización.", "grupo": 3, "orden": 29},
+    {"texto": "Yo conozco la estrategia de la organización.", "grupo": 3, "orden": 30},
+    {"texto": "Aquí normalmente las personas vienen muy bien preparadas a las juntas.", "grupo": 4, "orden": 31},
+    {"texto": "Se organizan juntas cuando es necesario.", "grupo": 4, "orden": 32},
+    {"texto": "Los gerentes a menudo involucran a sus colaboradores en discusiones informales.", "grupo": 4,  "orden": 33},
+    {"texto": "En las juntas, la discusión es muy libre y abierta.", "grupo": 4, "orden": 34},
+    {"texto": "Siempre puedo hablar libremente con mi jefe.", "grupo": 4, "orden": 35},
+    {"texto": "Yo sé continuamente lo que pasa aquí.", "grupo": 4, "orden": 36},
+    {"texto": "Veo a mi jefe tan seguido como lo necesito.", "grupo": 4, "orden": 37},
+    {"texto": "Siempre tengo información anticipada de cualquier cambio que se haya planeado.", "grupo": 4,  "orden": 38},
+    {"texto": "La gente de la organización es amistosa.", "grupo": 4, "orden": 39},
+    {"texto": "Usamos la palabra hablada en vez de memorándum escrito para conseguir que las cosas se hagan.",  "grupo": 4, "orden": 40},
+    {"texto": "Aquí entre los gerentes hay una rivalidad aguda, pero útil.", "grupo": 5, "orden": 41},
+    {"texto": "Los desacuerdos y los conflictos eventualmente se resuelven de manera amigable.", "grupo": 5,  "orden": 42},
+    {"texto": "Los colaboradores pueden discrepar con sus jefes sin ser castigados.", "grupo": 5, "orden": 43},
+    {"texto": "La organización provoca el desacuerdo para estimular que se hagan las cosas de la mejor manera.",  "grupo": 5, "orden": 44},
+    {"texto": "Aquí a la gente que expresa libremente su desacuerdo se le considera como alguien que se preocupa por mejorar las cosas.", "grupo": 5, "orden": 45},
+    {"texto": "En esta organización se acepta el conflicto y se usa productivamente.", "grupo": 5, "orden": 46},
+    {"texto": "Aquí la gente no acepta sumisamente las cosas.", "grupo": 5, "orden": 47},
+    {"texto": "Aquí los conflictos normalmente conducen al mejoramiento.", "grupo": 5, "orden": 48},
+    {"texto": "La gente de la organización no trata de ganar sus argumentos, ya que le interesa más trabajar para encontrar la mejor solución.", "grupo": 5, "orden": 49},
+    {"texto": "En esta organización nadie padece por haber discutido fuertemente lo que no le parece.", "grupo": 5,   "orden": 50},
+    {"texto": "La organización apoya a sus colaboradores para que se desarrollen por sí mismos.", "grupo": 6, "orden": 51},
+    {"texto": "Nuestra política de reclutamiento es muy buena.", "grupo": 6, "orden": 52},
+    {"texto": "Conseguimos que cada persona se adapte a su posición.", "grupo": 6, "orden": 53},
+    {"texto": "La organización usa el potencial de sus colaboradores.", "grupo": 6, "orden": 54},
+    {"texto": "Esta organización tiene un buen esquema de entrenamiento.", "grupo": 6, "orden": 55},
+    {"texto": "Nuestras capacidades están bien utilizadas.", "grupo": 6, "orden": 56},
+    {"texto": "La gerencia ve al talento como algo de primerísima importancia.", "grupo": 6, "orden": 57},
+    {"texto": "Esta organización es justa con sus colaboradores.", "grupo": 6, "orden": 58},
+    {"texto": "Hay una gran oportunidad de progreso en esta organización.", "grupo": 6, "orden": 59},
+    {"texto": "El ausentismo y la holgazanería no son un problema aquí.", "grupo": 6, "orden": 60},
+    {"texto": "Mi trabajo es importante en esta organización.", "grupo": 7, "orden": 61},
+    {"texto": "Los colaboradores sienten que tienen un papel importante que desempeñar en esta organización.", "grupo": 7, "orden": 62},
+    {"texto": "Aquí continuamente se solicitan sugerencias a los colaboradores.", "grupo": 7, "orden": 63},
+    {"texto": "Aquí hay muchísimo espíritu de grupo.", "grupo": 7, "orden": 64},
+    {"texto": "Antes de tomar una decisión se hacen intentos concienzudos para considerar los puntos de vista de todos.", "grupo": 7, "orden": 65},
+    {"texto": "A menudo se pide a los colaboradores que trabajen con sus jefes en comités.", "grupo": 7, "orden": 66},
+    {"texto": "Mis ideas para cambiar cosas han sido bienvenidas.", "grupo": 7, "orden": 67},
+    {"texto": "Varias de mis ideas de cambio se han aceptado.", "grupo": 7, "orden": 68},
+    {"texto": "Muchas decisiones se posponen si las personas involucradas disienten en principio.", "grupo": 7, "orden": 69},
+    {"texto": "Yo sé que mis jefes se interesan en mis ideas.", "grupo": 7, "orden": 70},
+    {"texto": "De varias partes de la organización hay muchas ideas fluyendo.", "grupo": 8, "orden": 71},
+    {"texto": "Aquí se estimula el pensamiento creativo y la innovación.", "grupo": 8, "orden": 72},
+    {"texto": "En esta organización siempre buscamos alternativas.", "grupo": 8, "orden": 73},
+    {"texto": "Esta organización es siempre receptiva a nuevas ideas.", "grupo": 8, "orden": 74},
+    {"texto": "Las personas creativas encajan muy fácilmente en esta organización.", "grupo": 8, "orden": 75},
+    {"texto": "Aquí muchas ideas provienen de los propios colaboradores.", "grupo": 8, "orden": 76},
+    {"texto": "Los jefes a menudo piden a sus colaboradores nuevas ideas.", "grupo": 8, "orden": 77},
+    {"texto": "Siempre estamos dispuestos a intentar cosas nuevas.", "grupo": 8, "orden": 78},
+    {"texto": "Mis propias ideas de cambio son bien escuchadas.", "grupo": 8, "orden": 79},
+    {"texto": "Yo puedo ser creativo en esta organización.", "grupo": 8, "orden": 80},
+    {"texto": "Mi jefe y yo logramos un acuerdo sobre mis resultados.", "grupo": 9, "orden": 81},
+    {"texto": "Mi jefe y yo hemos acordado cómo deberá medirse mi efectividad.", "grupo": 9, "orden": 82},
+    {"texto": "Mi jefe tiene un fuerte interés en cuán efectivo soy.", "grupo": 9, "orden": 83},
+    {"texto": "Mi jefe discute conmigo mi bajo desempeño.", "grupo": 9, "orden": 84},
+    {"texto": "Mi jefe usualmente me informa cuán efectivo me percibe.", "grupo": 9, "orden": 85},
+    {"texto": "Mis objetivos están alineados con los objetivos de mi jefe.", "grupo": 9, "orden": 86},
+    {"texto": "Yo puedo retar los objetivos de mi jefe.", "grupo": 9, "orden": 87},
+    {"texto": "Yo contribuyo para que mi jefe sea más efectivo.", "grupo": 9, "orden": 88},
+    {"texto": "Mi jefe y yo discutimos las posibles barreras entre nuestra relación de trabajo y las eliminamos.", "grupo": 9, "orden": 89},
+    {"texto": "Mi jefe me ayuda a ser más efectivo.", "grupo": 9, "orden": 90},
+    {"texto": "He logrado un acuerdo con mis colaboradores sobre la forma en que su efectividad se medirá.", "grupo": 10, "orden": 91},
+    {"texto": "He trabajado directamente con mis colaboradores para definir de qué respondemos cada uno de nosotros.", "grupo": 10, "orden": 92},
+    {"texto": "Analizo con mis colaboradores las causas de su bajo desempeño.", "grupo": 10, "orden": 93},
+    {"texto": "Discuto con mis colaboradores sus objetivos en vez de darles tareas para que las desarrollen.", "grupo": 10, "orden": 94},
+    {"texto": "Mis colaboradores participan ampliamente conmigo en el establecimiento de los objetivos de sus puestos.", "grupo": 10, "orden": 95},
+    {"texto": "Discuto regularmente con mis colaboradores cuán efectivos los veo.", "grupo": 10, "orden": 96},
+    {"texto": "Me reúno regularmente con mis colaboradores para acordar sus objetivos.", "grupo": 10, "orden": 97},
+    {"texto": "Mis objetivos están alineados con los objetivos de mis colaboradores.", "grupo": 10, "orden": 98},
+    {"texto": "Yo ayudo para hacer que mis colaboradores sean más efectivos.", "grupo": 10, "orden": 99},
+    {"texto": "Mis colaboradores y yo discutimos las posibles barreras entre nuestra relación de trabajo y las eliminamos.", "grupo": 10, "orden": 100},
+    {"texto": "Mis objetivos están alineados con los objetivos de las personas que trabajan a mi nivel.", "grupo": 11, "orden": 101},
+    {"texto": "Aquí existe una cooperación interdepartamental efectiva.", "grupo": 11, "orden": 102},
+    {"texto": "Mis colegas de nivel me ayudan tanto como pueden para que yo sea más efectivo.", "grupo": 11, "orden": 103},
+    {"texto": "Regularmente ayudo a mis colegas tanto como puedo para que sean más efectivos.", "grupo": 11, "orden": 104},
+    {"texto": "La mayoría de las juntas a las que asisto aquí, son productivas.", "grupo": 11, "orden": 105},
+    {"texto": "Estoy motivado para interactuar directamente con mis colegas, sin tener que ir con mi jefe o con los jefes de ellos.", "grupo": 11, "orden": 106},
+    {"texto": "A menudo se celebran aquí juntas informales que son útiles.", "grupo": 11, "orden": 107},
+    {"texto": "Mi responsabilidad y autoridad se adaptan bien a las de mis colegas.", "grupo": 11, "orden": 108},
+    {"texto": "Permito que otros sobrepasen mi autoridad y responsabilidad siempre que esto ayude a mantener la efectividad.", "grupo": 11, "orden": 109},
+    {"texto": "Mis colegas y yo discutimos las posibles barreras entre nuestra relación de trabajo y las eliminamos.", "grupo": 11, "orden": 110},
+    {"texto": "Mi autoridad está claramente definida.", "grupo": 12, "orden": 111},
+    {"texto": "Tengo suficiente autoridad para lograr los resultados que esperan de mí.", "grupo": 12, "orden": 112},
+    {"texto": "Cuento con una descripción de mi puesto que me es útil para establecer mis objetivos.", "grupo": 12, "orden": 113},
+    {"texto": "Cuento con una descripción de mi puesto que es precisa y está razonablemente actualizada.", "grupo": 12, "orden": 114},
+    {"texto": "Usualmente puedo cambiar mi autoridad y responsabilidad si la situación lo demanda.", "grupo": 12, "orden": 115},
+    {"texto": "Mi responsabilidad y autoridad alinean bien con las de mi jefe.", "grupo": 12, "orden": 116},
+    {"texto": "Mi responsabilidad y autoridad alinean bien con las de mis colaboradores.", "grupo": 12, "orden": 117},
+    {"texto": "Mi responsabilidad y autoridad alinean bien con las de mis colegas.", "grupo": 12, "orden": 118},
+    {"texto": "Mis colaboradores responden ante mí.", "grupo": 12, "orden": 119},
+    {"texto": "Yo respondo ante mi jefe.", "grupo": 12, "orden": 120},
+    {"texto": "Tengo el personal que necesito para desempeñarme efectivamente.", "grupo": 13, "orden": 121},
+    {"texto": "Tengo el equipo que necesito para desempeñarme efectivamente.", "grupo": 13, "orden": 122},
+    {"texto": "Tengo el entrenamiento necesario para desempeñarme efectivamente.", "grupo": 13, "orden": 123},
+    {"texto": "Cuento con el espacio necesario para desempeñarme efectivamente.", "grupo": 13, "orden": 124},
+    {"texto": "Cuento con el presupuesto que necesito para desempeñarme efectivamente.", "grupo": 13, "orden": 125},
+    {"texto": "Cuento con la asistencia que necesito de mi jefe para desempeñarme efectivamente.", "grupo": 13, "orden": 126},
+    {"texto": "Cuento con la asistencia que necesito de mis colaboradores para desempeñarme efectivamente", "grupo": 13, "orden": 127},
+    {"texto": "Cuento con la asistencia que necesito de mis colegas para desempeñarme efectivamente.", "grupo": 13, "orden": 128},
+    {"texto": "Cuento con el consejo de los especialistas que necesito, a fin de desempeñarme efectivamente.", "grupo": 13, "orden": 129},
+    {"texto": "Cuento con la información que necesito para desempeñarme efectivamente.", "grupo": 13, "orden": 130},
+    {"texto": "Yo acepto el proceso de orientación a resultados.", "grupo": 14, "orden": 131},
+    {"texto": "Yo pienso que mi jefe acepta el proceso de orientación a resultados.", "grupo": 14, "orden": 132},
+    {"texto": "Yo pienso que mis colaboradores aceptan el proceso de orientación a resultados.", "grupo": 14, "orden": 133},
+    {"texto": "Yo pienso que la gerencia acepta el proceso de orientación a resultados.", "grupo": 14, "orden":  134},
+    {"texto": "Yo pienso que el proceso de orientación a resultados trae consigo muchos beneficios en empresas como la nuestra.", "grupo": 14, "orden": 135},
+    {"texto": "Yo pienso que el proceso de orientación a resultados nos puede conducir hacia algunos cambios efectivos.", "grupo": 14, "orden": 136},
+    {"texto": "El cambio aquí se introduce fácilmente.", "grupo": 14, "orden": 137},
+    {"texto": "El cambio se introduce aquí con frecuencia.", "grupo": 14, "orden": 138},
+    {"texto": "Esta organización es altamente flexible.", "grupo": 14, "orden": 139},
+    {"texto": "Los cambios se pueden introducir rápida y efectivamente aquí.", "grupo": 14, "orden": 140},
+    {"texto": "Un mayor énfasis en orientación a resultados podría mejorar mi efectividad.", "grupo": 15, "orden": 141},
+    {"texto": "Un mayor énfasis sobre orientación a resultados mejoraría la efectividad de mis colaboradores.", "grupo": 15, "orden": 142},
+    {"texto": "Un mayor énfasis sobre la orientación a resultados mejoraría la efectividad de mi jefe.", "grupo":  15, "orden": 143},
+    {"texto": "Un mayor énfasis sobre orientación a resultados mejoraría la efectividad de mis colegas.", "grupo": 15, "orden": 144},
+    {"texto": "Un mayor énfasis sobre la orientación a resultados mejoraría la efectividad de esta organización.", "grupo": 15, "orden": 145},
+    {"texto": "Un mayor énfasis sobre la orientación a resultados reduciría los conflictos aquí.", "grupo": 15, "orden": 146},
+    {"texto": "Un mayor énfasis sobre la orientación a resultados mejoraría la satisfacción del trabajo aquí.", "grupo": 15, "orden": 147},
+    {"texto": "Un mayor énfasis sobre la orientación a resultados me permitiría trabajar más efectivamente con mi jefe.", "grupo": 15, "orden": 148},
+    {"texto": "Un mayor énfasis sobre la orientación a resultados me permitiría trabajar más efectivamente con mis colaboradores.", "grupo": 15, "orden": 149},
+    {"texto": "Un mayor énfasis sobre orientación a resultados me permitiría trabajar más efectivamente con mis colegas.", "grupo": 15, "orden": 150},
+    {"texto": "La mayoría de la información relacionada con el trabajo, la recibo a tiempo.", "grupo": 16, "orden": 151},
+    {"texto": "La mayoría de la información del trabajo es lo suficientemente precisa.", "grupo": 16, "orden": 152},
+    {"texto": "Puedo obtener con facilidad la información que necesito sobre el trabajo.", "grupo": 16, "orden": 153},
+    {"texto": "La información que recibo es útil para mí.", "grupo": 16, "orden": 154},
+    {"texto": "Recibo toda la información que necesito para desempeñarme efectivamente.", "grupo": 16, "orden": 155},
+    {"texto": "Puedo usar la mayoría de la información que recibo.", "grupo": 16, "orden": 156},
+    {"texto": "Mucha de la información que me piden producir me parece que es de valor.", "grupo": 16, "orden": 157},
+    {"texto": "La información que obtengo parece reflejar bien la realidad.", "grupo": 16, "orden": 158},
+    {"texto": "Recibo la información que necesito para poder juzgar mi efectividad.", "grupo": 16, "orden": 159},
+    {"texto": "Recibo la información que necesito para poder evaluar la efectividad de mis colaboradores.", "grupo": 16, "orden": 160}
+  ];
+
+        // Application State
+        const app = {
+            currentQuestion: 0,
+            userInfo: {},
+            answers: [],
+            selectedGroups: [],
+            questions: [],
+            guid: null,
+            testId: null,
+            isResuming: false,
+            requiredFields: [], // Fields to show based on API response
+            autoAdvanceTimer: null // Timer for auto-advance functionality
+        };
+
+        // Local Storage Management
+        const LocalStorage = {
+            getKey(testId) {
+                return `roe_test_${testId}`;
+            },
+            
+            save(testId, data) {
+                try {
+                    const key = this.getKey(testId);
+                    localStorage.setItem(key, JSON.stringify({
+                        ...data,
+                        lastSaved: new Date().toISOString()
+                    }));
+                    console.log('Test progress saved to localStorage:', key);
+                } catch (error) {
+                    console.error('Error saving to localStorage:', error);
+                }
+            },
+            
+            load(testId) {
+                try {
+                    const key = this.getKey(testId);
+                    const data = localStorage.getItem(key);
+                    if (data) {
+                        const parsed = JSON.parse(data);
+                        console.log('Test progress loaded from localStorage:', key);
+                        return parsed;
+                    }
+                } catch (error) {
+                    console.error('Error loading from localStorage:', error);
+                }
+                return null;
+            },
+            
+            clear(testId) {
+                try {
+                    const key = this.getKey(testId);
+                    localStorage.removeItem(key);
+                    console.log('Test progress cleared from localStorage:', key);
+                } catch (error) {
+                    console.error('Error clearing localStorage:', error);
+                }
+            },
+            
+            getProgress(testId) {
+                const data = this.load(testId);
+                if (data && data.answers) {
+                    const answeredCount = data.answers.filter(answer => answer !== null).length;
+                    const totalQuestions = data.questions ? data.questions.length : 0;
+                    return {
+                        answered: answeredCount,
+                        total: totalQuestions,
+                        percentage: totalQuestions > 0 ? Math.round((answeredCount / totalQuestions) * 100) : 0,
+                        isPartial: answeredCount > 0 && answeredCount < totalQuestions,
+                        isComplete: answeredCount === totalQuestions && totalQuestions > 0
+                    };
+                }
+                return { answered: 0, total: 0, percentage: 0, isPartial: false, isComplete: false };
+            }
+        };
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get test ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            app.testId = urlParams.get('id');
+            app.guid = urlParams.get('guid') || app.testId || 'test-guid-' + Date.now();
+            
+            // Setup event listeners
+            document.getElementById('userInfoForm').addEventListener('submit', handleUserInfoSubmit);
+            document.getElementById('debugButton').addEventListener('click', debugFillAnswers);
+            document.getElementById('startTestButton').addEventListener('click', handleStartTest);
+            document.getElementById('helpButton').addEventListener('click', showHelpModal);
+            document.getElementById('closeHelpButton').addEventListener('click', hideHelpModal);
+            document.getElementById('closeHelpModalButton').addEventListener('click', hideHelpModal);
+            
+            // Setup answer button listeners
+            document.querySelectorAll('.answer-button').forEach(button => {
+                button.addEventListener('click', handleAnswer);
+            });
+            
+            // Setup navigation button listeners
+            document.getElementById('prevButton').addEventListener('click', previousQuestion);
+            document.getElementById('nextButton').addEventListener('click', nextQuestion);
+            document.getElementById('submitButton').addEventListener('click', submitResults);
+            
+            // Start with test validation
+            showScreen('testValidationScreen');
+            validateTest();
+        });
+        
+        // Validate test availability and check for existing progress
+        async function validateTest() {
+            console.log('\n🔍 ========== TEST VALIDATION ==========');
+            
+            if (!app.testId) {
+                console.log('❌ No test ID found in URL');
+                showValidationError();
+                return;
+            }
+            
+            console.log('Test ID:', app.testId);
+            
+            try {
+                // Check for existing progress in localStorage
+                const existingProgress = LocalStorage.getProgress(app.testId);
+                console.log('Existing progress:', existingProgress);
+                
+                // Validate with API
+                const apiUrl = `https://apitests.reddinassessments.com/wsGetinvitRoe?id=${app.testId}`;
+                console.log('Validating with API:', apiUrl);
+                
+                const response = await fetch(apiUrl, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status} - ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                console.log('API validation response:', data);
+                
+                if (data.wsGetinvitROE_response) {
+                    const response = data.wsGetinvitROE_response;
+                    
+                    // Check resultComplete status first, before checking for groups
+                    if (response.resultComplete === "2") {
+                        // Test found but already completed
+                        console.log('✅ Test record found, but test has already been completed (resultComplete = 2)');
+                        console.log('Test ID:', app.testId);
+                        console.log('Status: Test is there but it has already been completed');
+                        showTestAlreadyCompletedError();
+                        return;
+                    } else if (response.resultComplete !== "1") {
+                        // Any other value than 1 is invalid
+                        console.log('❌ Invalid resultComplete value:', response.resultComplete);
+                        throw new Error('Invalid test status');
+                    }
+                    
+                    // resultComplete = 1, now check for groups
+                    if (!response.groups) {
+                        throw new Error('Missing groups data in valid response');
+                    }
+                    
+                    // resultComplete = 1, continue with normal flow
+                    const groupsString = response.groups;
+                    app.selectedGroups = groupsString
+                        .split(',')
+                        .map(g => parseInt(g.trim()))
+                        .filter(g => !isNaN(g))
+                        .sort((a, b) => a - b);
+                    
+                    // Parse required fields from individual flags
+                    app.requiredFields = [];
+                    
+                    // Map API flags to field names
+                    const fieldMapping = {
+                        'roe:pedirnombre': 'firstName',
+                        'roe:pedirapellido': 'lastName', 
+                        'roe:pedirempresa': 'company',
+                        'roe:pedirpuesto': 'position',
+                        'roe:pedirdepartamento': 'department',
+                        'roe:pediredad': 'age',
+                        'roe:pediraempresa': 'yearsInCompany',
+                        'roe:pedirgenero': 'gender',
+                        'roe:pedirnota1': 'note1',
+                        'roe:pedirnota2': 'note2',
+                        'roe:pedirciudad': 'city',
+                        'roe:pedirpais': 'country',
+                        'roe:pediremail': 'email',
+                        'roe:pedirsmsphone': 'phone'
+                    };
+                    
+                    // Check each flag and add to required fields if "1"
+                    Object.keys(fieldMapping).forEach(apiFlag => {
+                        const flagValue = String(response[apiFlag] || '').trim();
+                        if (flagValue === "1") {
+                            app.requiredFields.push(fieldMapping[apiFlag]);
+                        }
+                    });
+                    
+                    // Configure form fields visibility
+                    configureFormFields();
+                    
+                    showValidationSuccess(existingProgress);
+                } else {
+                    throw new Error('Invalid API response format');
+                }
+                
+            } catch (error) {
+                console.error('❌ Test validation failed:', error);
+                showValidationError();
+            }
+        }
+        
+        // Show validation success with appropriate button
+        function showValidationSuccess(progress) {
+            document.getElementById('validationSpinner').style.display = 'none';
+            document.getElementById('validationMessage').style.display = 'none';
+            document.getElementById('validationResult').classList.remove('hidden');
+            document.getElementById('validationSuccess').classList.remove('hidden');
+            
+            const startButton = document.getElementById('startTestButton');
+            const statusMessage = document.getElementById('testStatusMessage');
+            
+            if (progress.isComplete) {
+                statusMessage.textContent = 'Este test ya ha sido completado. Puede revisarlo nuevamente.';
+                startButton.innerHTML = '<i class="fas fa-eye icon"></i>Revisar Test Completado';
+                app.isResuming = true;
+            } else if (progress.isPartial) {
+                statusMessage.textContent = `Tienes un test parcialmente completado (${progress.answered}/${progress.total} frases respondidas - ${progress.percentage}%). Puedes continuar donde lo dejaste.`;
+                startButton.innerHTML = '<i class="fas fa-play-circle icon"></i>Continuar Test';
+                app.isResuming = true;
+            } else {
+                statusMessage.textContent = 'El test está disponible y listo para comenzar.';
+                startButton.innerHTML = '<i class="fas fa-play icon"></i>Iniciar Test';
+                app.isResuming = false;
+            }
+        }
+        
+        // Show validation error
+        function showValidationError() {
+            document.getElementById('validationSpinner').style.display = 'none';
+            document.getElementById('validationMessage').style.display = 'none';
+            document.getElementById('validationResult').classList.remove('hidden');
+            document.getElementById('validationError').classList.remove('hidden');
+        }
+        
+        // Show test already completed error
+        function showTestAlreadyCompletedError() {
+            document.getElementById('validationSpinner').style.display = 'none';
+            document.getElementById('validationMessage').style.display = 'none';
+            document.getElementById('validationResult').classList.remove('hidden');
+            
+            // Hide the success div and show a custom error
+            document.getElementById('validationSuccess').classList.add('hidden');
+            document.getElementById('validationError').classList.remove('hidden');
+            
+            // Update the error message for already completed test
+            const errorDiv = document.getElementById('validationError');
+            errorDiv.innerHTML = `
+                <div style="color: #27ae60; font-size: 64px; margin-bottom: 20px;">
+                    <i class="fas fa-check-double"></i>
+                </div>
+                <h3 style="color: #2c3e50; margin-bottom: 20px;">Test Encontrado - Ya Completado</h3>
+                <p style="color: #5a6c7d; line-height: 1.6; margin-bottom: 30px;">
+                    El test está disponible en el sistema, pero ya ha sido completado anteriormente.
+                </p>
+                <a href="https://www.reddinassessments.com" class="button" style="background: #3498db; text-decoration: none; display: inline-block;">
+                    <i class="fas fa-globe icon"></i>Visitar Reddin Assessments
+                </a>
+            `;
+        }
+        
+        // Handle start/continue test button
+        function handleStartTest() {
+            if (app.isResuming) {
+                loadExistingProgress();
+            } else {
+                showScreen('userInfoScreen');
+            }
+        }
+        
+        // Show help modal
+        function showHelpModal() {
+            const modal = document.getElementById('helpModal');
+            modal.classList.remove('hidden');
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+        
+        // Hide help modal
+        function hideHelpModal() {
+            const modal = document.getElementById('helpModal');
+            modal.classList.add('hidden');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+        
+        // Configure form fields visibility based on API response
+        function configureFormFields() {
+            // All available fields
+            const allFields = [
+                'firstName', 'lastName', 'company', 'position', 'department', 
+                'age', 'yearsInCompany', 'gender', 'note1', 'note2', 
+                'city', 'country', 'email', 'phone'
+            ];
+            
+            console.log('Configuring form fields...');
+            
+            // Hide all fields first
+            allFields.forEach(fieldName => {
+                const fieldGroup = document.querySelector(`[data-field="${fieldName}"]`);
+                if (fieldGroup) {
+                    fieldGroup.style.display = 'none';
+                }
+            });
+            
+            // Show only required fields
+            app.requiredFields.forEach(fieldName => {
+                const fieldGroup = document.querySelector(`[data-field="${fieldName}"]`);
+                if (fieldGroup) {
+                    fieldGroup.style.display = 'block';
+                    console.log(`Showing field: ${fieldName}`);
+                } else {
+                    console.warn(`Field not found: ${fieldName}`);
+                }
+            });
+            
+            console.log(`Configured ${app.requiredFields.length} visible fields`);
+        }
+        
+        // Load existing progress from localStorage
+        function loadExistingProgress() {
+            const savedData = LocalStorage.load(app.testId);
+            
+            if (savedData) {
+                console.log('Loading existing progress...');
+                
+                // Restore application state
+                app.userInfo = savedData.userInfo || {};
+                app.selectedGroups = savedData.selectedGroups || [];
+                app.questions = savedData.questions || [];
+                app.answers = savedData.answers || [];
+                app.currentQuestion = savedData.currentQuestion || 0;
+                
+                // Find the next unanswered question
+                const nextUnanswered = app.answers.findIndex(answer => answer === null);
+                if (nextUnanswered !== -1) {
+                    app.currentQuestion = nextUnanswered;
+                } else if (app.answers.every(answer => answer !== null)) {
+                    // All questions answered, go to summary
+                    showScreen('summaryScreen');
+                    return;
+                }
+                
+                console.log('Restored state:', {
+                    userInfo: app.userInfo,
+                    selectedGroups: app.selectedGroups,
+                    questionsCount: app.questions.length,
+                    answeredCount: app.answers.filter(a => a !== null).length,
+                    currentQuestion: app.currentQuestion
+                });
+                
+                // Go directly to questions
+                showScreen('questionScreen');
+                displayQuestion();
+            } else {
+                console.log('No existing progress found, starting fresh');
+                showScreen('userInfoScreen');
+            }
+        }
+        
+        // Save progress to localStorage
+        function saveProgress() {
+            if (app.testId) {
+                const dataToSave = {
+                    userInfo: app.userInfo,
+                    selectedGroups: app.selectedGroups,
+                    questions: app.questions,
+                    answers: app.answers,
+                    currentQuestion: app.currentQuestion,
+                    guid: app.guid
+                };
+                
+                LocalStorage.save(app.testId, dataToSave);
+            }
+        }
+
+        // Debug function to auto-complete the test
+        async function debugFillAnswers() {
+            console.log('\n🐛 ========== DEBUG AUTO-COMPLETE TEST ==========');
+            
+            try {
+                // First, check if required fields are configured
+                if (!app.requiredFields || app.requiredFields.length === 0) {
+                    console.log('⚠️ Required fields not configured. Need to validate test first.');
+                    alert('Por favor, recargue la página para validar el test antes de usar el modo debug.');
+                    return;
+                }
+                
+                // AUTO-FILL TEST DATA FOR DEBUG
+                console.log('Auto-filling required fields with test data:', app.requiredFields);
+                
+                const debugData = {
+                    firstName: 'Debug',
+                    lastName: 'User',
+                    company: 'Test Company',
+                    position: 'Test Position',
+                    department: 'IT Department',
+                    age: '30',
+                    yearsInCompany: '5',
+                    gender: 'masculino',
+                    note1: 'Debug test note 1',
+                    note2: 'Debug test note 2',
+                    city: 'Test City',
+                    country: 'Test Country',
+                    email: 'debug@test.com',
+                    phone: '+1234567890'
+                };
+                
+                // Fill only the required fields in the form
+                app.requiredFields.forEach(fieldName => {
+                    const field = document.getElementById(fieldName);
+                    if (field && debugData[fieldName]) {
+                        field.value = debugData[fieldName];
+                        console.log(`Filled ${fieldName}: ${debugData[fieldName]}`);
+                    }
+                });
+                
+                // NOW validate the auto-filled fields
+                console.log('Validating auto-filled debug data...');
+                const validationErrors = validateRequiredFields();
+                if (validationErrors.length > 0) {
+                    console.log('❌ Debug validation failed after auto-fill:', validationErrors);
+                    showValidationErrors(['Debug mode: Algunos campos requeridos no se pudieron completar automáticamente.', ...validationErrors]);
+                    return;
+                }
+                
+                console.log('✅ Debug data auto-filled and validated successfully.');
+                
+                // Collect user info (same as regular form submission)
+                app.userInfo = {
+                    firstName: document.getElementById('firstName').value || '',
+                    lastName: document.getElementById('lastName').value || '',
+                    company: document.getElementById('company').value || '',
+                    position: document.getElementById('position').value || '',
+                    department: document.getElementById('department').value || '',
+                    age: document.getElementById('age').value || '',
+                    yearsInCompany: document.getElementById('yearsInCompany').value || '',
+                    gender: document.getElementById('gender').value || '',
+                    note1: document.getElementById('note1').value || '',
+                    note2: document.getElementById('note2').value || '',
+                    city: document.getElementById('city').value || '',
+                    country: document.getElementById('country').value || '',
+                    email: document.getElementById('email').value || '',
+                    phone: document.getElementById('phone').value || '',
+                    timestamp: new Date().toISOString()
+                };
+                
+                console.log('✅ Debug user info collected:', app.userInfo);
+                
+                // Prepare questions
+                prepareQuestions();
+                
+                // Fill all answers randomly
+                app.questions.forEach((question, index) => {
+                    const randomAnswer = Math.random() > 0.5;
+                    app.answers[index] = {
+                        numero: question.numero,
+                        orden: question.orden,
+                        grupo: question.grupo,
+                        answer: randomAnswer,
+                        timestamp: new Date().toISOString()
+                    };
+                });
+                
+                // Set current question to last question (all completed)
+                app.currentQuestion = app.questions.length - 1;
+                
+                // Save debug session to localStorage
+                console.log('💾 Saving debug session to localStorage...');
+                saveProgress();
+                
+                // Create the final answers string for debugging
+                const orderedAnswers = new Array(160).fill(0);
+                app.answers.filter(answer => answer !== null).forEach(answer => {
+                    if (answer.orden >= 1 && answer.orden <= 160) {
+                        orderedAnswers[answer.orden - 1] = answer.answer ? 1 : 0;
+                    }
+                });
+                const debugAnswersString = orderedAnswers.join('');
+                
+                console.log('\n=== DEBUG ROE ASSESSMENT RESULTS ===');
+                console.log('Debug: All answers filled randomly');
+                console.log('Selected groups:', app.selectedGroups);
+                console.log('Total questions:', app.questions.length);
+                console.log('160-Character Answer String:');
+                console.log(debugAnswersString);
+                console.log('Answer String Length:', debugAnswersString.length);
+                console.log('- 0s:', (debugAnswersString.match(/0/g) || []).length);
+                console.log('- 1s:', (debugAnswersString.match(/1/g) || []).length);
+                console.log('💾 Debug session saved to localStorage');
+                console.log('=====================================\n');
+                
+                // Go directly to summary
+                showScreen('summaryScreen');
+                
+            } catch (error) {
+                console.error('❌ Debug mode error:', error);
+                alert(`Error en modo debug: ${error.message}`);
+            }
+        }
+
+        // Handle user info form submission
+        function handleUserInfoSubmit(e) {
+            e.preventDefault();
+            
+            // Validate required fields
+            const validationErrors = validateRequiredFields();
+            if (validationErrors.length > 0) {
+                showValidationErrors(validationErrors);
+                return;
+            }
+            
+            // Collect user info from all fields
+            app.userInfo = {
+                firstName: document.getElementById('firstName').value || '',
+                lastName: document.getElementById('lastName').value || '',
+                company: document.getElementById('company').value || '',
+                position: document.getElementById('position').value || '',
+                department: document.getElementById('department').value || '',
+                age: document.getElementById('age').value || '',
+                yearsInCompany: document.getElementById('yearsInCompany').value || '',
+                gender: document.getElementById('gender').value || '',
+                note1: document.getElementById('note1').value || '',
+                note2: document.getElementById('note2').value || '',
+                city: document.getElementById('city').value || '',
+                country: document.getElementById('country').value || '',
+                email: document.getElementById('email').value || '',
+                phone: document.getElementById('phone').value || '',
+                timestamp: new Date().toISOString()
+            };
+
+            console.log('User info collected:', app.userInfo);
+
+            // Get groups from API and start assessment
+            getGroupsFromAPI();
+        }
+        
+        // Validate required fields
+        function validateRequiredFields() {
+            const errors = [];
+            
+            // Field labels for error messages
+            const fieldLabels = {
+                firstName: 'Nombre de la Persona',
+                lastName: 'Apellido de la Persona',
+                company: 'Empresa',
+                position: 'Puesto',
+                department: 'Departamento',
+                age: 'Edad',
+                yearsInCompany: 'Años en la Empresa',
+                gender: 'Género',
+                note1: 'Nota 1',
+                note2: 'Nota 2',
+                city: 'Ciudad',
+                country: 'País',
+                email: 'Email de la Persona',
+                phone: 'Teléfono para SMS de la Persona'
+            };
+            
+            // Check each required field
+            app.requiredFields.forEach(fieldName => {
+                const field = document.getElementById(fieldName);
+                const label = fieldLabels[fieldName] || fieldName;
+                
+                if (!field) {
+                    errors.push(`Campo "${label}" no encontrado`);
+                    return;
+                }
+                
+                const value = field.value.trim();
+                
+                // Basic required validation
+                if (!value) {
+                    errors.push(`${label} es obligatorio`);
+                    field.classList.add('error');
+                    return;
+                } else {
+                    field.classList.remove('error');
+                }
+                
+                // Specific validations
+                switch (fieldName) {
+                    case 'email':
+                        if (!isValidEmail(value)) {
+                            errors.push(`${label} debe tener un formato válido`);
+                            field.classList.add('error');
+                        }
+                        break;
+                        
+                    case 'age':
+                        const age = parseInt(value);
+                        if (isNaN(age) || age < 18 || age > 100) {
+                            errors.push(`${label} debe estar entre 18 y 100 años`);
+                            field.classList.add('error');
+                        }
+                        break;
+                        
+                    case 'yearsInCompany':
+                        const years = parseInt(value);
+                        if (isNaN(years) || years < 0 || years > 50) {
+                            errors.push(`${label} debe estar entre 0 y 50 años`);
+                            field.classList.add('error');
+                        }
+                        break;
+                        
+                    case 'phone':
+                        if (!isValidPhone(value)) {
+                            errors.push(`${label} debe tener un formato válido`);
+                            field.classList.add('error');
+                        }
+                        break;
+                }
+            });
+            
+            return errors;
+        }
+        
+        // Email validation
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+        
+        // Phone validation (basic)
+        function isValidPhone(phone) {
+            const phoneRegex = /^[\+]?[\d\s\-\(\)]{8,15}$/;
+            return phoneRegex.test(phone);
+        }
+        
+        // Show validation errors
+        function showValidationErrors(errors) {
+            // Remove any existing error message
+            const existingError = document.querySelector('.validation-error-message');
+            if (existingError) {
+                existingError.remove();
+            }
+            
+            // Create error message element
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'validation-error-message';
+            errorDiv.style.cssText = `
+                background: #ffeaa7;
+                border: 2px solid #fdcb6e;
+                border-radius: 8px;
+                padding: 15px;
+                margin-bottom: 20px;
+                color: #2d3436;
+            `;
+            
+            errorDiv.innerHTML = `
+                <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                    <i class="fas fa-exclamation-triangle" style="color: #e17055; margin-right: 10px; font-size: 18px;"></i>
+                    <strong>Por favor, corrija los siguientes errores:</strong>
+                </div>
+                <ul style="margin: 0; padding-left: 20px;">
+                    ${errors.map(error => `<li>${error}</li>`).join('')}
+                </ul>
+            `;
+            
+            // Insert error message at the top of the form
+            const form = document.getElementById('userInfoForm');
+            form.insertBefore(errorDiv, form.firstChild);
+            
+            // Scroll to top of form
+            form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            
+            console.log('Validation errors:', errors);
+        }
+
+        // Fisher-Yates shuffle algorithm for proper randomization
+        function shuffleArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        // Get groups from API
+        async function getGroupsFromAPI() {
+            try {
+                // Get ID from URL parameters
+                const urlParams = new URLSearchParams(window.location.search);
+                const invitationId = urlParams.get('id');
+                
+                console.log('\n=== STARTING ROE ASSESSMENT API CALL ===');
+                console.log('URL Parameters:', window.location.search);
+                console.log('Invitation ID from URL:', invitationId);
+                
+                if (!invitationId) {
+                    throw new Error('No invitation ID found in URL parameters');
+                }
+                
+                const apiUrl = `https://apitests.reddinassessments.com/wsGetInvitRoe?id=${invitationId}`;
+                console.log('Calling API URL:', apiUrl);
+                
+                // Call the web service
+                const response = await fetch(apiUrl, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                console.log('Response status:', response.status);
+                console.log('Response headers:', Object.fromEntries(response.headers.entries()));
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status} - ${response.statusText}`);
+                }
+                
+                const responseText = await response.text();
+                console.log('Raw response text:', responseText);
+                
+                let data;
+                try {
+                    data = JSON.parse(responseText);
+                    console.log('Parsed JSON data:', data);
+                } catch (parseError) {
+                    console.error('JSON parse error:', parseError);
+                    throw new Error('Invalid JSON response from server');
+                }
+                
+                // Parse the comma-delimited groups string
+                if (data.wsGetinvitROE_response && data.wsGetinvitROE_response.groups) {
+                    const groupsString = data.wsGetinvitROE_response.groups;
+                    const resultComplete = data.wsGetinvitROE_response.resultComplete;
+                    
+                    console.log('Groups string from API:', groupsString);
+                    console.log('Result complete flag:', resultComplete);
+                    
+                    app.selectedGroups = groupsString
+                        .split(',')
+                        .map(g => parseInt(g.trim()))
+                        .filter(g => !isNaN(g))
+                        .sort((a, b) => a - b);
+                    
+                    console.log('Parsed selected groups:', app.selectedGroups);
+                    console.log('Number of groups selected:', app.selectedGroups.length);
+                    console.log('==========================================\n');
+                    
+                    if (app.selectedGroups.length === 0) {
+                        throw new Error('No valid groups found in API response');
+                    }
+                    
+                    prepareQuestions();
+                    showScreen('questionScreen');
+                    displayQuestion();
+                    
+                } else {
+                    console.error('Invalid API response structure:');
+                    console.error('Expected: wsGetinvitROE_response.groups');
+                    console.error('Received:', data);
+                    throw new Error('Invalid API response format - missing groups data');
+                }
+                
+            } catch (error) {
+                console.error('\n=== API CALL FAILED ===');
+                console.error('Error details:', error);
+                console.error('Error message:', error.message);
+                console.error('=======================\n');
+                
+                // Show modal dialog instead of alert
+                showErrorModal(`No se pudo obtener la configuración del test.
+                
+Detalles del error: ${error.message}
+
+Por favor, verifique:
+- Que el enlace sea válido
+- Que el servicio web esté funcionando
+- Su conexión a internet
+
+El test no puede continuar sin esta información.`);
+            }
+        }
+        
+        // Show error modal
+        function showErrorModal(message) {
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 9999;
+                font-family: inherit;
+            `;
+            
+            const modalContent = document.createElement('div');
+            modalContent.style.cssText = `
+                background: white;
+                padding: 40px;
+                border-radius: 16px;
+                max-width: 500px;
+                width: 90%;
+                text-align: center;
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            `;
+            
+            modalContent.innerHTML = `
+                <div style="color: #e74c3c; font-size: 48px; margin-bottom: 20px;">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <h3 style="color: #2c3e50; margin-bottom: 20px; font-size: 24px;">Error de Configuración</h3>
+                <p style="color: #5a6c7d; line-height: 1.6; margin-bottom: 30px; white-space: pre-line;">${message}</p>
+                <button onclick="window.location.reload()" style="
+                    background: #e74c3c;
+                    color: white;
+                    border: none;
+                    padding: 14px 28px;
+                    border-radius: 8px;
+                    font-size: 16px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                ">
+                    <i class="fas fa-redo icon"></i>Recargar Página
+                </button>
+            `;
+            
+            modal.appendChild(modalContent);
+            document.body.appendChild(modal);
+        }
+
+        // Prepare questions from selected groups
+        function prepareQuestions() {
+            // Check if we already have questions from localStorage (don't re-randomize)
+            const savedData = LocalStorage.load(app.testId);
+            if (savedData && savedData.questions && savedData.questions.length > 0) {
+                console.log('Using existing randomization from localStorage');
+                app.questions = savedData.questions;
+                app.answers = savedData.answers || new Array(app.questions.length).fill(null);
+                
+                console.log(`Loaded ${app.questions.length} questions from localStorage`);
+                console.log('Existing question order (first 10):');
+                app.questions.slice(0, 10).forEach((q, index) => {
+                    console.log(`  ${index + 1}. Numero ${q.numero} (Group ${q.grupo}, Orden ${q.orden})`);
+                });
+                return;
+            }
+            
+            // No existing randomization, create new one
+            console.log('Creating new randomization...');
+            
+            // Get all questions from selected groups
+            const selectedQuestions = roeData.filter(item => app.selectedGroups.includes(item.grupo));
+            
+            // COMPLETE RANDOMIZATION: Shuffle all questions together using Fisher-Yates
+            app.questions = shuffleArray(selectedQuestions);
+            
+            console.log('Questions prepared with complete randomization:');
+            console.log(`Total questions: ${app.questions.length}`);
+            console.log('Question presentation order (first 10):');
+            app.questions.slice(0, 10).forEach((q, index) => {
+                console.log(`  ${index + 1}. Numero ${q.numero} (Group ${q.grupo}, Orden ${q.orden})`);
+            });
+            
+            // Initialize answers array with null values
+            app.answers = new Array(app.questions.length).fill(null);
+            
+            // Save the initial randomization to localStorage
+            saveProgress();
+        }
+
+        // Display current question
+        function displayQuestion() {
+            const question = app.questions[app.currentQuestion];
+            
+            // Update question text
+            document.getElementById('questionText').textContent = question.texto;
+            
+            // Update progress
+            const progress = ((app.currentQuestion + 1) / app.questions.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressText').textContent = `Pregunta ${app.currentQuestion + 1} de ${app.questions.length}`;
+            
+            // Reset button states
+            document.querySelectorAll('.answer-button').forEach(button => {
+                button.classList.remove('selected');
+                button.disabled = false;
+            });
+            
+            // Show previous answer if exists
+            const currentAnswer = app.answers[app.currentQuestion];
+            if (currentAnswer !== null) {
+                const answerValue = currentAnswer.answer;
+                const targetButton = document.querySelector(`[data-answer="${answerValue}"]`);
+                if (targetButton) {
+                    targetButton.classList.add('selected');
+                }
+            }
+            
+            // Update navigation buttons
+            updateNavigationButtons();
+        }
+        
+        // Update navigation button states
+        function updateNavigationButtons() {
+            const prevButton = document.getElementById('prevButton');
+            const nextButton = document.getElementById('nextButton');
+            
+            // Previous button: disabled if first question
+            prevButton.disabled = app.currentQuestion === 0;
+            
+            // Next button: enabled only if current question is answered
+            const currentAnswer = app.answers[app.currentQuestion];
+            nextButton.disabled = currentAnswer === null;
+            
+            // If last question and answered, change next button to finish
+            if (app.currentQuestion === app.questions.length - 1 && currentAnswer !== null) {
+                nextButton.innerHTML = '<i class="fas fa-flag-checkered icon"></i>Finalizar';
+            } else {
+                nextButton.innerHTML = '<i class="fas fa-arrow-right icon"></i>Siguiente';
+            }
+        }
+
+        // Handle answer selection
+        function handleAnswer(e) {
+            const button = e.currentTarget;
+            const answer = button.dataset.answer === 'true';
+            const question = app.questions[app.currentQuestion];
+            
+            // Remove previous selection
+            document.querySelectorAll('.answer-button').forEach(btn => {
+                btn.classList.remove('selected');
+                btn.disabled = true; // Disable buttons during auto-forward
+            });
+            
+            // Highlight selected answer
+            button.classList.add('selected');
+            
+            // Store answer
+            app.answers[app.currentQuestion] = {
+                numero: question.numero,
+                orden: question.orden,
+                grupo: question.grupo,
+                answer: answer,
+                timestamp: new Date().toISOString()
+            };
+            
+            // Save progress to localStorage
+            saveProgress();
+            
+            // Update navigation buttons
+            updateNavigationButtons();
+            
+            // Clear any existing auto-advance timer
+            if (app.autoAdvanceTimer) {
+                clearTimeout(app.autoAdvanceTimer);
+            }
+            
+            // Auto-forward after 1 second
+            app.autoAdvanceTimer = setTimeout(() => {
+                if (app.currentQuestion < app.questions.length - 1) {
+                    app.currentQuestion++;
+                    saveProgress(); // Save current question position
+                    displayQuestion();
+                } else {
+                    // All questions answered, go to summary
+                    showScreen('summaryScreen');
+                }
+                app.autoAdvanceTimer = null; // Clear timer reference
+            }, 1000);
+        }
+
+        // Navigation functions
+        function previousQuestion() {
+            // Clear auto-advance timer when manually navigating
+            if (app.autoAdvanceTimer) {
+                clearTimeout(app.autoAdvanceTimer);
+                app.autoAdvanceTimer = null;
+            }
+            
+            if (app.currentQuestion > 0) {
+                app.currentQuestion--;
+                saveProgress(); // Save current question position
+                displayQuestion();
+            }
+        }
+
+        function nextQuestion() {
+            // Clear auto-advance timer when manually navigating
+            if (app.autoAdvanceTimer) {
+                clearTimeout(app.autoAdvanceTimer);
+                app.autoAdvanceTimer = null;
+            }
+            
+            const currentAnswer = app.answers[app.currentQuestion];
+            if (currentAnswer === null) return; // Can't proceed without answer
+            
+            if (app.currentQuestion < app.questions.length - 1) {
+                app.currentQuestion++;
+                saveProgress(); // Save current question position
+                displayQuestion();
+            } else {
+                // All questions answered, go to summary
+                showScreen('summaryScreen');
+            }
+        }
+
+        // Submit results to web service
+        async function submitResults() {
+            const submitButton = document.getElementById('submitButton');
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin icon"></i>Enviando...';
+            
+            // Create the final answers string ordered by 'orden' field (1-160)
+            const orderedAnswers = new Array(160).fill(0);
+            
+            // Map answers to their correct orden positions
+            app.answers.filter(answer => answer !== null).forEach(answer => {
+                if (answer.orden >= 1 && answer.orden <= 160) {
+                    orderedAnswers[answer.orden - 1] = answer.answer ? 1 : 0;
+                }
+            });
+            
+            const answersString = orderedAnswers.join('');
+            
+            // Prepare data for wsSaveInvitRoe service
+            const testData = {
+                guid: app.guid,
+                userInfo: app.userInfo,
+                answers160: answersString, // 160-character string of 0s and 1s in orden order                
+                totalQuestions: app.questions.length,
+                completedAt: new Date().toISOString(),
+                testId: app.testId
+            };
+            
+            const submitPayload = {
+                id: app.testId,
+                testdata: testData
+            };
+            
+            // Console logging for debugging
+            console.log('\n=== ROE ASSESSMENT RESULTS ===');
+            console.log('Test ID:', app.testId);
+            console.log('GUID:', app.guid);
+            console.log('Selected Groups:', app.selectedGroups);
+            console.log('Total Questions Answered:', app.questions.length);
+            console.log('160-Character Answer String:');
+            console.log(answersString);
+            console.log('Answer String Length:', answersString.length);
+            console.log('\nDetailed breakdown:');
+            console.log('- 0s (No/Not Answered):', (answersString.match(/0/g) || []).length);
+            console.log('- 1s (Yes/Agree):', (answersString.match(/1/g) || []).length);
+            console.log('\nAnswered questions by orden:');
+            app.answers.filter(answer => answer !== null).forEach(answer => {
+                console.log(`Orden ${answer.orden}: ${answer.answer ? '1' : '0'} (Question: ${answer.numero})`);
+            });
+            console.log('\nSubmit Payload:', submitPayload);
+            console.log('===========================\n');
+            
+            try {
+                // Send to wsSaveInvitRoe web service
+                const response = await fetch('https://apitests.reddinassessments.com/wsSaveInvitRoe', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(submitPayload)
+                });
+                
+                if (response.ok) {
+                    const responseData = await response.json();
+                    console.log('Server response:', responseData);
+                    
+                    // Check if resultComplete is 1 (success)
+                    if (responseData.wsSaveInvitROE_response && responseData.wsSaveInvitROE_response.resultComplete === "1") {
+                        submitButton.innerHTML = '<i class="fas fa-check icon"></i>¡Enviado Exitosamente!';
+                        submitButton.style.background = '#27ae60';
+                        
+                        // Clear localStorage after successful submission
+                        if (app.testId) {
+                            LocalStorage.clear(app.testId);
+                            console.log('Test completed and localStorage cleared');
+                        }
+                        
+                        // Add website button after successful submission
+                        setTimeout(() => {
+                            const summaryDiv = document.querySelector('.summary');
+                            const websiteButton = document.createElement('a');
+                            websiteButton.href = 'https://www.reddinassessments.com';
+                            websiteButton.className = 'button';
+                            websiteButton.style.cssText = 'background: #3498db; text-decoration: none; display: inline-block; margin-top: 15px;';
+                            websiteButton.innerHTML = '<i class="fas fa-globe icon"></i>Visitar Reddin Assessments';
+                            summaryDiv.appendChild(websiteButton);
+                        }, 2000);
+                    } else {
+                        // Server returned -1 or 0, indicating failure
+                        console.error('Server returned error:', responseData);
+                        submitButton.innerHTML = '<i class="fas fa-exclamation-triangle icon"></i>Error al Guardar';
+                        submitButton.style.background = '#e74c3c';
+                        submitButton.disabled = false;
+                        
+                        // Show specific error message
+                        const errorMsg = responseData.wsSaveInvitROE_response?.resultComplete === "-1" 
+                            ? 'Error al guardar en la base de datos' 
+                            : 'Respuesta inesperada del servidor';
+                        
+                        setTimeout(() => {
+                            submitButton.innerHTML = `<i class="fas fa-exclamation-triangle icon"></i>${errorMsg}`;
+                        }, 1000);
+                    }
+                } else {
+                    throw new Error('Error al enviar');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                submitButton.innerHTML = '<i class="fas fa-exclamation-triangle icon"></i>Error al Enviar';
+                submitButton.style.background = '#e74c3c';
+                submitButton.disabled = false;
+                
+                // Log results to console as fallback
+                console.log('Assessment Results:', results);
+                
+                // Show success anyway for demo
+                setTimeout(() => {
+                    submitButton.innerHTML = '<i class="fas fa-check icon"></i>¡Guardado Localmente!';
+                    submitButton.style.background = '#f39c12';
+                }, 2000);
+            }
+        }
+
+        // Group definitions
+        const groupDefinitions = {
+            1: { name: "Estándares de Productividad", desc: "Enfoque en eficiencia y rendimiento" },
+            2: { name: "Competencia Gerencial", desc: "Efectividad del liderazgo" },
+            3: { name: "Estructura Organizacional", desc: "Jerarquía y claridad de autoridad" },
+            4: { name: "Comunicación", desc: "Flujo de información y reuniones" },
+            5: { name: "Manejo de Conflictos", desc: "Manejo productivo de desacuerdos" },
+            6: { name: "Recursos Humanos", desc: "Desarrollo del talento y equidad" },
+            7: { name: "Participación", desc: "Involucramiento de empleados en decisiones" },
+            8: { name: "Innovación", desc: "Creatividad e ideas nuevas" },
+            9: { name: "Alineación Jefe-Subordinado", desc: "Establecimiento de objetivos con supervisores" },
+            10: { name: "Manejo de Reportes Directos", desc: "Liderazgo de miembros del equipo" },
+            11: { name: "Colaboración entre Pares", desc: "Trabajo con colegas" },
+            12: { name: "Autoridad y Responsabilidad", desc: "Claridad de roles" },
+            13: { name: "Recursos", desc: "Acceso a herramientas y apoyo necesarios" },
+            14: { name: "Preparación para el Cambio", desc: "Adaptabilidad y flexibilidad" },
+            15: { name: "Beneficios de Orientación a Resultados", desc: "Impacto del enfoque en resultados" },
+            16: { name: "Calidad de Información", desc: "Precisión y oportunidad de datos" }
+        };
+
+        // Show/hide screens
+        function showScreen(screenId) {
+            // Hide all screens
+            document.querySelectorAll('#testValidationScreen, #userInfoScreen, #groupSelectionScreen, #questionScreen, #summaryScreen').forEach(screen => {
+                screen.classList.add('hidden');
+            });
+            
+            // Show selected screen with fade-in
+            const screen = document.getElementById(screenId);
+            screen.classList.remove('hidden');
+            screen.classList.add('fade-in');
+        }
+    </script>
+</body>
+</html>

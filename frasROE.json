@@ -1,0 +1,1442 @@
+[
+  {
+    "numero": 1,
+    "idioma": "ESP",
+    "texto": "En esta organización los estándares de productividad se exigen fuertemente.",
+    "tipotest": "DCO       ",
+    "grupo": 1,
+    "orden": 1,
+    "texto2": "++porcentaje++% piensa que los estándares de productividad se exigen fuertemente."
+  },
+  {
+    "numero": 9,
+    "idioma": "ESP",
+    "texto": "La mayoría de los gerentes de esta organización tienen objetivos claros.",
+    "tipotest": "DCO       ",
+    "grupo": 1,
+    "orden": 2,
+    "texto2": "++porcentaje++% de los evaluados opina que los gerentes tienen objetivos claros. "
+  },
+  {
+    "numero": 17,
+    "idioma": "ESP",
+    "texto": "Esta organización está continuamente buscando hacer mejor las cosas.",
+    "tipotest": "DCO       ",
+    "grupo": 1,
+    "orden": 3,
+    "texto2": "++porcentaje++% piensa que la organización constantemente está buscando hacer mejor las cosas."
+  },
+  {
+    "numero": 25,
+    "idioma": "ESP",
+    "texto": "La organización resuelve el asunto de colaboradores improductivos, a través de reentrenamiento, remociones, jubilación anticipada y transferencias.",
+    "tipotest": "DCO       ",
+    "grupo": 1,
+    "orden": 4,
+    "texto2": "++porcentaje++% dice que la organización tiene buenas prácticas para emplearlas hacia colaboradores improductivos."
+  },
+  {
+    "numero": 33,
+    "idioma": "ESP",
+    "texto": "Recompensas tales como aumentos de salario y promociones, se otorgan con base en el mérito individual.",
+    "tipotest": "DCO       ",
+    "grupo": 1,
+    "orden": 5,
+    "texto2": "++porcentaje++% confirma que las promociones y aumentos de salario se otorgan a través de métodos meritocráticos."
+  },
+  {
+    "numero": 41,
+    "idioma": "ESP",
+    "texto": "Mi jefe discute y revisa a menudo mi productividad conmigo.",
+    "tipotest": "DCO       ",
+    "grupo": 1,
+    "orden": 6,
+    "texto2": "++porcentaje++% dice tener conversaciones referentes a su productividad con su jefe."
+  },
+  {
+    "numero": 49,
+    "idioma": "ESP",
+    "texto": "Aquí la productividad es el asunto más importante.",
+    "tipotest": "DCO       ",
+    "grupo": 1,
+    "orden": 7,
+    "texto2": "++porcentaje++% confirma que la productividad es un asunto muy importante."
+  },
+  {
+    "numero": 57,
+    "idioma": "ESP",
+    "texto": "La eficiencia es altamente valorada en esta organización.",
+    "tipotest": "DCO       ",
+    "grupo": 1,
+    "orden": 8,
+    "texto2": "++porcentaje++% opina que la eficiencia es altamente valorada aquí. "
+  },
+  {
+    "numero": 65,
+    "idioma": "ESP",
+    "texto": "En esta organización intentamos lograr que las cosas se hagan mejor que la última vez.",
+    "tipotest": "DCO       ",
+    "grupo": 1,
+    "orden": 9,
+    "texto2": "++porcentaje++% coincide que hay un espíritu de mejora y siempre se trata de hacer las cosas cada día mejor."
+  },
+  {
+    "numero": 73,
+    "idioma": "ESP",
+    "texto": "Aquí se desperdicia poco tiempo.",
+    "tipotest": "DCO       ",
+    "grupo": 1,
+    "orden": 10,
+    "texto2": "++porcentaje++% coincide en que aquí no se desperdicia el tiempo. "
+  },
+  {
+    "numero": 2,
+    "idioma": "ESP",
+    "texto": "La gerencia es competente en su trabajo.",
+    "tipotest": "DCO       ",
+    "grupo": 2,
+    "orden": 11,
+    "texto2": "++porcentaje++% dice que la gerencia es competente en su trabajo."
+  },
+  {
+    "numero": 10,
+    "idioma": "ESP",
+    "texto": "Nuestros gerentes experimentados son un buen ejemplo para los gerentes novatos.",
+    "tipotest": "DCO       ",
+    "grupo": 2,
+    "orden": 12,
+    "texto2": "++porcentaje++% dice que los gerentes experimentados son un buen ejemplo para los gerentes novatos."
+  },
+  {
+    "numero": 18,
+    "idioma": "ESP",
+    "texto": "Los gerentes de esta organización normalmente hacen un buen trabajo de motivación con sus colaboradores.",
+    "tipotest": "DCO       ",
+    "grupo": 2,
+    "orden": 13,
+    "texto2": "++porcentaje++% está conforme con las prácticas de motivación empleadas por los gerentes."
+  },
+  {
+    "numero": 26,
+    "idioma": "ESP",
+    "texto": "Nuestros gerentes son normalmente muy efectivos.",
+    "tipotest": "DCO       ",
+    "grupo": 2,
+    "orden": 14,
+    "texto2": "++porcentaje++% dice que los gerentes aquí son muy efectivos."
+  },
+  {
+    "numero": 34,
+    "idioma": "ESP",
+    "texto": "Aquí los gerentes tienen credibilidad.",
+    "tipotest": "DCO       ",
+    "grupo": 2,
+    "orden": 15,
+    "texto2": "++porcentaje++% piensa que los gerentes tienen credibilidad."
+  },
+  {
+    "numero": 42,
+    "idioma": "ESP",
+    "texto": "En esta organización hay una aceptación entusiasta de las decisiones que vienen de la gerencia.",
+    "tipotest": "DCO       ",
+    "grupo": 2,
+    "orden": 16,
+    "texto2": "++porcentaje++% opina que existe regularmente una aceptación entusiasta de las decisiones de la gerencia. "
+  },
+  {
+    "numero": 50,
+    "idioma": "ESP",
+    "texto": "Las decisiones recientes de la gerencia han beneficiado claramente a la organización.",
+    "tipotest": "DCO       ",
+    "grupo": 2,
+    "orden": 17,
+    "texto2": "++porcentaje++% piensa que las decisiones más recientes de la gerencia han beneficiado a la organización. "
+  },
+  {
+    "numero": 58,
+    "idioma": "ESP",
+    "texto": "Aquí se respeta altamente a la gerencia.",
+    "tipotest": "DCO       ",
+    "grupo": 2,
+    "orden": 18,
+    "texto2": "++porcentaje++% dice que aquí se respeta a la gerencia."
+  },
+  {
+    "numero": 66,
+    "idioma": "ESP",
+    "texto": "La gente recibe suficiente autoridad para ejecutar con agilidad.",
+    "tipotest": "DCO       ",
+    "grupo": 2,
+    "orden": 19,
+    "texto2": "++porcentaje++% recibe suficiente autoridad para ejecutar con agilidad."
+  },
+  {
+    "numero": 74,
+    "idioma": "ESP",
+    "texto": "Nuestros gerentes saben lo que hacen.",
+    "tipotest": "DCO       ",
+    "grupo": 2,
+    "orden": 20,
+    "texto2": "++porcentaje++% opina que los gerentes saben lo que hacen."
+  },
+  {
+    "numero": 3,
+    "idioma": "ESP",
+    "texto": "Esta organización parece tener el número correcto de gerentes.",
+    "tipotest": "DCO       ",
+    "grupo": 3,
+    "orden": 21,
+    "texto2": "++porcentaje++% dice que en la organización hay el número correcto de gerentes."
+  },
+  {
+    "numero": 11,
+    "idioma": "ESP",
+    "texto": "No hay una duplicidad seria de funciones en esta organización.",
+    "tipotest": "DCO       ",
+    "grupo": 3,
+    "orden": 22,
+    "texto2": "++porcentaje++% opina que no hay duplicidad seria de funciones."
+  },
+  {
+    "numero": 19,
+    "idioma": "ESP",
+    "texto": "Existe un número adecuado de niveles gerenciales en esta organización.",
+    "tipotest": "DCO       ",
+    "grupo": 3,
+    "orden": 23,
+    "texto2": "++porcentaje++% piensa que existe un número adecuado de niveles gerenciales en esta organización."
+  },
+  {
+    "numero": 27,
+    "idioma": "ESP",
+    "texto": "Aquí no hay confusión entre línea y staff.",
+    "tipotest": "DCO       ",
+    "grupo": 3,
+    "orden": 24,
+    "texto2": "++porcentaje++% confirma que no hay confusión entre línea y staff."
+  },
+  {
+    "numero": 35,
+    "idioma": "ESP",
+    "texto": "Regularmente los cambios en la estructura de la organización se hacen cuando se necesita.",
+    "tipotest": "DCO       ",
+    "grupo": 3,
+    "orden": 25,
+    "texto2": "++porcentaje++% ven que los cambios en la estructura se hacen cuando se necesitan."
+  },
+  {
+    "numero": 43,
+    "idioma": "ESP",
+    "texto": "Aquí los gerentes conocen su trabajo.",
+    "tipotest": "DCO       ",
+    "grupo": 3,
+    "orden": 26,
+    "texto2": "++porcentaje++% concuerdan que los gerentes conocen su trabajo."
+  },
+  {
+    "numero": 51,
+    "idioma": "ESP",
+    "texto": "Cada gerente tiene autoridad suficiente para tomar decisiones en su equipo.",
+    "tipotest": "DCO       ",
+    "grupo": 3,
+    "orden": 27,
+    "texto2": "++porcentaje++% de la muestra poblacional piensa que los gerentes tienen autoridad suficiente para tomar decisiones en su equipo."
+  },
+  {
+    "numero": 59,
+    "idioma": "ESP",
+    "texto": "Ningún área de la organización tiene demasiado poder.",
+    "tipotest": "DCO       ",
+    "grupo": 3,
+    "orden": 28,
+    "texto2": "++porcentaje++% piensa que ningún área de la organización tiene demasiado poder."
+  },
+  {
+    "numero": 67,
+    "idioma": "ESP",
+    "texto": "Casi todo mundo entiende cómo funciona nuestra organización.",
+    "tipotest": "DCO       ",
+    "grupo": 3,
+    "orden": 29,
+    "texto2": "++porcentaje++% entiende como funciona esta organización."
+  },
+  {
+    "numero": 75,
+    "idioma": "ESP",
+    "texto": "Yo conozco la estrategia de la organización. ",
+    "tipotest": "DCO       ",
+    "grupo": 3,
+    "orden": 30,
+    "texto2": "++porcentaje++% conoce la estrategia de la organización."
+  },
+  {
+    "numero": 4,
+    "idioma": "ESP",
+    "texto": "Aquí normalmente las personas vienen muy bien preparadas a las juntas.",
+    "tipotest": "DCO       ",
+    "grupo": 4,
+    "orden": 31,
+    "texto2": "++porcentaje++% dice que las personas vienen muy bien preparadas a las juntas."
+  },
+  {
+    "numero": 12,
+    "idioma": "ESP",
+    "texto": "Se organizan juntas cuando es necesario.",
+    "tipotest": "DCO       ",
+    "grupo": 4,
+    "orden": 32,
+    "texto2": "++porcentaje++% de las personas dice que se organizan juntas cuando se necesitan."
+  },
+  {
+    "numero": 20,
+    "idioma": "ESP",
+    "texto": "Los gerentes a menudo involucran a sus colaboradores en discusiones informales.",
+    "tipotest": "DCO       ",
+    "grupo": 4,
+    "orden": 33,
+    "texto2": "++porcentaje++% es involucrado informalmente por los gerentes en discusiones informales."
+  },
+  {
+    "numero": 28,
+    "idioma": "ESP",
+    "texto": "En las juntas, la discusión es muy libre y abierta.",
+    "tipotest": "DCO       ",
+    "grupo": 4,
+    "orden": 34,
+    "texto2": "++porcentaje++% dice que la discusión en las juntas es libre y abierta."
+  },
+  {
+    "numero": 36,
+    "idioma": "ESP",
+    "texto": "Siempre puedo hablar libremente con mi jefe.",
+    "tipotest": "DCO       ",
+    "grupo": 4,
+    "orden": 35,
+    "texto2": "++porcentaje++% puede hablar libremente con su jefe."
+  },
+  {
+    "numero": 44,
+    "idioma": "ESP",
+    "texto": "Yo sé continuamente lo que pasa aquí.",
+    "tipotest": "DCO       ",
+    "grupo": 4,
+    "orden": 36,
+    "texto2": "++porcentaje++% saben lo que ocurre aquí."
+  },
+  {
+    "numero": 52,
+    "idioma": "ESP",
+    "texto": "Veo a mi jefe tan seguido como lo necesito.",
+    "tipotest": "DCO       ",
+    "grupo": 4,
+    "orden": 37,
+    "texto2": "++porcentaje++% ve a su jefe tan seguido lo requieren."
+  },
+  {
+    "numero": 60,
+    "idioma": "ESP",
+    "texto": "Siempre tengo información anticipada de cualquier cambio que se haya planeado.",
+    "tipotest": "DCO       ",
+    "grupo": 4,
+    "orden": 38,
+    "texto2": "++porcentaje++% tiene información anticipada de cualquier cambio que se haya planeado."
+  },
+  {
+    "numero": 68,
+    "idioma": "ESP",
+    "texto": "La gente de la organización es amistosa.",
+    "tipotest": "DCO       ",
+    "grupo": 4,
+    "orden": 39,
+    "texto2": "++porcentaje++% siente que la gente es amistosa."
+  },
+  {
+    "numero": 76,
+    "idioma": "ESP",
+    "texto": "Usamos la palabra hablada en vez de memorándum escrito para conseguir que las cosas se hagan.",
+    "tipotest": "DCO       ",
+    "grupo": 4,
+    "orden": 40,
+    "texto2": "++porcentaje++% de las personas está de acuerdo en que aquí se usa más la palabra hablada que los memorándums para que las cosas se hagan."
+  },
+  {
+    "numero": 5,
+    "idioma": "ESP",
+    "texto": "Aquí entre los gerentes hay una rivalidad aguda, pero útil.",
+    "tipotest": "DCO       ",
+    "grupo": 5,
+    "orden": 41,
+    "texto2": "++porcentaje++% opina que existe una rivalidad positiva entre los gerentes."
+  },
+  {
+    "numero": 13,
+    "idioma": "ESP",
+    "texto": "Los desacuerdos y los conflictos eventualmente se resuelven de manera amigable.",
+    "tipotest": "DCO       ",
+    "grupo": 5,
+    "orden": 42,
+    "texto2": "++porcentaje++% resuelven de manera amigable los desacuerdos y los conflictos."
+  },
+  {
+    "numero": 21,
+    "idioma": "ESP",
+    "texto": "Los colaboradores pueden discrepar con sus jefes sin ser castigados.",
+    "tipotest": "DCO       ",
+    "grupo": 5,
+    "orden": 43,
+    "texto2": "++porcentaje++% puede discrepar con sus jefes sin ser castigados."
+  },
+  {
+    "numero": 29,
+    "idioma": "ESP",
+    "texto": "La organización provoca el desacuerdo para estimular que se hagan las cosas de la mejor manera.",
+    "tipotest": "DCO       ",
+    "grupo": 5,
+    "orden": 44,
+    "texto2": "++porcentaje++% piensa que el desacuerdo estimula que las cosas se hagan de la mejor manera."
+  },
+  {
+    "numero": 37,
+    "idioma": "ESP",
+    "texto": "Aquí a la gente que expresa libremente su desacuerdo se le considera como alguien que se preocupa por mejorar las cosas.",
+    "tipotest": "DCO       ",
+    "grupo": 5,
+    "orden": 45,
+    "texto2": "++porcentaje++% de las personas expresan libremente el desacuerdo para mejorar las cosas."
+  },
+  {
+    "numero": 45,
+    "idioma": "ESP",
+    "texto": "En esta organización se acepta el conflicto y se usa productivamente.",
+    "tipotest": "DCO       ",
+    "grupo": 5,
+    "orden": 46,
+    "texto2": "++porcentaje++% concuerda que el conflicto se usa productivamente en la organización. "
+  },
+  {
+    "numero": 53,
+    "idioma": "ESP",
+    "texto": "Aquí la gente no acepta sumisamente las cosas.",
+    "tipotest": "DCO       ",
+    "grupo": 5,
+    "orden": 47,
+    "texto2": "++porcentaje++% de los encuestados confirman que la gente aquí no acepta sumisamente las cosas."
+  },
+  {
+    "numero": 61,
+    "idioma": "ESP",
+    "texto": "Aquí los conflictos normalmente conducen al mejoramiento.",
+    "tipotest": "DCO       ",
+    "grupo": 5,
+    "orden": 48,
+    "texto2": "++porcentaje++% confirma que los conflictos aquí conducen al mejoramiento. "
+  },
+  {
+    "numero": 69,
+    "idioma": "ESP",
+    "texto": "La gente de la organización no trata de ganar sus argumentos, ya que le interesa más trabajar para encontrar la mejor solución.",
+    "tipotest": "DCO       ",
+    "grupo": 5,
+    "orden": 49,
+    "texto2": "++porcentaje++% de las personas siente que las personas no tratan de ganar los argumentos, sino trabajar para encontrar la mejor solución. "
+  },
+  {
+    "numero": 77,
+    "idioma": "ESP",
+    "texto": "En esta organización nadie padece por haber discutido fuertemente lo que no le parece.",
+    "tipotest": "DCO       ",
+    "grupo": 5,
+    "orden": 50,
+    "texto2": "++porcentaje++% piensa que nadie padece por haber discutido fuertemente algo que no le parece."
+  },
+  {
+    "numero": 6,
+    "idioma": "ESP",
+    "texto": "La organización apoya a sus colaboradores para que se desarrollen por sí mismos.",
+    "tipotest": "DCO       ",
+    "grupo": 6,
+    "orden": 51,
+    "texto2": "++porcentaje++% piensa que la organización apoya a sus colaboradores para que se desarrollen por si mismos. "
+  },
+  {
+    "numero": 14,
+    "idioma": "ESP",
+    "texto": "Nuestra política de reclutamiento es muy buena. ",
+    "tipotest": "DCO       ",
+    "grupo": 6,
+    "orden": 52,
+    "texto2": "++porcentaje++% está de acuerdo con la política de reclutamiento y piensa que es buena. "
+  },
+  {
+    "numero": 22,
+    "idioma": "ESP",
+    "texto": "Conseguimos que cada persona se adapte a su posición.",
+    "tipotest": "DCO       ",
+    "grupo": 6,
+    "orden": 53,
+    "texto2": "++porcentaje++% consigue adaptarse a su posición. "
+  },
+  {
+    "numero": 30,
+    "idioma": "ESP",
+    "texto": "La organización usa el potencial de sus colaboradores.",
+    "tipotest": "DCO       ",
+    "grupo": 6,
+    "orden": 54,
+    "texto2": "++porcentaje++% piensa que la organización usa el potencial de sus colaboradores."
+  },
+  {
+    "numero": 38,
+    "idioma": "ESP",
+    "texto": "Esta organización tiene un buen esquema de entrenamiento.",
+    "tipotest": "DCO       ",
+    "grupo": 6,
+    "orden": 55,
+    "texto2": "++porcentaje++% piensa que la organización tiene buenos esquemas de entrenamiento. "
+  },
+  {
+    "numero": 46,
+    "idioma": "ESP",
+    "texto": "Nuestras capacidades están bien utilizadas.",
+    "tipotest": "DCO       ",
+    "grupo": 6,
+    "orden": 56,
+    "texto2": "++porcentaje++% piensa que sus capacidades están bien utilizadas aquí. "
+  },
+  {
+    "numero": 54,
+    "idioma": "ESP",
+    "texto": "La gerencia ve al talento como algo de primerísima importancia.",
+    "tipotest": "DCO       ",
+    "grupo": 6,
+    "orden": 57,
+    "texto2": "++porcentaje++% estuvieron de acuerdo en que la gerencia ve al talento como una prioridad."
+  },
+  {
+    "numero": 62,
+    "idioma": "ESP",
+    "texto": "Esta organización es justa con sus colaboradores.",
+    "tipotest": "DCO       ",
+    "grupo": 6,
+    "orden": 58,
+    "texto2": "++porcentaje++% opina que la organización es justa con sus colaboradores."
+  },
+  {
+    "numero": 70,
+    "idioma": "ESP",
+    "texto": "Hay una gran oportunidad de progreso en esta organización.",
+    "tipotest": "DCO       ",
+    "grupo": 6,
+    "orden": 59,
+    "texto2": "++porcentaje++% siente que hay muchas oportunidades de progreso aquí."
+  },
+  {
+    "numero": 78,
+    "idioma": "ESP",
+    "texto": "El ausentismo y la holgazanería no son un problema aquí.",
+    "tipotest": "DCO       ",
+    "grupo": 6,
+    "orden": 60,
+    "texto2": "++porcentaje++% piensa que la holgazanería y el ausentismo no son un problema aquí."
+  },
+  {
+    "numero": 7,
+    "idioma": "ESP",
+    "texto": "Mi trabajo es importante en esta organización.",
+    "tipotest": "DCO       ",
+    "grupo": 7,
+    "orden": 61,
+    "texto2": "++porcentaje++% piensa que su trabajo es importante."
+  },
+  {
+    "numero": 15,
+    "idioma": "ESP",
+    "texto": "Los colaboradores sienten que tienen un papel importante que desempeñar en esta organización.",
+    "tipotest": "DCO       ",
+    "grupo": 7,
+    "orden": 62,
+    "texto2": "++porcentaje++% tiene un papel importante que desempeñar."
+  },
+  {
+    "numero": 23,
+    "idioma": "ESP",
+    "texto": "Aquí continuamente se solicitan sugerencias a los colaboradores.",
+    "tipotest": "DCO       ",
+    "grupo": 7,
+    "orden": 63,
+    "texto2": "++porcentaje++% dice que continuamente solicitan sugerencias a sus colaboradores."
+  },
+  {
+    "numero": 31,
+    "idioma": "ESP",
+    "texto": "Aquí hay muchísimo espíritu de grupo.",
+    "tipotest": "DCO       ",
+    "grupo": 7,
+    "orden": 64,
+    "texto2": "++porcentaje++% piensa que existe mucho espíritu de grupo."
+  },
+  {
+    "numero": 39,
+    "idioma": "ESP",
+    "texto": "Antes de tomar una decisión se hacen intentos concienzudos para considerar los puntos de vista de todos.",
+    "tipotest": "DCO       ",
+    "grupo": 7,
+    "orden": 65,
+    "texto2": "++porcentaje++% de las personas participan en la toma de decisiones antes de un cambio importante."
+  },
+  {
+    "numero": 47,
+    "idioma": "ESP",
+    "texto": "A menudo se pide a los colaboradores que trabajen con sus jefes en comités.",
+    "tipotest": "DCO       ",
+    "grupo": 7,
+    "orden": 66,
+    "texto2": "++porcentaje++% trabaja con sus jefes en comités."
+  },
+  {
+    "numero": 55,
+    "idioma": "ESP",
+    "texto": "Mis ideas para cambiar cosas han sido bienvenidas.",
+    "tipotest": "DCO       ",
+    "grupo": 7,
+    "orden": 67,
+    "texto2": "++porcentaje++% opina que sus ideas para cambiar cosas han sido bienvenidas."
+  },
+  {
+    "numero": 63,
+    "idioma": "ESP",
+    "texto": "Varias de mis ideas de cambio se han aceptado.",
+    "tipotest": "DCO       ",
+    "grupo": 7,
+    "orden": 68,
+    "texto2": "++porcentaje++% dice sus ideas de cambio se han aceptado."
+  },
+  {
+    "numero": 71,
+    "idioma": "ESP",
+    "texto": "Muchas decisiones se posponen si las personas involucradas disienten en principio.",
+    "tipotest": "DCO       ",
+    "grupo": 7,
+    "orden": 69,
+    "texto2": "++porcentaje++% piensa que el desacuerdo los lleva a posponer decisiones."
+  },
+  {
+    "numero": 79,
+    "idioma": "ESP",
+    "texto": "Yo sé que mis jefes se interesan en mis ideas.",
+    "tipotest": "DCO       ",
+    "grupo": 7,
+    "orden": 70,
+    "texto2": "++porcentaje++% siente que sus jefes se interesan en sus ideas."
+  },
+  {
+    "numero": 8,
+    "idioma": "ESP",
+    "texto": "De varias partes de la organización hay muchas ideas fluyendo.",
+    "tipotest": "DCO       ",
+    "grupo": 8,
+    "orden": 71,
+    "texto2": "++porcentaje++% siente que las ideas fluyen de muchos lugares."
+  },
+  {
+    "numero": 16,
+    "idioma": "ESP",
+    "texto": "Aquí se estimula el pensamiento creativo y la innovación.",
+    "tipotest": "DCO       ",
+    "grupo": 8,
+    "orden": 72,
+    "texto2": "++porcentaje++% es estimulado por el pensamiento creativo y la innovación."
+  },
+  {
+    "numero": 24,
+    "idioma": "ESP",
+    "texto": "En esta organización siempre buscamos alternativas.",
+    "tipotest": "DCO       ",
+    "grupo": 8,
+    "orden": 73,
+    "texto2": "++porcentaje++% tiene una mentalidad orientada a buscar alternativas. "
+  },
+  {
+    "numero": 32,
+    "idioma": "ESP",
+    "texto": "Esta organización es siempre receptiva a nuevas ideas.",
+    "tipotest": "DCO       ",
+    "grupo": 8,
+    "orden": 74,
+    "texto2": "++porcentaje++% de los encuestados confirma que en la organización siempre hay recepción ante las nuevas ideas."
+  },
+  {
+    "numero": 40,
+    "idioma": "ESP",
+    "texto": "Las personas creativas encajan muy fácilmente en esta organización.",
+    "tipotest": "DCO       ",
+    "grupo": 8,
+    "orden": 75,
+    "texto2": "++porcentaje++% dice que las personas creativas encajan muy fácilmente aquí. "
+  },
+  {
+    "numero": 48,
+    "idioma": "ESP",
+    "texto": "Aquí muchas ideas provienen de los propios colaboradores.",
+    "tipotest": "DCO       ",
+    "grupo": 8,
+    "orden": 76,
+    "texto2": "++porcentaje++% siente que muchas de las ideas provienen de los propios colaboradores."
+  },
+  {
+    "numero": 56,
+    "idioma": "ESP",
+    "texto": "Los jefes a menudo piden a sus colaboradores nuevas ideas.",
+    "tipotest": "DCO       ",
+    "grupo": 8,
+    "orden": 77,
+    "texto2": "++porcentaje++% de los encuestados dice que los jefes a menudo piden a sus colaboradores nuevas ideas."
+  },
+  {
+    "numero": 64,
+    "idioma": "ESP",
+    "texto": "Siempre estamos dispuestos a intentar cosas nuevas.",
+    "tipotest": "DCO       ",
+    "grupo": 8,
+    "orden": 78,
+    "texto2": "++porcentaje++% están siempre dispuestos a intentar nuevas cosas."
+  },
+  {
+    "numero": 72,
+    "idioma": "ESP",
+    "texto": "Mis propias ideas de cambio son bien escuchadas.",
+    "tipotest": "DCO       ",
+    "grupo": 8,
+    "orden": 79,
+    "texto2": "++porcentaje++% de la gente siente que sus ideas de cambio han sido escuchadas."
+  },
+  {
+    "numero": 80,
+    "idioma": "ESP",
+    "texto": "Yo puedo ser creativo en esta organización.",
+    "tipotest": "DCO       ",
+    "grupo": 8,
+    "orden": 80,
+    "texto2": "++porcentaje++% puede ser creativo en esta organización. "
+  },
+  {
+    "numero": 1,
+    "idioma": "ESP",
+    "texto": "Mi jefe y yo logramos un acuerdo sobre mis resultados.",
+    "tipotest": "ROR       ",
+    "grupo": 9,
+    "orden": 81,
+    "texto2": "++porcentaje++% opina que acuerda sus objetivos con sus jefes."
+  },
+  {
+    "numero": 10,
+    "idioma": "ESP",
+    "texto": "Mi jefe y yo hemos acordado cómo deberá medirse mi efectividad.",
+    "tipotest": "ROR       ",
+    "grupo": 9,
+    "orden": 82,
+    "texto2": "++porcentaje++% acuerda con sus jefes como se medirá la efectividad."
+  },
+  {
+    "numero": 12,
+    "idioma": "ESP",
+    "texto": "Mi jefe tiene un fuerte interés en cuán efectivo soy.",
+    "tipotest": "ROR       ",
+    "grupo": 9,
+    "orden": 83,
+    "texto2": "++porcentaje++% confirma que sus jefes están interesados en que tan efectivos son."
+  },
+  {
+    "numero": 15,
+    "idioma": "ESP",
+    "texto": "Mi jefe discute conmigo mi bajo desempeño.",
+    "tipotest": "ROR       ",
+    "grupo": 9,
+    "orden": 84,
+    "texto2": "++porcentaje++% discute con su jefe situaciones de bajo desempeño cuando las hay."
+  },
+  {
+    "numero": 18,
+    "idioma": "ESP",
+    "texto": "Mi jefe usualmente me informa cuán efectivo me percibe.",
+    "tipotest": "ROR       ",
+    "grupo": 9,
+    "orden": 85,
+    "texto2": "++porcentaje++% recibe retroalimentación sobre cuán efectivo los precibe el jefe."
+  },
+  {
+    "numero": 30,
+    "idioma": "ESP",
+    "texto": "Mis objetivos están alineados con los objetivos de mi jefe.",
+    "tipotest": "ROR       ",
+    "grupo": 9,
+    "orden": 86,
+    "texto2": "++porcentaje++% cuenta con objetivos que han sido alineados con los de su jefe."
+  },
+  {
+    "numero": 33,
+    "idioma": "ESP",
+    "texto": "Yo puedo retar los objetivos de mi jefe.",
+    "tipotest": "ROR       ",
+    "grupo": 9,
+    "orden": 87,
+    "texto2": "++porcentaje++% puede retar los objetivos de su jefe."
+  },
+  {
+    "numero": 47,
+    "idioma": "ESP",
+    "texto": "Yo contribuyo para que mi jefe sea más efectivo.",
+    "tipotest": "ROR       ",
+    "grupo": 9,
+    "orden": 88,
+    "texto2": "++porcentaje++% contribuye a la efectividad de su jefe."
+  },
+  {
+    "numero": 68,
+    "idioma": "ESP",
+    "texto": "Mi jefe y yo discutimos las posibles barreras entre nuestra relación de trabajo y las eliminamos.",
+    "tipotest": "ROR       ",
+    "grupo": 9,
+    "orden": 89,
+    "texto2": "++porcentaje++% discute las posibles barreras de interrelación con su jefe y las elimina."
+  },
+  {
+    "numero": 71,
+    "idioma": "ESP",
+    "texto": "Mi jefe me ayuda a ser más efectivo.",
+    "tipotest": "ROR       ",
+    "grupo": 9,
+    "orden": 90,
+    "texto2": "++porcentaje++% recibe ayuda del jefe para ser más efectivos."
+  },
+  {
+    "numero": 3,
+    "idioma": "ESP",
+    "texto": "He logrado un acuerdo con mis colaboradores sobre la forma en que su efectividad se medirá.",
+    "tipotest": "ROR       ",
+    "grupo": 10,
+    "orden": 91,
+    "texto2": "++porcentaje++% logra un acuerdo con sus equipos sobre cómo se medirá su efectividad."
+  },
+  {
+    "numero": 5,
+    "idioma": "ESP",
+    "texto": "He trabajado directamente con mis colaboradores para definir de qué respondemos cada uno de nosotros.",
+    "tipotest": "ROR       ",
+    "grupo": 10,
+    "orden": 92,
+    "texto2": "++porcentaje++% trabaja con sus colaboradores para definir responsabilidades."
+  },
+  {
+    "numero": 8,
+    "idioma": "ESP",
+    "texto": "Analizo con mis colaboradores las causas de su bajo desempeño.",
+    "tipotest": "ROR       ",
+    "grupo": 10,
+    "orden": 93,
+    "texto2": "++porcentaje++% dice analizar las causas de bajo desempeño de su personal."
+  },
+  {
+    "numero": 17,
+    "idioma": "ESP",
+    "texto": "Discuto con mis colaboradores sus objetivos en vez de darles tareas para que las desarrollen.",
+    "tipotest": "ROR       ",
+    "grupo": 10,
+    "orden": 94,
+    "texto2": "++porcentaje++% discute con sus colaboradores sus objetivos en lugar de darles tareas para que las hagan."
+  },
+  {
+    "numero": 20,
+    "idioma": "ESP",
+    "texto": "Mis colaboradores participan ampliamente conmigo en el establecimiento de los objetivos de sus puestos.",
+    "tipotest": "ROR       ",
+    "grupo": 10,
+    "orden": 95,
+    "texto2": "++porcentaje++% participa con sus colaboradores en el establecimiento de sus objetivos."
+  },
+  {
+    "numero": 44,
+    "idioma": "ESP",
+    "texto": "Discuto regularmente con mis colaboradores cuán efectivos los veo.",
+    "tipotest": "ROR       ",
+    "grupo": 10,
+    "orden": 96,
+    "texto2": "++porcentaje++% discute regularmente con sus colaboradores sobre cuán efectivos los ve."
+  },
+  {
+    "numero": 61,
+    "idioma": "ESP",
+    "texto": "Me reúno regularmente con mis colaboradores para acordar sus objetivos.",
+    "tipotest": "ROR       ",
+    "grupo": 10,
+    "orden": 97,
+    "texto2": "++porcentaje++% se reúne regularmente con sus colaboradores para acordar objetivos."
+  },
+  {
+    "numero": 64,
+    "idioma": "ESP",
+    "texto": "Mis objetivos están alineados con los objetivos de mis colaboradores.",
+    "tipotest": "ROR       ",
+    "grupo": 10,
+    "orden": 98,
+    "texto2": "++porcentaje++% dice estar alineado con los objetivos de sus colaboradores."
+  },
+  {
+    "numero": 66,
+    "idioma": "ESP",
+    "texto": "Yo ayudo para hacer que mis colaboradores sean más efectivos.",
+    "tipotest": "ROR       ",
+    "grupo": 10,
+    "orden": 99,
+    "texto2": "++porcentaje++% ayuda a sus colaboradores para que sean más efectivos."
+  },
+  {
+    "numero": 74,
+    "idioma": "ESP",
+    "texto": "Mis colaboradores y yo discutimos las posibles barreras entre nuestra relación de trabajo y las eliminamos.",
+    "tipotest": "ROR       ",
+    "grupo": 10,
+    "orden": 100,
+    "texto2": "++porcentaje++% discute con sus colaboradores posibles barreras de la interrelación para eliminarla."
+  },
+  {
+    "numero": 11,
+    "idioma": "ESP",
+    "texto": "Mis objetivos están alineados con los objetivos de las personas que trabajan a mi nivel.",
+    "tipotest": "ROR       ",
+    "grupo": 11,
+    "orden": 101,
+    "texto2": "++porcentaje++% opina que sus objetivos están alineados con los objetivos de personas que tienen el mismo nivel."
+  },
+  {
+    "numero": 14,
+    "idioma": "ESP",
+    "texto": "Aquí existe una cooperación interdepartamental efectiva.",
+    "tipotest": "ROR       ",
+    "grupo": 11,
+    "orden": 102,
+    "texto2": "++porcentaje++% piensa que existe una cooperación interdepartamental efectiva."
+  },
+  {
+    "numero": 22,
+    "idioma": "ESP",
+    "texto": "Mis colegas de nivel me ayudan tanto como pueden para que yo sea más efectivo.",
+    "tipotest": "ROR       ",
+    "grupo": 11,
+    "orden": 103,
+    "texto2": "++porcentaje++% recibe ayuda de sus colegas para elevar su propia efectividad."
+  },
+  {
+    "numero": 28,
+    "idioma": "ESP",
+    "texto": "Regularmente ayudo a mis colegas tanto como puedo para que sean más efectivos.",
+    "tipotest": "ROR       ",
+    "grupo": 11,
+    "orden": 104,
+    "texto2": "++porcentaje++% dice ayudar regularmente a sus colegas para que sean más efectivos."
+  },
+  {
+    "numero": 49,
+    "idioma": "ESP",
+    "texto": "La mayoría de las juntas a las que asisto aquí, son productivas.",
+    "tipotest": "ROR       ",
+    "grupo": 11,
+    "orden": 105,
+    "texto2": "++porcentaje++% dice que las juntas aquí son productivas."
+  },
+  {
+    "numero": 54,
+    "idioma": "ESP",
+    "texto": "Estoy motivado para interactuar directamente con mis colegas, sin tener que ir con mi jefe o con los jefes de ellos.",
+    "tipotest": "ROR       ",
+    "grupo": 11,
+    "orden": 106,
+    "texto2": "++porcentaje++% de la gente está motivada para interactuar directamente con sus colegas, sin la necesidad de requerir de los jefes."
+  },
+  {
+    "numero": 69,
+    "idioma": "ESP",
+    "texto": "A menudo se celebran aquí juntas informales que son útiles.",
+    "tipotest": "ROR       ",
+    "grupo": 11,
+    "orden": 107,
+    "texto2": "++porcentaje++% dice que las juntas informales son útiles en esta organización. "
+  },
+  {
+    "numero": 76,
+    "idioma": "ESP",
+    "texto": "Mi responsabilidad y autoridad se adaptan bien a las de mis colegas.",
+    "tipotest": "ROR       ",
+    "grupo": 11,
+    "orden": 108,
+    "texto2": "++porcentaje++% adaptan adecuadamente las responsabilidades y la autoridad con sus colegas."
+  },
+  {
+    "numero": 78,
+    "idioma": "ESP",
+    "texto": "Permito que otros sobrepasen mi autoridad y responsabilidad siempre que esto ayude a mantener la efectividad.",
+    "tipotest": "ROR       ",
+    "grupo": 11,
+    "orden": 109,
+    "texto2": "++porcentaje++% permiten sobrepasar su propia autoridad y responsabilidad si esto ayuda a mantener la efectividad."
+  },
+  {
+    "numero": 80,
+    "idioma": "ESP",
+    "texto": "Mis colegas y yo discutimos las posibles barreras entre nuestra relación de trabajo y las eliminamos.",
+    "tipotest": "ROR       ",
+    "grupo": 11,
+    "orden": 110,
+    "texto2": "++porcentaje++% discute y elimina las posibles barreras de interrelación con sus colegas."
+  },
+  {
+    "numero": 19,
+    "idioma": "ESP",
+    "texto": "Mi autoridad está claramente definida.",
+    "tipotest": "ROR       ",
+    "grupo": 12,
+    "orden": 111,
+    "texto2": "++porcentaje++% dice que su autoridad está claramente definida."
+  },
+  {
+    "numero": 24,
+    "idioma": "ESP",
+    "texto": "Tengo suficiente autoridad para lograr los resultados que esperan de mí.",
+    "tipotest": "ROR       ",
+    "grupo": 12,
+    "orden": 112,
+    "texto2": "++porcentaje++% tiene suficiente autoridad para lograr los resultados que se esperan en su puesto."
+  },
+  {
+    "numero": 32,
+    "idioma": "ESP",
+    "texto": "Cuento con una descripción de mi puesto que me es útil para establecer mis objetivos.",
+    "tipotest": "ROR       ",
+    "grupo": 12,
+    "orden": 113,
+    "texto2": "++porcentaje++% cuenta con una descripción de su puesto que sirve como guía para establecer objetivos."
+  },
+  {
+    "numero": 36,
+    "idioma": "ESP",
+    "texto": "Cuento con una descripción de mi puesto que es precisa y está razonablemente actualizada.",
+    "tipotest": "ROR       ",
+    "grupo": 12,
+    "orden": 114,
+    "texto2": "++porcentaje++% cuenta con una descripción precisa y actualizada de su puesto."
+  },
+  {
+    "numero": 38,
+    "idioma": "ESP",
+    "texto": "Usualmente puedo cambiar mi autoridad y responsabilidad si la situación lo demanda.",
+    "tipotest": "ROR       ",
+    "grupo": 12,
+    "orden": 115,
+    "texto2": "++porcentaje++% puede cambiar su autoridad y responsabilidad si la situación lo demanda."
+  },
+  {
+    "numero": 41,
+    "idioma": "ESP",
+    "texto": "Mi responsabilidad y autoridad alinean bien con las de mi jefe.",
+    "tipotest": "ROR       ",
+    "grupo": 12,
+    "orden": 116,
+    "texto2": "++porcentaje++% coincide que su responsabilidad y autoridad están bien alineada con la de sus jefes."
+  },
+  {
+    "numero": 45,
+    "idioma": "ESP",
+    "texto": "Mi responsabilidad y autoridad alinean bien con las de mis colaboradores.",
+    "tipotest": "ROR       ",
+    "grupo": 12,
+    "orden": 117,
+    "texto2": "++porcentaje++% opina que su responsabilidad y autoridad están alineada con la de sus colaboradores."
+  },
+  {
+    "numero": 51,
+    "idioma": "ESP",
+    "texto": "Mi responsabilidad y autoridad alinean bien con las de mis colegas.",
+    "tipotest": "ROR       ",
+    "grupo": 12,
+    "orden": 118,
+    "texto2": "++porcentaje++% cuenta con una alineación de autoridad con sus colegas."
+  },
+  {
+    "numero": 57,
+    "idioma": "ESP",
+    "texto": "Mis colaboradores responden ante mí.",
+    "tipotest": "ROR       ",
+    "grupo": 12,
+    "orden": 119,
+    "texto2": "++porcentaje++% dice que sus colaboradores suelen responder."
+  },
+  {
+    "numero": 59,
+    "idioma": "ESP",
+    "texto": "Yo respondo ante mi jefe.",
+    "tipotest": "ROR       ",
+    "grupo": 12,
+    "orden": 120,
+    "texto2": "++porcentaje++% responde ante el jefe."
+  },
+  {
+    "numero": 2,
+    "idioma": "ESP",
+    "texto": "Tengo el personal que necesito para desempeñarme efectivamente.",
+    "tipotest": "ROR       ",
+    "grupo": 13,
+    "orden": 121,
+    "texto2": "++porcentaje++% tiene el personal que requiere para desempeñarse con efectividad."
+  },
+  {
+    "numero": 21,
+    "idioma": "ESP",
+    "texto": "Tengo el equipo que necesito para desempeñarme efectivamente.",
+    "tipotest": "ROR       ",
+    "grupo": 13,
+    "orden": 122,
+    "texto2": "++porcentaje++% tiene el equipo necesario para desempeñarse efectivamente."
+  },
+  {
+    "numero": 27,
+    "idioma": "ESP",
+    "texto": "Tengo el entrenamiento necesario para desempeñarme efectivamente.",
+    "tipotest": "ROR       ",
+    "grupo": 13,
+    "orden": 123,
+    "texto2": "++porcentaje++% cuenta con el entrenamiento necesario para desempeñarse efectivamente."
+  },
+  {
+    "numero": 29,
+    "idioma": "ESP",
+    "texto": "Cuento con el espacio necesario para desempeñarme efectivamente.",
+    "tipotest": "ROR       ",
+    "grupo": 13,
+    "orden": 124,
+    "texto2": "++porcentaje++% cuenta con el espacio necesario para desempeñarse efectivamente."
+  },
+  {
+    "numero": 34,
+    "idioma": "ESP",
+    "texto": "Cuento con el presupuesto que necesito para desempeñarme efectivamente.",
+    "tipotest": "ROR       ",
+    "grupo": 13,
+    "orden": 125,
+    "texto2": "++porcentaje++% cuenta con el presupuesto necesario para desempeñarse con efectividad."
+  },
+  {
+    "numero": 43,
+    "idioma": "ESP",
+    "texto": "Cuento con la asistencia que necesito de mi jefe para desempeñarme efectivamente.",
+    "tipotest": "ROR       ",
+    "grupo": 13,
+    "orden": 126,
+    "texto2": "++porcentaje++% cuenta con la asistencia que necesita del jefe para desempeñarse efectivamente."
+  },
+  {
+    "numero": 48,
+    "idioma": "ESP",
+    "texto": "Cuento con la asistencia que necesito de mis colaboradores para desempeñarme efectivamente",
+    "tipotest": "ROR       ",
+    "grupo": 13,
+    "orden": 127,
+    "texto2": "++porcentaje++% cuenta con la asistencia que requiere de su colaboradores para ser más efectivo."
+  },
+  {
+    "numero": 53,
+    "idioma": "ESP",
+    "texto": "Cuento con la asistencia que necesito de mis colegas para desempeñarme efectivamente.",
+    "tipotest": "ROR       ",
+    "grupo": 13,
+    "orden": 128,
+    "texto2": "++porcentaje++% cuenta con la asistencia que necesita de sus colegas para desempeñarse efectivamente."
+  },
+  {
+    "numero": 55,
+    "idioma": "ESP",
+    "texto": "Cuento con el consejo de los especialistas que necesito, a fin de desempeñarme efectivamente.",
+    "tipotest": "ROR       ",
+    "grupo": 13,
+    "orden": 129,
+    "texto2": "++porcentaje++% cuenta con el consejo de los especialistas que requiere para desempeñarse con efectividad."
+  },
+  {
+    "numero": 63,
+    "idioma": "ESP",
+    "texto": "Cuento con la información que necesito para desempeñarme efectivamente.",
+    "tipotest": "ROR       ",
+    "grupo": 13,
+    "orden": 130,
+    "texto2": "++porcentaje++% cuenta con la información que necesita para desempeñarse efectivamente."
+  },
+  {
+    "numero": 6,
+    "idioma": "ESP",
+    "texto": "Yo acepto el proceso de orientación a resultados.",
+    "tipotest": "ROR       ",
+    "grupo": 14,
+    "orden": 131,
+    "texto2": "++porcentaje++% acepta el proceso de orientación a resultados."
+  },
+  {
+    "numero": 13,
+    "idioma": "ESP",
+    "texto": "Yo pienso que mi jefe acepta el proceso de orientación a resultados.",
+    "tipotest": "ROR       ",
+    "grupo": 14,
+    "orden": 132,
+    "texto2": "++porcentaje++% dice que la orientación a resultados es aceptada por sus jefes."
+  },
+  {
+    "numero": 23,
+    "idioma": "ESP",
+    "texto": "Yo pienso que mis colaboradores aceptan el proceso de orientación a resultados.",
+    "tipotest": "ROR       ",
+    "grupo": 14,
+    "orden": 133,
+    "texto2": "++porcentaje++% piensa que sus colaboradores aceptan el proceso de orientación a resultados."
+  },
+  {
+    "numero": 25,
+    "idioma": "ESP",
+    "texto": "Yo pienso que la gerencia acepta el proceso de orientación a resultados.",
+    "tipotest": "ROR       ",
+    "grupo": 14,
+    "orden": 134,
+    "texto2": "++porcentaje++% piensa que la gerencia realmente acepta el proceso de orientación a resultados."
+  },
+  {
+    "numero": 39,
+    "idioma": "ESP",
+    "texto": "Yo pienso que el proceso de orientación a resultados trae consigo muchos beneficios en empresas como la nuestra.",
+    "tipotest": "ROR       ",
+    "grupo": 14,
+    "orden": 135,
+    "texto2": "++porcentaje++% percibe los beneficios que trae consigo un proceso de orientación a resultados."
+  },
+  {
+    "numero": 46,
+    "idioma": "ESP",
+    "texto": "Yo pienso que el proceso de orientación a resultados nos puede conducir hacia algunos cambios efectivos.",
+    "tipotest": "ROR       ",
+    "grupo": 14,
+    "orden": 136,
+    "texto2": "++porcentaje++% piensa que el proceso de orientación a resultados podría conducir a algunos cambios benéficos."
+  },
+  {
+    "numero": 58,
+    "idioma": "ESP",
+    "texto": "El cambio aquí se introduce fácilmente.",
+    "tipotest": "ROR       ",
+    "grupo": 14,
+    "orden": 137,
+    "texto2": "++porcentaje++% de la población opina que el cambio aquí se introduce fácilmente."
+  },
+  {
+    "numero": 70,
+    "idioma": "ESP",
+    "texto": "El cambio se introduce aquí con frecuencia.",
+    "tipotest": "ROR       ",
+    "grupo": 14,
+    "orden": 138,
+    "texto2": "++porcentaje++% dice que el cambio se introduce con frecuencia en esta organización. "
+  },
+  {
+    "numero": 72,
+    "idioma": "ESP",
+    "texto": "Esta organización es altamente flexible.",
+    "tipotest": "ROR       ",
+    "grupo": 14,
+    "orden": 139,
+    "texto2": "++porcentaje++% está de acuerdo que la organización es altamente flexible."
+  },
+  {
+    "numero": 77,
+    "idioma": "ESP",
+    "texto": "Los cambios se pueden introducir rápida y efectivamente aquí.",
+    "tipotest": "ROR       ",
+    "grupo": 14,
+    "orden": 140,
+    "texto2": "++porcentaje++% pueden introducir cambios rápidamente y con efectividad."
+  },
+  {
+    "numero": 4,
+    "idioma": "ESP",
+    "texto": "Un mayor énfasis en orientación a resultados podría mejorar mi efectividad.",
+    "tipotest": "ROR       ",
+    "grupo": 15,
+    "orden": 141,
+    "texto2": "++porcentaje++% piensa que un mayor esfuerzo de orientación a resultados mejorará la efectividad."
+  },
+  {
+    "numero": 16,
+    "idioma": "ESP",
+    "texto": "Un mayor énfasis sobre orientación a resultados mejoraría la efectividad de mis colaboradores.",
+    "tipotest": "ROR       ",
+    "grupo": 15,
+    "orden": 142,
+    "texto2": "++porcentaje++% percibe que un mayor énfasis sobre la orientación a resultados mejoraría la efectividad de los colaboradores."
+  },
+  {
+    "numero": 31,
+    "idioma": "ESP",
+    "texto": "Un mayor énfasis sobre la orientación a resultados mejoraría la efectividad de mi jefe.",
+    "tipotest": "ROR       ",
+    "grupo": 15,
+    "orden": 143,
+    "texto2": "++porcentaje++% piensa que adoptar un mayor énfasis en la orientación a resultados mejoraría la efectividad de su jefe."
+  },
+  {
+    "numero": 37,
+    "idioma": "ESP",
+    "texto": "Un mayor énfasis sobre orientación a resultados mejoraría la efectividad de mis colegas.",
+    "tipotest": "ROR       ",
+    "grupo": 15,
+    "orden": 144,
+    "texto2": "++porcentaje++% opina que si existiese un mayor énfasis sobre la orientación a resultados, mejoraría la efectividad de sus colegas."
+  },
+  {
+    "numero": 42,
+    "idioma": "ESP",
+    "texto": "Un mayor énfasis sobre la orientación a resultados mejoraría la efectividad de esta organización.",
+    "tipotest": "ROR       ",
+    "grupo": 15,
+    "orden": 145,
+    "texto2": "++porcentaje++% confirma que si existiese un mayor énfasis en la orientación a resultados, la efectividad aumentaría."
+  },
+  {
+    "numero": 60,
+    "idioma": "ESP",
+    "texto": "Un mayor énfasis sobre la orientación a resultados reduciría los conflictos aquí.",
+    "tipotest": "ROR       ",
+    "grupo": 15,
+    "orden": 146,
+    "texto2": "++porcentaje++% tiene la percepción de que un mayor énfasis sobre orientación a resultados reduciría los conflictos aquí."
+  },
+  {
+    "numero": 65,
+    "idioma": "ESP",
+    "texto": "Un mayor énfasis sobre la orientación a resultados mejoraría la satisfacción del trabajo aquí.",
+    "tipotest": "ROR       ",
+    "grupo": 15,
+    "orden": 147,
+    "texto2": "++porcentaje++% opina que un mayor énfasis sobre orientación a resultados mejoraría la satisfacción del trabajo."
+  },
+  {
+    "numero": 67,
+    "idioma": "ESP",
+    "texto": "Un mayor énfasis sobre la orientación a resultados me permitiría trabajar más efectivamente con mi jefe.",
+    "tipotest": "ROR       ",
+    "grupo": 15,
+    "orden": 148,
+    "texto2": "++porcentaje++% de los encuestados creen que un mayor énfasis sobre la orientación a resultados permitiría mejorar la relación con su jefe."
+  },
+  {
+    "numero": 75,
+    "idioma": "ESP",
+    "texto": "Un mayor énfasis sobre la orientación a resultados me permitiría trabajar más efectivamente con mis colaboradores.",
+    "tipotest": "ROR       ",
+    "grupo": 15,
+    "orden": 149,
+    "texto2": "++porcentaje++% piensa que un mayor énfasis sobre la orientación a resultados permitiría trabajar más efectivamente con sus colaboradores."
+  },
+  {
+    "numero": 79,
+    "idioma": "ESP",
+    "texto": "Un mayor énfasis sobre orientación a resultados me permitiría trabajar más efectivamente con mis colegas.",
+    "tipotest": "ROR       ",
+    "grupo": 15,
+    "orden": 150,
+    "texto2": "++porcentaje++% mejoraría la efectividad con sus colegas si existiese un mayor énfasis sobre orientación a resultados."
+  },
+  {
+    "numero": 7,
+    "idioma": "ESP",
+    "texto": "La mayoría de la información relacionada con el trabajo, la recibo a tiempo.",
+    "tipotest": "ROR       ",
+    "grupo": 16,
+    "orden": 151,
+    "texto2": "++porcentaje++% recibe la información relacionada con el trabajo a tiempo."
+  },
+  {
+    "numero": 9,
+    "idioma": "ESP",
+    "texto": "La mayoría de la información del trabajo es lo suficientemente precisa.",
+    "tipotest": "ROR       ",
+    "grupo": 16,
+    "orden": 152,
+    "texto2": "++porcentaje++% opina que la información necesaria para trabajar es precisa."
+  },
+  {
+    "numero": 26,
+    "idioma": "ESP",
+    "texto": "Puedo obtener con facilidad la información que necesito sobre el trabajo.",
+    "tipotest": "ROR       ",
+    "grupo": 16,
+    "orden": 153,
+    "texto2": "++porcentaje++% puede obtener con facilidad la información que necesita sobre su trabajo."
+  },
+  {
+    "numero": 35,
+    "idioma": "ESP",
+    "texto": "La información que recibo es útil para mí.",
+    "tipotest": "ROR       ",
+    "grupo": 16,
+    "orden": 154,
+    "texto2": "++porcentaje++% recibe información útil para su posición. "
+  },
+  {
+    "numero": 40,
+    "idioma": "ESP",
+    "texto": "Recibo toda la información que necesito para desempeñarme efectivamente.",
+    "tipotest": "ROR       ",
+    "grupo": 16,
+    "orden": 155,
+    "texto2": "++porcentaje++% recibe toda la información que necesita para desempeñarse efectivamente."
+  },
+  {
+    "numero": 50,
+    "idioma": "ESP",
+    "texto": "Puedo usar la mayoría de la información que recibo.",
+    "tipotest": "ROR       ",
+    "grupo": 16,
+    "orden": 156,
+    "texto2": "++porcentaje++% puede usar la mayoría de la información que recibe."
+  },
+  {
+    "numero": 52,
+    "idioma": "ESP",
+    "texto": "Mucha de la información que me piden producir me parece que es de valor.",
+    "tipotest": "ROR       ",
+    "grupo": 16,
+    "orden": 157,
+    "texto2": "++porcentaje++% está de acuerdo con la cantidad de información que la organización solicita ya que agrega valor."
+  },
+  {
+    "numero": 56,
+    "idioma": "ESP",
+    "texto": "La información que obtengo parece reflejar bien la realidad.",
+    "tipotest": "ROR       ",
+    "grupo": 16,
+    "orden": 158,
+    "texto2": "++porcentaje++% opina que la información que recibe refleja la realidad."
+  },
+  {
+    "numero": 62,
+    "idioma": "ESP",
+    "texto": "Recibo la información que necesito para poder juzgar mi efectividad.",
+    "tipotest": "ROR       ",
+    "grupo": 16,
+    "orden": 159,
+    "texto2": "++porcentaje++% recibe la información que necesita para poder juzgar su propia efectividad."
+  },
+  {
+    "numero": 73,
+    "idioma": "ESP",
+    "texto": "Recibo la información que necesito para poder evaluar la efectividad de mis colaboradores.",
+    "tipotest": "ROR       ",
+    "grupo": 16,
+    "orden": 160,
+    "texto2": "++porcentaje++% recibe la información que necesita para poder evaluar la efectividad de sus colaboradores."
+  }
+]
