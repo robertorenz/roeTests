@@ -854,7 +854,6 @@
                         ...data,
                         lastSaved: new Date().toISOString()
                     }));
-                    console.log('Test progress saved to localStorage:', key);
                 } catch (error) {
                     console.error('Error saving to localStorage:', error);
                 }
@@ -866,7 +865,6 @@
                     const data = localStorage.getItem(key);
                     if (data) {
                         const parsed = JSON.parse(data);
-                        console.log('Test progress loaded from localStorage:', key);
                         return parsed;
                     }
                 } catch (error) {
@@ -879,7 +877,6 @@
                 try {
                     const key = this.getKey(testId);
                     localStorage.removeItem(key);
-                    console.log('Test progress cleared from localStorage:', key);
                 } catch (error) {
                     console.error('Error clearing localStorage:', error);
                 }
@@ -934,24 +931,19 @@
         
         // Validate test availability and check for existing progress
         async function validateTest() {
-            console.log('\n🔍 ========== TEST VALIDATION ==========');
             
             if (!app.testId) {
-                console.log('❌ No test ID found in URL');
                 showValidationError();
                 return;
             }
             
-            console.log('Test ID:', app.testId);
             
             try {
                 // Check for existing progress in localStorage
                 const existingProgress = LocalStorage.getProgress(app.testId);
-                console.log('Existing progress:', existingProgress);
                 
                 // Validate with API
                 const apiUrl = `https://apitests.reddinassessments.com/wsGetinvitRoe?id=${app.testId}`;
-                console.log('Validating with API:', apiUrl);
                 
                 const response = await fetch(apiUrl, {
                     method: 'GET',
@@ -965,7 +957,6 @@
                 }
                 
                 const data = await response.json();
-                console.log('API validation response:', data);
                 
                 if (data.wsGetinvitROE_response) {
                     const response = data.wsGetinvitROE_response;
@@ -973,14 +964,10 @@
                     // Check resultComplete status first, before checking for groups
                     if (response.resultComplete === "2") {
                         // Test found but already completed
-                        console.log('✅ Test record found, but test has already been completed (resultComplete = 2)');
-                        console.log('Test ID:', app.testId);
-                        console.log('Status: Test is there but it has already been completed');
                         showTestAlreadyCompletedError();
                         return;
                     } else if (response.resultComplete !== "1") {
                         // Any other value than 1 is invalid
-                        console.log('❌ Invalid resultComplete value:', response.resultComplete);
                         throw new Error('Invalid test status');
                     }
                     
@@ -1133,7 +1120,6 @@
                 'city', 'country', 'email', 'phone'
             ];
             
-            console.log('Configuring form fields...');
             
             // Hide all fields first
             allFields.forEach(fieldName => {
@@ -1148,13 +1134,11 @@
                 const fieldGroup = document.querySelector(`[data-field="${fieldName}"]`);
                 if (fieldGroup) {
                     fieldGroup.style.display = 'block';
-                    console.log(`Showing field: ${fieldName}`);
                 } else {
                     console.warn(`Field not found: ${fieldName}`);
                 }
             });
             
-            console.log(`Configured ${app.requiredFields.length} visible fields`);
         }
         
         // Load existing progress from localStorage
@@ -1162,7 +1146,6 @@
             const savedData = LocalStorage.load(app.testId);
             
             if (savedData) {
-                console.log('Loading existing progress...');
                 
                 // Restore application state
                 app.userInfo = savedData.userInfo || {};
@@ -1180,20 +1163,11 @@
                     showScreen('summaryScreen');
                     return;
                 }
-                
-                console.log('Restored state:', {
-                    userInfo: app.userInfo,
-                    selectedGroups: app.selectedGroups,
-                    questionsCount: app.questions.length,
-                    answeredCount: app.answers.filter(a => a !== null).length,
-                    currentQuestion: app.currentQuestion
-                });
-                
+
                 // Go directly to questions
                 showScreen('questionScreen');
                 displayQuestion();
             } else {
-                console.log('No existing progress found, starting fresh');
                 showScreen('userInfoScreen');
             }
         }
@@ -1216,18 +1190,15 @@
 
         // Debug function to auto-complete the test
         async function debugFillAnswers() {
-            console.log('\n🐛 ========== DEBUG AUTO-COMPLETE TEST ==========');
             
             try {
                 // First, check if required fields are configured
                 if (!app.requiredFields || app.requiredFields.length === 0) {
-                    console.log('⚠️ Required fields not configured. Need to validate test first.');
                     alert('Por favor, recargue la página para validar el test antes de usar el modo debug.');
                     return;
                 }
                 
                 // AUTO-FILL TEST DATA FOR DEBUG
-                console.log('Auto-filling required fields with test data:', app.requiredFields);
                 
                 const debugData = {
                     firstName: 'Debug',
@@ -1251,20 +1222,16 @@
                     const field = document.getElementById(fieldName);
                     if (field && debugData[fieldName]) {
                         field.value = debugData[fieldName];
-                        console.log(`Filled ${fieldName}: ${debugData[fieldName]}`);
                     }
                 });
                 
                 // NOW validate the auto-filled fields
-                console.log('Validating auto-filled debug data...');
                 const validationErrors = validateRequiredFields();
                 if (validationErrors.length > 0) {
-                    console.log('❌ Debug validation failed after auto-fill:', validationErrors);
                     showValidationErrors(['Debug mode: Algunos campos requeridos no se pudieron completar automáticamente.', ...validationErrors]);
                     return;
                 }
                 
-                console.log('✅ Debug data auto-filled and validated successfully.');
                 
                 // Collect user info (same as regular form submission)
                 app.userInfo = {
@@ -1285,7 +1252,6 @@
                     timestamp: new Date().toISOString()
                 };
                 
-                console.log('✅ Debug user info collected:', app.userInfo);
                 
                 // Prepare questions
                 prepareQuestions();
@@ -1306,7 +1272,6 @@
                 app.currentQuestion = app.questions.length - 1;
                 
                 // Save debug session to localStorage
-                console.log('💾 Saving debug session to localStorage...');
                 saveProgress();
                 
                 // Create the final answers string for debugging
@@ -1318,17 +1283,6 @@
                 });
                 const debugAnswersString = orderedAnswers.join('');
                 
-                console.log('\n=== DEBUG ROE ASSESSMENT RESULTS ===');
-                console.log('Debug: All answers filled randomly');
-                console.log('Selected groups:', app.selectedGroups);
-                console.log('Total questions:', app.questions.length);
-                console.log('160-Character Answer String:');
-                console.log(debugAnswersString);
-                console.log('Answer String Length:', debugAnswersString.length);
-                console.log('- 0s:', (debugAnswersString.match(/0/g) || []).length);
-                console.log('- 1s:', (debugAnswersString.match(/1/g) || []).length);
-                console.log('💾 Debug session saved to localStorage');
-                console.log('=====================================\n');
                 
                 // Go directly to summary
                 showScreen('summaryScreen');
@@ -1369,7 +1323,6 @@
                 timestamp: new Date().toISOString()
             };
 
-            console.log('User info collected:', app.userInfo);
 
             // Get groups from API and start assessment
             getGroupsFromAPI();
@@ -1504,7 +1457,6 @@
             // Scroll to top of form
             form.scrollIntoView({ behavior: 'smooth', block: 'start' });
             
-            console.log('Validation errors:', errors);
         }
 
         // Fisher-Yates shuffle algorithm for proper randomization
@@ -1524,16 +1476,12 @@
                 const urlParams = new URLSearchParams(window.location.search);
                 const invitationId = urlParams.get('id');
                 
-                console.log('\n=== STARTING ROE ASSESSMENT API CALL ===');
-                console.log('URL Parameters:', window.location.search);
-                console.log('Invitation ID from URL:', invitationId);
                 
                 if (!invitationId) {
                     throw new Error('No invitation ID found in URL parameters');
                 }
                 
                 const apiUrl = `https://apitests.reddinassessments.com/wsGetInvitRoe?id=${invitationId}`;
-                console.log('Calling API URL:', apiUrl);
                 
                 // Call the web service
                 const response = await fetch(apiUrl, {
@@ -1542,20 +1490,16 @@
                         'Content-Type': 'application/json'
                     }
                 });
-                console.log('Response status:', response.status);
-                console.log('Response headers:', Object.fromEntries(response.headers.entries()));
                 
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status} - ${response.statusText}`);
                 }
                 
                 const responseText = await response.text();
-                console.log('Raw response text:', responseText);
                 
                 let data;
                 try {
                     data = JSON.parse(responseText);
-                    console.log('Parsed JSON data:', data);
                 } catch (parseError) {
                     console.error('JSON parse error:', parseError);
                     throw new Error('Invalid JSON response from server');
@@ -1566,8 +1510,6 @@
                     const groupsString = data.wsGetinvitROE_response.groups;
                     const resultComplete = data.wsGetinvitROE_response.resultComplete;
                     
-                    console.log('Groups string from API:', groupsString);
-                    console.log('Result complete flag:', resultComplete);
                     
                     app.selectedGroups = groupsString
                         .split(',')
@@ -1575,9 +1517,6 @@
                         .filter(g => !isNaN(g))
                         .sort((a, b) => a - b);
                     
-                    console.log('Parsed selected groups:', app.selectedGroups);
-                    console.log('Number of groups selected:', app.selectedGroups.length);
-                    console.log('==========================================\n');
                     
                     if (app.selectedGroups.length === 0) {
                         throw new Error('No valid groups found in API response');
@@ -1672,34 +1611,19 @@ The test cannot continue without this information.`);
             // Check if we already have questions from localStorage (don't re-randomize)
             const savedData = LocalStorage.load(app.testId);
             if (savedData && savedData.questions && savedData.questions.length > 0) {
-                console.log('Using existing randomization from localStorage');
                 app.questions = savedData.questions;
                 app.answers = savedData.answers || new Array(app.questions.length).fill(null);
-                
-                console.log(`Loaded ${app.questions.length} questions from localStorage`);
-                console.log('Existing question order (first 10):');
-                app.questions.slice(0, 10).forEach((q, index) => {
-                    console.log(`  ${index + 1}. Numero ${q.numero} (Group ${q.grupo}, Orden ${q.orden})`);
-                });
                 return;
             }
             
             // No existing randomization, create new one
-            console.log('Creating new randomization...');
             
             // Get all questions from selected groups
             const selectedQuestions = roeData.filter(item => app.selectedGroups.includes(item.grupo));
             
             // COMPLETE RANDOMIZATION: Shuffle all questions together using Fisher-Yates
             app.questions = shuffleArray(selectedQuestions);
-            
-            console.log('Questions prepared with complete randomization:');
-            console.log(`Total questions: ${app.questions.length}`);
-            console.log('Question presentation order (first 10):');
-            app.questions.slice(0, 10).forEach((q, index) => {
-                console.log(`  ${index + 1}. Numero ${q.numero} (Group ${q.grupo}, Orden ${q.orden})`);
-            });
-            
+
             // Initialize answers array with null values
             app.answers = new Array(app.questions.length).fill(null);
             
@@ -1875,26 +1799,7 @@ The test cannot continue without this information.`);
                 id: app.testId,
                 testdata: testData
             };
-            
-            // Console logging for debugging
-            console.log('\n=== ROE ASSESSMENT RESULTS ===');
-            console.log('Test ID:', app.testId);
-            console.log('GUID:', app.guid);
-            console.log('Selected Groups:', app.selectedGroups);
-            console.log('Total Questions Answered:', app.questions.length);
-            console.log('160-Character Answer String:');
-            console.log(answersString);
-            console.log('Answer String Length:', answersString.length);
-            console.log('\nDetailed breakdown:');
-            console.log('- 0s (No/Not Answered):', (answersString.match(/0/g) || []).length);
-            console.log('- 1s (Yes/Agree):', (answersString.match(/1/g) || []).length);
-            console.log('\nAnswered questions by orden:');
-            app.answers.filter(answer => answer !== null).forEach(answer => {
-                console.log(`Orden ${answer.orden}: ${answer.answer ? '1' : '0'} (Question: ${answer.numero})`);
-            });
-            console.log('\nSubmit Payload:', submitPayload);
-            console.log('===========================\n');
-            
+
             try {
                 // Send to wsSaveInvitRoe web service
                 const response = await fetch('https://apitests.reddinassessments.com/wsSaveInvitRoe', {
@@ -1907,7 +1812,6 @@ The test cannot continue without this information.`);
                 
                 if (response.ok) {
                     const responseData = await response.json();
-                    console.log('Server response:', responseData);
                     
                     // Check if resultComplete is 1 (success)
                     if (responseData.wsSaveInvitROE_response && responseData.wsSaveInvitROE_response.resultComplete === "1") {
@@ -1917,7 +1821,6 @@ The test cannot continue without this information.`);
                         // Clear localStorage after successful submission
                         if (app.testId) {
                             LocalStorage.clear(app.testId);
-                            console.log('Test completed and localStorage cleared');
                         }
                         
                         // Add website button after successful submission
@@ -1956,7 +1859,6 @@ The test cannot continue without this information.`);
                 submitButton.disabled = false;
                 
                 // Log results to console as fallback
-                console.log('Assessment Results:', results);
                 
                 // Show success anyway for demo
                 setTimeout(() => {
