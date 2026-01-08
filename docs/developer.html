@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Documentation - ROE/EOE Assessment</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            margin-bottom: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(26, 54, 93, 0.3);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        section {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        h2 {
+            color: #1a365d;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        h2 i {
+            margin-right: 10px;
+            color: #0d9488;
+        }
+
+        h3 {
+            color: #2d3748;
+            font-size: 1.2rem;
+            margin: 20px 0 10px 0;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        th {
+            background: #f8fafc;
+            font-weight: 600;
+            color: #1a365d;
+        }
+
+        tr:hover {
+            background: #f8fafc;
+        }
+
+        code {
+            background: #f1f5f9;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9em;
+            color: #0d9488;
+        }
+
+        pre {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+        }
+
+        .file-tree {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9em;
+        }
+
+        ul {
+            margin: 10px 0 10px 20px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        .endpoint {
+            background: #f0fdfa;
+            border-left: 4px solid #0d9488;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .endpoint h4 {
+            color: #0d9488;
+            margin-bottom: 10px;
+        }
+
+        .method {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.85em;
+            margin-right: 10px;
+        }
+
+        .method.get {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .method.post {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #64748b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-code"></i> Developer Documentation</h1>
+            <p>ROE/EOE Assessment Technical Reference</p>
+            <div class="nav-links">
+                <a href="user.html"><i class="fas fa-user"></i> User Guide</a>
+                <a href="instructions.html"><i class="fas fa-book"></i> Instructions</a>
+                <a href="../roe-assessment.html"><i class="fas fa-external-link-alt"></i> Spanish App</a>
+                <a href="../roe-assessmenti.html"><i class="fas fa-external-link-alt"></i> English App</a>
+            </div>
+        </header>
+
+        <section>
+            <h2><i class="fas fa-info-circle"></i> Overview</h2>
+            <p>The ROE/EOE Assessment is a web-based organizational effectiveness survey built with vanilla HTML, CSS, and JavaScript. It connects to a Clarion-based backend API for test validation and result storage.</p>
+        </section>
+
+        <section>
+            <h2><i class="fas fa-folder-tree"></i> File Structure</h2>
+            <div class="file-tree">
+                roe/<br>
+                ├── roe-assessment.html &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Spanish version<br>
+                ├── roe-assessmenti.html &nbsp;&nbsp;&nbsp;# English version (EOE)<br>
+                ├── frasROE.json &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Assessment questions<br>
+                ├── README.md<br>
+                └── docs/<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;├── developer.html<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;├── user.html<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;└── instructions.html
+            </div>
+        </section>
+
+        <section>
+            <h2><i class="fas fa-server"></i> API Reference</h2>
+            <p>Base URL: <code>https://apitests.reddinassessments.com</code></p>
+
+            <div class="endpoint">
+                <h4><span class="method get">GET</span> /wsGetinvitRoe</h4>
+                <p>Validates a test invitation and returns configuration.</p>
+                <p><strong>Parameters:</strong> <code>id</code> - Test invitation ID</p>
+                <pre><code>GET /wsGetinvitRoe?id={testId}</code></pre>
+                <p><strong>Response:</strong></p>
+                <pre><code>{
+  "wsGetinvitROE_response": {
+    "resultComplete": "1",
+    "groups": "1,2,3,4,5,6,7,8",
+    "roe:pedirnombre": "1",
+    "roe:pedirapellido": "1",
+    "roe:pedirempresa": "0",
+    "roe:pediremail": "1",
+    ...
+  }
+}</code></pre>
+            </div>
+
+            <div class="endpoint">
+                <h4><span class="method post">POST</span> /wsSaveInvitRoe</h4>
+                <p>Submits completed assessment results.</p>
+                <pre><code>{
+  "id": "test-id-here",
+  "testdata": {
+    "guid": "unique-session-guid",
+    "userInfo": { ... },
+    "answers160": "1010110010...",
+    "totalQuestions": 80,
+    "completedAt": "2024-01-15T10:30:00.000Z",
+    "testId": "test-id-here"
+  }
+}</code></pre>
+            </div>
+        </section>
+
+        <section>
+            <h2><i class="fas fa-database"></i> Field Mapping</h2>
+            <p>API flags control which demographic fields are displayed:</p>
+            <table>
+                <tr>
+                    <th>API Flag</th>
+                    <th>Form Field ID</th>
+                    <th>Description</th>
+                </tr>
+                <tr><td><code>roe:pedirnombre</code></td><td>firstName</td><td>First name</td></tr>
+                <tr><td><code>roe:pedirapellido</code></td><td>lastName</td><td>Last name</td></tr>
+                <tr><td><code>roe:pedirempresa</code></td><td>company</td><td>Company</td></tr>
+                <tr><td><code>roe:pedirpuesto</code></td><td>position</td><td>Position</td></tr>
+                <tr><td><code>roe:pedirdepartamento</code></td><td>department</td><td>Department</td></tr>
+                <tr><td><code>roe:pediredad</code></td><td>age</td><td>Age</td></tr>
+                <tr><td><code>roe:pediraempresa</code></td><td>yearsInCompany</td><td>Years in company</td></tr>
+                <tr><td><code>roe:pedirgenero</code></td><td>gender</td><td>Gender</td></tr>
+                <tr><td><code>roe:pedirnota1</code></td><td>note1</td><td>Custom note 1</td></tr>
+                <tr><td><code>roe:pedirnota2</code></td><td>note2</td><td>Custom note 2</td></tr>
+                <tr><td><code>roe:pedirciudad</code></td><td>city</td><td>City</td></tr>
+                <tr><td><code>roe:pedirpais</code></td><td>country</td><td>Country</td></tr>
+                <tr><td><code>roe:pediremail</code></td><td>email</td><td>Email</td></tr>
+                <tr><td><code>roe:pedirsmsphone</code></td><td>phone</td><td>Phone</td></tr>
+            </table>
+        </section>
+
+        <section>
+            <h2><i class="fas fa-layer-group"></i> Assessment Groups</h2>
+            <table>
+                <tr>
+                    <th>Group</th>
+                    <th>Type</th>
+                    <th>Dimension</th>
+                </tr>
+                <tr><td>1</td><td>DCO</td><td>Productivity Standards</td></tr>
+                <tr><td>2</td><td>DCO</td><td>Management Competence</td></tr>
+                <tr><td>3</td><td>DCO</td><td>Organizational Structure</td></tr>
+                <tr><td>4</td><td>DCO</td><td>Communication</td></tr>
+                <tr><td>5</td><td>DCO</td><td>Conflict Management</td></tr>
+                <tr><td>6</td><td>DCO</td><td>Human Resources</td></tr>
+                <tr><td>7</td><td>DCO</td><td>Participation</td></tr>
+                <tr><td>8</td><td>DCO</td><td>Innovation</td></tr>
+                <tr><td>9</td><td>ROR</td><td>Boss-Subordinate Alignment</td></tr>
+                <tr><td>10</td><td>ROR</td><td>Managing Direct Reports</td></tr>
+                <tr><td>11</td><td>ROR</td><td>Peer Collaboration</td></tr>
+                <tr><td>12</td><td>ROR</td><td>Authority & Responsibility</td></tr>
+                <tr><td>13</td><td>ROR</td><td>Resources</td></tr>
+                <tr><td>14</td><td>ROR</td><td>Change Readiness</td></tr>
+                <tr><td>15</td><td>ROR</td><td>Results Orientation Benefits</td></tr>
+                <tr><td>16</td><td>ROR</td><td>Information Quality</td></tr>
+            </table>
+        </section>
+
+        <section>
+            <h2><i class="fas fa-cogs"></i> Application State</h2>
+            <pre><code>const app = {
+  testId: null,              // From URL parameter
+  guid: null,                // Unique session identifier
+  userInfo: {},              // Collected demographic data
+  selectedGroups: [],        // Groups to assess (from API)
+  questions: [],             // Randomized questions array
+  answers: [],               // User responses
+  currentQuestion: 0,        // Current question index
+  requiredFields: [],        // Fields to display (from API)
+  isResuming: false          // Resume from localStorage
+};</code></pre>
+        </section>
+
+        <section>
+            <h2><i class="fas fa-save"></i> LocalStorage</h2>
+            <p>Progress is automatically saved with key <code>roe_test_{testId}</code>:</p>
+            <pre><code>{
+  userInfo: {},
+  selectedGroups: [],
+  questions: [],           // Preserves randomization
+  answers: [],
+  currentQuestion: 0,
+  guid: "...",
+  lastSaved: "ISO timestamp"
+}</code></pre>
+        </section>
+
+        <section>
+            <h2><i class="fas fa-sitemap"></i> Screen Flow</h2>
+            <ol>
+                <li><strong>Test Validation Screen</strong> - Validates test ID via API</li>
+                <li><strong>User Info Screen</strong> - Collects demographic data (configurable fields)</li>
+                <li><strong>Question Screen</strong> - Displays questions one at a time</li>
+                <li><strong>Summary Screen</strong> - Review and submit</li>
+            </ol>
+        </section>
+
+        <section>
+            <h2><i class="fas fa-functions"></i> Key Functions</h2>
+            <table>
+                <tr>
+                    <th>Function</th>
+                    <th>Description</th>
+                </tr>
+                <tr><td><code>validateTest()</code></td><td>Validates test ID and configures fields</td></tr>
+                <tr><td><code>configureFormFields()</code></td><td>Shows/hides demographic fields based on API</td></tr>
+                <tr><td><code>prepareQuestions()</code></td><td>Randomizes questions using Fisher-Yates</td></tr>
+                <tr><td><code>displayQuestion()</code></td><td>Renders current question</td></tr>
+                <tr><td><code>handleAnswer()</code></td><td>Records user response</td></tr>
+                <tr><td><code>submitAssessment()</code></td><td>Sends results to API</td></tr>
+                <tr><td><code>saveProgress()</code></td><td>Saves to localStorage</td></tr>
+                <tr><td><code>loadExistingProgress()</code></td><td>Restores from localStorage</td></tr>
+            </table>
+        </section>
+
+        <section>
+            <h2><i class="fas fa-puzzle-piece"></i> Customization</h2>
+            <h3>Adding New Fields</h3>
+            <ol>
+                <li>Add HTML form field with <code>data-field="fieldName"</code> attribute</li>
+                <li>Add mapping in <code>fieldMapping</code> object</li>
+                <li>Add to <code>allFields</code> array in <code>configureFormFields()</code></li>
+            </ol>
+            <h3>Modifying Styles</h3>
+            <ul>
+                <li>Colors defined in CSS at top of <code>&lt;style&gt;</code> block</li>
+                <li>Professional color scheme: Navy (#1a365d), Teal (#0d9488), Slate grays</li>
+            </ul>
+        </section>
+
+        <footer>
+            <p>&copy; Reddin Assessments - ROE/EOE Assessment Documentation</p>
+        </footer>
+    </div>
+</body>
+</html>

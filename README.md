@@ -9,9 +9,9 @@ Organizational effectiveness assessment module for the Clarion 12 assessment pla
 
 | Document | Description |
 |----------|-------------|
-| [Developer Guide](docs/DEVELOPER.md) | Technical documentation, API reference, architecture |
-| [User Guide](docs/USER.md) | End-user documentation for survey participants |
-| [Instructions](docs/INSTRUCTIONS.md) | Survey instructions and assessment dimensions |
+| [Developer Guide](docs/developer.html) | Technical documentation, API reference, architecture |
+| [User Guide](docs/user.html) | End-user documentation for survey participants |
+| [Instructions](docs/instructions.html) | Survey instructions and assessment dimensions |
 
 ## Files
 

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Guide - ROE/EOE Assessment</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
+            color: #334155;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            margin-bottom: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(13, 148, 136, 0.3);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        section {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        h2 {
+            color: #0f766e;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        h2 i {
+            margin-right: 10px;
+            color: #0d9488;
+        }
+
+        h3 {
+            color: #2d3748;
+            font-size: 1.2rem;
+            margin: 25px 0 15px 0;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f0fdfa;
+            border-radius: 12px;
+            border-left: 4px solid #0d9488;
+        }
+
+        .step-number {
+            background: #0d9488;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            color: #0f766e;
+            margin-bottom: 8px;
+        }
+
+        ul {
+            margin: 10px 0 10px 20px;
+        }
+
+        li {
+            margin: 10px 0;
+        }
+
+        .tip {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .tip i {
+            color: #f59e0b;
+            margin-right: 8px;
+        }
+
+        .warning {
+            background: #fee2e2;
+            border-left: 4px solid #ef4444;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .warning i {
+            color: #ef4444;
+            margin-right: 8px;
+        }
+
+        .success {
+            background: #dcfce7;
+            border-left: 4px solid #22c55e;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .success i {
+            color: #22c55e;
+            margin-right: 8px;
+        }
+
+        .faq-item {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 8px;
+        }
+
+        .faq-item strong {
+            color: #0f766e;
+        }
+
+        .browsers {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 15px 0;
+        }
+
+        .browser {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 15px;
+            background: #f8fafc;
+            border-radius: 8px;
+        }
+
+        .browser i {
+            font-size: 1.5rem;
+            color: #64748b;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #64748b;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .step {
+                flex-direction: column;
+            }
+
+            .step-number {
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-user-circle"></i> User Guide</h1>
+            <p>ROE/EOE Assessment - Guide for Survey Participants</p>
+            <div class="nav-links">
+                <a href="developer.html"><i class="fas fa-code"></i> Developer Docs</a>
+                <a href="instructions.html"><i class="fas fa-book"></i> Instructions</a>
+            </div>
+        </header>
+
+        <section>
+            <h2><i class="fas fa-info-circle"></i> Overview</h2>
+            <p>The ROE/EOE Assessment is an organizational effectiveness survey that measures how well your organization supports results-oriented work practices. The survey takes approximately <strong>15-30 minutes</strong> to complete depending on the number of questions assigned.</p>
+        </section>
+
+        <section>
+            <h2><i class="fas fa-rocket"></i> Getting Started</h2>
+
+            <h3>Accessing the Survey</h3>
+            <ol>
+                <li>You will receive a unique link via email from your organization</li>
+                <li>Click the link to open the survey in your web browser</li>
+                <li>The survey works on desktop, tablet, and mobile devices</li>
+            </ol>
+
+            <h3>Supported Browsers</h3>
+            <div class="browsers">
+                <div class="browser"><i class="fab fa-chrome"></i> Chrome (recommended)</div>
+                <div class="browser"><i class="fab fa-firefox"></i> Firefox</div>
+                <div class="browser"><i class="fab fa-edge"></i> Edge</div>
+                <div class="browser"><i class="fab fa-safari"></i> Safari</div>
+            </div>
+        </section>
+
+        <section>
+            <h2><i class="fas fa-tasks"></i> Taking the Survey</h2>
+
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>Validation</h4>
+                    <p>When you open the survey link, the system will automatically validate your invitation. You will see a success message if your link is valid, or an error message if there's an issue.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>Personal Information</h4>
+                    <p>Depending on your organization's configuration, you may be asked to provide information such as:</p>
+                    <ul>
+                        <li>First Name / Last Name</li>
+                        <li>Company / Position / Department</li>
+                        <li>Age / Years in Company / Gender</li>
+                        <li>City / Country</li>
+                        <li>Email / Phone</li>
+                    </ul>
+                    <p><em>Note: Only fields required by your organization will be displayed.</em></p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>Survey Instructions</h4>
+                    <p>Before starting, you can view the survey instructions by clicking the help icon. The instructions explain the purpose of the survey and how to answer questions.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h4>Answering Questions</h4>
+                    <p>Each question presents a statement about your organization. For each statement:</p>
+                    <ol>
+                        <li>Read the statement carefully</li>
+                        <li>Consider how accurately it describes your organization</li>
+                        <li>Click <strong>Yes</strong> if the statement accurately describes your organization</li>
+                        <li>Click <strong>No</strong> if the statement does not accurately describe your organization</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <h4>Submission</h4>
+                    <p>After answering all questions:</p>
+                    <ol>
+                        <li>Review your progress on the summary screen</li>
+                        <li>Click "Submit" to send your responses</li>
+                        <li>Wait for confirmation that your submission was successful</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2><i class="fas fa-star"></i> Features</h2>
+
+            <div class="success">
+                <i class="fas fa-save"></i>
+                <strong>Auto-Save:</strong> Your progress is automatically saved as you complete the survey. If you close your browser, lose connection, or need a break, simply return to the same link to continue.
+            </div>
+
+            <div class="success">
+                <i class="fas fa-play-circle"></i>
+                <strong>Resume Progress:</strong> When returning to an incomplete survey, the system detects your saved progress and lets you continue where you left off. Your question randomization is preserved.
+            </div>
+
+            <div class="success">
+                <i class="fas fa-random"></i>
+                <strong>Question Randomization:</strong> Questions are presented in a random order unique to your session. This randomization is preserved if you resume later.
+            </div>
+        </section>
+
+        <section>
+            <h2><i class="fas fa-exclamation-triangle"></i> Troubleshooting</h2>
+
+            <div class="faq-item">
+                <strong><i class="fas fa-times-circle"></i> "Invalid Test Link" Error</strong>
+                <ul>
+                    <li>Verify you're using the exact link provided to you</li>
+                    <li>Check that the link hasn't expired</li>
+                    <li>Contact your administrator for a new link</li>
+                </ul>
+            </div>
+
+            <div class="faq-item">
+                <strong><i class="fas fa-check-circle"></i> "Test Already Completed" Message</strong>
+                <ul>
+                    <li>This survey has already been submitted</li>
+                    <li>Each link can only be used once</li>
+                    <li>Contact your administrator if you need to retake the survey</li>
+                </ul>
+            </div>
+
+            <div class="faq-item">
+                <strong><i class="fas fa-spinner"></i> Survey Won't Load</strong>
+                <ul>
+                    <li>Check your internet connection</li>
+                    <li>Try refreshing the page</li>
+                    <li>Clear your browser cache</li>
+                    <li>Try a different browser</li>
+                </ul>
+            </div>
+
+            <div class="faq-item">
+                <strong><i class="fas fa-cloud-upload-alt"></i> Can't Submit Results</strong>
+                <ul>
+                    <li>Verify your internet connection</li>
+                    <li>Try clicking submit again</li>
+                    <li>Your results are saved locally if issues persist</li>
+                    <li>Contact your administrator for assistance</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2><i class="fas fa-shield-alt"></i> Privacy & Confidentiality</h2>
+            <ul>
+                <li>Your individual responses are confidential</li>
+                <li>Results are typically reported in aggregate</li>
+                <li>Personal information is used only for survey administration</li>
+                <li>Data is transmitted securely via HTTPS</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2><i class="fas fa-globe"></i> Languages Available</h2>
+            <ul>
+                <li><strong>Spanish:</strong> ROE - Resultados Orientados al Entorno</li>
+                <li><strong>English:</strong> EOE - Effectiveness Oriented Survey</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2><i class="fas fa-envelope"></i> Contact</h2>
+            <p>If you experience technical issues or have questions about the survey, please contact your organization's administrator or HR department.</p>
+        </section>
+
+        <footer>
+            <p>&copy; Reddin Assessments - ROE/EOE Assessment</p>
+        </footer>
+    </div>
+</body>
+</html>
