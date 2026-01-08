@@ -1,9 +1,9 @@
-# ROE/EOE Assessment
+# ROE/OOE Assessment
 
 Organizational effectiveness assessment module for the Clarion 12 assessment platform.
 
 - **ROE** (Spanish): Resultados Orientados al Entorno
-- **EOE** (English): Effectiveness Oriented Survey
+- **OOE** (English): Output Orientation Survey
 
 ## Documentation
 
