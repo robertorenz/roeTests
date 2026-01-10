@@ -42,6 +42,10 @@
             transition: all 0.3s ease;
         }
 
+        .container.narrow {
+            max-width: 700px;
+        }
+
         h1 {
             text-align: center;
             color: #34495e;
@@ -1908,11 +1912,19 @@ The test cannot continue without this information.`);
             document.querySelectorAll('#testValidationScreen, #userInfoScreen, #groupSelectionScreen, #questionScreen, #summaryScreen').forEach(screen => {
                 screen.classList.add('hidden');
             });
-            
+
             // Show selected screen with fade-in
             const screen = document.getElementById(screenId);
             screen.classList.remove('hidden');
             screen.classList.add('fade-in');
+
+            // Adjust container width based on screen
+            const container = document.querySelector('.container');
+            if (screenId === 'questionScreen' || screenId === 'summaryScreen') {
+                container.classList.add('narrow');
+            } else {
+                container.classList.remove('narrow');
+            }
         }
     </script>
 </body>
