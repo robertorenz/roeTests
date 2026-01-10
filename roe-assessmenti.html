@@ -1062,10 +1062,18 @@
             } else {
                 // Go directly to user info screen
                 app.isResuming = false;
+
+                // Load saved userInfo if available and populate form fields
+                const savedData = LocalStorage.load(app.testId);
+                if (savedData && savedData.userInfo) {
+                    app.userInfo = savedData.userInfo;
+                    populateFormFields();
+                }
+
                 showScreen('userInfoScreen');
             }
         }
-        
+
         // Show validation error
         function showValidationError() {
             document.getElementById('validationSpinner').style.display = 'none';
@@ -1150,9 +1158,25 @@
                     console.warn(`Field not found: ${fieldName}`);
                 }
             });
-            
+
         }
-        
+
+        // Populate form fields from saved userInfo
+        function populateFormFields() {
+            if (!app.userInfo) return;
+
+            const fields = ['firstName', 'lastName', 'company', 'position', 'department',
+                           'age', 'yearsInCompany', 'gender', 'note1', 'note2',
+                           'city', 'country', 'email', 'phone'];
+
+            fields.forEach(fieldName => {
+                const field = document.getElementById(fieldName);
+                if (field && app.userInfo[fieldName]) {
+                    field.value = app.userInfo[fieldName];
+                }
+            });
+        }
+
         // Load existing progress from localStorage
         function loadExistingProgress() {
             const savedData = LocalStorage.load(app.testId);
