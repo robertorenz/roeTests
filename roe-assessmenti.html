@@ -397,6 +397,17 @@
             vertical-align: middle;
         }
 
+        @media (max-width: 768px) {
+            .user-info-container {
+                flex-direction: column !important;
+            }
+
+            .video-column {
+                order: -1;
+                margin-bottom: 20px;
+            }
+        }
+
         @media (max-width: 600px) {
             .container {
                 padding: 30px 20px;
@@ -409,12 +420,12 @@
             .answer-button {
                 min-width: 100%;
             }
-            
+
             /* Mobile footer adjustments */
             footer {
                 padding: 7px 0 !important; /* 40% less than 12px */
             }
-            
+
             #milogofooter {
                 width: 60px !important; /* 40% less than 100px */
                 height: 60px !important;
@@ -488,78 +499,90 @@
 
         <!-- User Info Screen -->
         <div id="userInfoScreen" class="hidden">
-            <h1><i class="fas fa-clipboard-check icon"></i>Survey (OOE)</h1>
-            <h2>Output Orientation Survey (OOE)</h2>
-            <form id="userInfoForm">
-                <div class="form-group" data-field="firstName">
-                    <label for="firstName"><i class="fas fa-user icon"></i>First Name</label>
-                    <input type="text" id="firstName" name="firstName" placeholder="Enter your first name">
+            <h2 style="text-align: center; color: #2c3e50; margin-bottom: 30px;">Please complete the following information before starting the assessment</h2>
+            <div class="user-info-container" style="display: flex; gap: 40px; align-items: flex-start; max-width: 1000px; margin: 0 auto;">
+                <div class="form-column" style="flex: 1; min-width: 300px;">
+                    <form id="userInfoForm">
+                        <div class="form-group" data-field="firstName">
+                            <label for="firstName"><i class="fas fa-user icon"></i>First Name</label>
+                            <input type="text" id="firstName" name="firstName" placeholder="Enter your first name">
+                        </div>
+                        <div class="form-group" data-field="lastName">
+                            <label for="lastName"><i class="fas fa-user icon"></i>Last Name</label>
+                            <input type="text" id="lastName" name="lastName" placeholder="Enter your last name">
+                        </div>
+                        <div class="form-group" data-field="company">
+                            <label for="company"><i class="fas fa-building icon"></i>Company</label>
+                            <input type="text" id="company" name="company" placeholder="Your company name">
+                        </div>
+                        <div class="form-group" data-field="position">
+                            <label for="position"><i class="fas fa-briefcase icon"></i>Position</label>
+                            <input type="text" id="position" name="position" placeholder="Your position or title">
+                        </div>
+                        <div class="form-group" data-field="department">
+                            <label for="department"><i class="fas fa-sitemap icon"></i>Department</label>
+                            <input type="text" id="department" name="department" placeholder="Department or area">
+                        </div>
+                        <div class="form-group" data-field="age">
+                            <label for="age"><i class="fas fa-calendar-alt icon"></i>Age</label>
+                            <input type="number" id="age" name="age" placeholder="Age" min="18" max="100">
+                        </div>
+                        <div class="form-group" data-field="yearsInCompany">
+                            <label for="yearsInCompany"><i class="fas fa-clock icon"></i>Years at Company</label>
+                            <input type="number" id="yearsInCompany" name="yearsInCompany" placeholder="Years working at the company" min="0" max="50">
+                        </div>
+                        <div class="form-group" data-field="gender">
+                            <label for="gender"><i class="fas fa-venus-mars icon"></i>Gender</label>
+                            <select id="gender" name="gender">
+                                <option value="">Select your gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                                <option value="prefer-not-to-say">Prefer not to say</option>
+                            </select>
+                        </div>
+                        <div class="form-group" data-field="note1">
+                            <label for="note1"><i class="fas fa-sticky-note icon"></i>Note 1</label>
+                            <textarea id="note1" name="note1" placeholder="Additional note" rows="3"></textarea>
+                        </div>
+                        <div class="form-group" data-field="note2">
+                            <label for="note2"><i class="fas fa-sticky-note icon"></i>Note 2</label>
+                            <textarea id="note2" name="note2" placeholder="Additional note" rows="3"></textarea>
+                        </div>
+                        <div class="form-group" data-field="city">
+                            <label for="city"><i class="fas fa-city icon"></i>City</label>
+                            <input type="text" id="city" name="city" placeholder="City where you work">
+                        </div>
+                        <div class="form-group" data-field="country">
+                            <label for="country"><i class="fas fa-globe icon"></i>Country</label>
+                            <input type="text" id="country" name="country" placeholder="Country where you work">
+                        </div>
+                        <div class="form-group" data-field="email">
+                            <label for="email"><i class="fas fa-envelope icon"></i>Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="email@example.com">
+                        </div>
+                        <div class="form-group" data-field="phone">
+                            <label for="phone"><i class="fas fa-mobile-alt icon"></i>SMS Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+1234567890">
+                        </div>
+                        <button type="submit" class="button" style="width: 100%; margin-top: 20px;">
+                            <i class="fas fa-play icon"></i>Next
+                        </button>
+                        <button type="button" id="debugButton" class="button" style="background: #e74c3c; margin-top: 10px; display: none; width: 100%;">
+                            <i class="fas fa-bug icon"></i>Debug: Auto-Complete Test
+                        </button>
+                    </form>
                 </div>
-                <div class="form-group" data-field="lastName">
-                    <label for="lastName"><i class="fas fa-user icon"></i>Last Name</label>
-                    <input type="text" id="lastName" name="lastName" placeholder="Enter your last name">
+                <div class="video-column" style="flex: 1; min-width: 300px;">
+                    <div style="text-align: right; margin-bottom: 15px;">
+                        <img src="https://www.reddinassessments.com/wp-content/uploads/2023/01/reddin-assessments-logo.png" alt="Reddin Assessments" style="max-width: 200px; height: auto;">
+                    </div>
+                    <video controls style="width: 100%; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+                        <source src="oos.mp4" type="video/mp4">
+                        Your browser does not support the video element.
+                    </video>
                 </div>
-                <div class="form-group" data-field="company">
-                    <label for="company"><i class="fas fa-building icon"></i>Company</label>
-                    <input type="text" id="company" name="company" placeholder="Your company name">
-                </div>
-                <div class="form-group" data-field="position">
-                    <label for="position"><i class="fas fa-briefcase icon"></i>Position</label>
-                    <input type="text" id="position" name="position" placeholder="Your position or title">
-                </div>
-                <div class="form-group" data-field="department">
-                    <label for="department"><i class="fas fa-sitemap icon"></i>Department</label>
-                    <input type="text" id="department" name="department" placeholder="Department or area">
-                </div>
-                <div class="form-group" data-field="age">
-                    <label for="age"><i class="fas fa-calendar-alt icon"></i>Age</label>
-                    <input type="number" id="age" name="age" placeholder="Age" min="18" max="100">
-                </div>
-                <div class="form-group" data-field="yearsInCompany">
-                    <label for="yearsInCompany"><i class="fas fa-clock icon"></i>Years at Company</label>
-                    <input type="number" id="yearsInCompany" name="yearsInCompany" placeholder="Years working at the company" min="0" max="50">
-                </div>
-                <div class="form-group" data-field="gender">
-                    <label for="gender"><i class="fas fa-venus-mars icon"></i>Gender</label>
-                    <select id="gender" name="gender">
-                        <option value="">Select your gender</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                        <option value="other">Other</option>
-                        <option value="prefer-not-to-say">Prefer not to say</option>
-                    </select>
-                </div>
-                <div class="form-group" data-field="note1">
-                    <label for="note1"><i class="fas fa-sticky-note icon"></i>Note 1</label>
-                    <textarea id="note1" name="note1" placeholder="Additional note" rows="3"></textarea>
-                </div>
-                <div class="form-group" data-field="note2">
-                    <label for="note2"><i class="fas fa-sticky-note icon"></i>Note 2</label>
-                    <textarea id="note2" name="note2" placeholder="Additional note" rows="3"></textarea>
-                </div>
-                <div class="form-group" data-field="city">
-                    <label for="city"><i class="fas fa-city icon"></i>City</label>
-                    <input type="text" id="city" name="city" placeholder="City where you work">
-                </div>
-                <div class="form-group" data-field="country">
-                    <label for="country"><i class="fas fa-globe icon"></i>Country</label>
-                    <input type="text" id="country" name="country" placeholder="Country where you work">
-                </div>
-                <div class="form-group" data-field="email">
-                    <label for="email"><i class="fas fa-envelope icon"></i>Email Address</label>
-                    <input type="email" id="email" name="email" placeholder="email@example.com">
-                </div>
-                <div class="form-group" data-field="phone">
-                    <label for="phone"><i class="fas fa-mobile-alt icon"></i>SMS Phone Number</label>
-                    <input type="tel" id="phone" name="phone" placeholder="+1234567890">
-                </div>
-                <button type="submit" class="button">
-                    <i class="fas fa-play icon"></i>Begin Assessment
-                </button>
-                <button type="button" id="debugButton" class="button" style="background: #e74c3c; margin-top: 10px; display: none;">
-                    <i class="fas fa-bug icon"></i>Debug: Auto-Complete Test
-                </button>
-            </form>
+            </div>
         </div>
 
         <!-- Question Screen -->
@@ -1027,28 +1050,16 @@
             }
         }
         
-        // Show validation success with appropriate button
+        // Show validation success - go directly to user info or resume
         function showValidationSuccess(progress) {
-            document.getElementById('validationSpinner').style.display = 'none';
-            document.getElementById('validationMessage').style.display = 'none';
-            document.getElementById('validationResult').classList.remove('hidden');
-            document.getElementById('validationSuccess').classList.remove('hidden');
-            
-            const startButton = document.getElementById('startTestButton');
-            const statusMessage = document.getElementById('testStatusMessage');
-            
-            if (progress.isComplete) {
-                statusMessage.textContent = 'This test has already been completed. You can review it again.';
-                startButton.innerHTML = '<i class="fas fa-eye icon"></i>Review Completed Test';
+            if (progress.isPartial) {
+                // Resume existing progress
                 app.isResuming = true;
-            } else if (progress.isPartial) {
-                statusMessage.textContent = `You have a partially completed test (${progress.answered}/${progress.total} statements answered - ${progress.percentage}%). You can continue where you left off.`;
-                startButton.innerHTML = '<i class="fas fa-play-circle icon"></i>Continue Test';
-                app.isResuming = true;
+                loadExistingProgress();
             } else {
-                statusMessage.textContent = 'The test is available and ready to begin.';
-                startButton.innerHTML = '<i class="fas fa-play icon"></i>Begin Test';
+                // Go directly to user info screen
                 app.isResuming = false;
+                showScreen('userInfoScreen');
             }
         }
         
