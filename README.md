@@ -17,16 +17,16 @@ Organizational effectiveness assessment module for the Clarion 12 assessment pla
 
 | File | Description |
 |------|-------------|
-| `roe-assessment.html` | Spanish-language assessment interface |
-| `roe-assessmenti.html` | English-language assessment interface |
+| `eoe-assessment.html` | Spanish-language assessment interface |
+| `eoe-assessmenti.html` | English-language assessment interface |
 | `frasROE.json` | Assessment questions and response templates |
 
 ## Quick Start
 
 Access the survey via URL with test ID parameter:
 ```
-roe-assessment.html?id=YOUR_TEST_ID      # Spanish
-roe-assessmenti.html?id=YOUR_TEST_ID     # English
+eoe-assessment.html?id=YOUR_TEST_ID      # Spanish
+eoe-assessmenti.html?id=YOUR_TEST_ID     # English
 ```
 
 ## Assessment Structure
