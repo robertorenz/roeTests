@@ -36,8 +36,8 @@
             background: white;
             border-radius: 16px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            width: 90%;
-            max-width: 600px;
+            width: 95%;
+            max-width: 1100px;
             padding: 40px;
             transition: all 0.3s ease;
         }
@@ -500,8 +500,8 @@
         <!-- User Info Screen -->
         <div id="userInfoScreen" class="hidden">
             <h2 style="text-align: center; color: #2c3e50; margin-bottom: 30px;">Please complete the following information before starting the assessment</h2>
-            <div class="user-info-container" style="display: flex; gap: 40px; align-items: flex-start; max-width: 1000px; margin: 0 auto;">
-                <div class="form-column" style="flex: 1; min-width: 300px;">
+            <div class="user-info-container" style="display: flex; gap: 40px; align-items: flex-start;">
+                <div class="form-column" style="flex: 1;">
                     <form id="userInfoForm">
                         <div class="form-group" data-field="firstName">
                             <label for="firstName"><i class="fas fa-user icon"></i>First Name</label>
@@ -573,8 +573,8 @@
                         </button>
                     </form>
                 </div>
-                <div class="video-column" style="flex: 1; min-width: 300px;">
-                    <video controls style="width: 100%; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+                <div class="video-column" style="flex: 1; display: flex; align-items: center;">
+                    <video id="introVideo" controls style="width: 100%; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
                         <source src="oos.mp4" type="video/mp4">
                         Your browser does not support the video element.
                     </video>
@@ -1304,14 +1304,20 @@
         // Handle user info form submission
         function handleUserInfoSubmit(e) {
             e.preventDefault();
-            
+
             // Validate required fields
             const validationErrors = validateRequiredFields();
             if (validationErrors.length > 0) {
                 showValidationErrors(validationErrors);
                 return;
             }
-            
+
+            // Pause the intro video
+            const introVideo = document.getElementById('introVideo');
+            if (introVideo) {
+                introVideo.pause();
+            }
+
             // Collect user info from all fields
             app.userInfo = {
                 firstName: document.getElementById('firstName').value || '',
