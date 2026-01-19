@@ -1345,10 +1345,15 @@
                 saveProgress();
                 
                 // Create the final answers string for debugging
+                // English version uses orden 161-320, normalize to 1-160
                 const orderedAnswers = new Array(160).fill(0);
                 app.answers.filter(answer => answer !== null).forEach(answer => {
-                    if (answer.orden >= 1 && answer.orden <= 160) {
-                        orderedAnswers[answer.orden - 1] = answer.answer ? 1 : 0;
+                    let normalizedOrden = answer.orden;
+                    if (answer.orden >= 161 && answer.orden <= 320) {
+                        normalizedOrden = answer.orden - 160;
+                    }
+                    if (normalizedOrden >= 1 && normalizedOrden <= 160) {
+                        orderedAnswers[normalizedOrden - 1] = answer.answer ? 1 : 0;
                     }
                 });
                 const debugAnswersString = orderedAnswers.join('');
@@ -1853,9 +1858,14 @@ The test cannot continue without this information.`);
             const orderedAnswers = new Array(160).fill(0);
             
             // Map answers to their correct orden positions
+            // English version uses orden 161-320, normalize to 1-160
             app.answers.filter(answer => answer !== null).forEach(answer => {
-                if (answer.orden >= 1 && answer.orden <= 160) {
-                    orderedAnswers[answer.orden - 1] = answer.answer ? 1 : 0;
+                let normalizedOrden = answer.orden;
+                if (answer.orden >= 161 && answer.orden <= 320) {
+                    normalizedOrden = answer.orden - 160;
+                }
+                if (normalizedOrden >= 1 && normalizedOrden <= 160) {
+                    orderedAnswers[normalizedOrden - 1] = answer.answer ? 1 : 0;
                 }
             });
             
