@@ -1903,7 +1903,10 @@ The test cannot continue without this information.`);
                     if (responseData.wsSaveInvitROE_response && responseData.wsSaveInvitROE_response.resultComplete === "1") {
                         submitButton.innerHTML = '<i class="fas fa-check icon"></i>Successfully Submitted!';
                         submitButton.style.background = '#27ae60';
-                        
+
+                        // Launch confetti celebration
+                        launchConfetti();
+
                         // Clear localStorage after successful submission
                         if (app.testId) {
                             LocalStorage.clear(app.testId);
